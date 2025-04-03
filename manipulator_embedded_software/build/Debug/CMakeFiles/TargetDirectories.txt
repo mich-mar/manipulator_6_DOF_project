@@ -1,0 +1,5 @@
+/home/michal/Documents/programing_projects/manipulator_6_dof/build/Debug/CMakeFiles/manipulator_6_dof.dir
+/home/michal/Documents/programing_projects/manipulator_6_dof/build/Debug/CMakeFiles/edit_cache.dir
+/home/michal/Documents/programing_projects/manipulator_6_dof/build/Debug/CMakeFiles/rebuild_cache.dir
+/home/michal/Documents/programing_projects/manipulator_6_dof/build/Debug/cmake/stm32cubemx/CMakeFiles/edit_cache.dir
+/home/michal/Documents/programing_projects/manipulator_6_dof/build/Debug/cmake/stm32cubemx/CMakeFiles/rebuild_cache.dir
