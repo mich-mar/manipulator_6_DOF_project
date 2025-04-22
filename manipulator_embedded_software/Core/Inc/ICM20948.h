@@ -3,6 +3,7 @@
 
 #include "stm32l4xx_hal.h" 
 #include "imu_adresses.h"
+#include <stdio.h>
 
 typedef enum {
     ICM20948_OK = 0,

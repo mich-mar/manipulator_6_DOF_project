@@ -45,6 +45,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
 # Add include paths for HAL and other necessary includes
 include_directories(
     ${PROJECT_SOURCE_DIR}/Core/Inc
+    ${PROJECT_SOURCE_DIR}/Core/Src
     ${PROJECT_SOURCE_DIR}/Drivers/CMSIS/Core/Include
     ${PROJECT_SOURCE_DIR}/Drivers/CMSIS/Device/ST/STM32L4xx/Include
     ${PROJECT_SOURCE_DIR}/Drivers/STM32L4xx_HAL_Driver/Inc

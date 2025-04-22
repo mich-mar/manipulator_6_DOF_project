@@ -1,4 +1,4 @@
-# Install script for directory: /home/michal/Documents/programing_projects/manipulator_6_dof/cmake/stm32cubemx
+# Install script for directory: /home/michal/Documents/programing_projects/manipulator_6_DOF_project/manipulator_embedded_software/cmake/stm32cubemx
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>icons/uk.png</file>
+        <file>icons/pl.png</file>
+        <file>icons/manipulator_6dof.png</file>
+    </qresource>
+</RCC>

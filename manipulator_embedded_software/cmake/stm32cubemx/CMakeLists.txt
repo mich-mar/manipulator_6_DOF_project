@@ -22,6 +22,8 @@ target_include_directories(stm32cubemx INTERFACE
 
 target_sources(stm32cubemx INTERFACE
     ../../Core/Src/main.c
+    ../../Core/Src/imu_handler.c
+    ../../Core/Src/ads1115.c
     ../../Core/Src/gpio.c
     ../../Core/Src/dma.c
     ../../Core/Src/i2c.c

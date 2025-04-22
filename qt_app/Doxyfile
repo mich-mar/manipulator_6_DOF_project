@@ -1,0 +1,41 @@
+# Doxygen configuration file for project
+
+# Project settings
+PROJECT_NAME           = "Manipulator 6 DOF"
+PROJECT_BRIEF          = "Aplikacja do wizualizacji i modelowania manipulatorem 6 DOF"
+OUTPUT_DIRECTORY       = "docs"  # Katalog, do którego będą zapisane pliki dokumentacji
+GENERATE_LATEX         = NO  # Jeżeli nie chcesz generować dokumentacji w formacie LaTeX
+GENERATE_HTML          = YES # Generowanie dokumentacji HTML
+HTML_OUTPUT            = "html"  # Katalog na dokumentację HTML
+HTML_HEADER            = ""  # Można dodać własny nagłówek HTML
+HTML_FOOTER            = ""  # Można dodać własną stopkę HTML
+GENERATE_TREEVIEW      = YES # Włączenie drzewa plików w dokumentacji HTML
+RECURSIVE              = YES # Obejmuje podkatalogi przy generowaniu dokumentacji
+
+# Input settings
+INPUT                  = "main.cpp"  # Plik z kodem źródłowym
+FILE_PATTERNS          = "*.cpp" "*.h"  # Wzorce plików źródłowych
+EXCLUDE_PATTERNS       = "*.ui" "*.pro"  # Wzorce plików do wykluczenia
+EXCLUDE                = ""  # Jeśli chcesz wykluczyć określone pliki lub katalogi
+
+# Documentation generation settings
+OPTIMIZE_OUTPUT_FOR_C  = YES  # Optymalizacja dla języka C
+EXTRACT_ALL            = YES  # Ekstrakcja dokumentacji dla wszystkich funkcji/zmiennych
+EXTRACT_PRIVATE        = NO   # Nie generować dokumentacji dla prywatnych funkcji
+EXTRACT_STATIC         = NO   # Nie generować dokumentacji dla funkcji statycznych
+EXTRACT_LOCAL_CLASSES  = NO   # Nie generować dokumentacji dla lokalnych klas
+
+# Język
+INPUT_ENCODING         = UTF-8  # Kodowanie pliku wejściowego
+OUTPUT_ENCODING        = UTF-8  # Kodowanie wyjściowe
+
+# HTML output settings
+HTML_COLORSTYLE_HUE    = 220  # Kolorystyka dokumentacji HTML
+HTML_COLORSTYLE_SAT    = 100  # Nasycenie kolorów HTML
+HTML_COLORSTYLE_LIGHT  = 200  # Jasność kolorów HTML
+
+# Extra configurations for documentation
+ENABLE_PREPROCESSING   = YES  # Umożliwia przetwarzanie preprocesora
+MACRO_EXPANSION        = YES  # Rozszerzanie makr w dokumentacji
+SHOW_INCLUDE_FILES     = YES  # Pokazuje pliki nagłówkowe
+INCLUDE_PATH           = ""  # Ścieżki do dodatkowych katalogów nagłówkowych, jeśli istnieją
