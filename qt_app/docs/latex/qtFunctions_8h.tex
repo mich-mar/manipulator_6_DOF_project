@@ -1,0 +1,314 @@
+\hypertarget{qtFunctions_8h}{}\doxysection{inc/qt\+Functions.h File Reference}
+\label{qtFunctions_8h}\index{inc/qtFunctions.h@{inc/qtFunctions.h}}
+{\ttfamily \#include \char`\"{}definitions.\+h\char`\"{}}\newline
+Include dependency graph for qt\+Functions.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{qtFunctions_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{qtFunctions_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+QT\+\_\+\+CHARTS\+\_\+\+USE\+\_\+\+NAMESPACE QPixmap \mbox{\hyperlink{qtFunctions_8h_a31cb5144525b60d455f9ade310995775}{create\+Rotated\+Text}} (const QString \&text, const QFont \&font, int width, int height)
+\begin{DoxyCompactList}\small\item\em Funkcja tworząca obrócony tekst w etykiecie. \end{DoxyCompactList}\item 
+QChart\+View $\ast$ \mbox{\hyperlink{qtFunctions_8h_aeb04879c81c06914629a6e4e35febc2c}{create\+Angle\+Chart}} (int color\+Index)
+\begin{DoxyCompactList}\small\item\em Funkcja tworząca wykres kąta. \end{DoxyCompactList}\item 
+QChart\+View $\ast$ \mbox{\hyperlink{qtFunctions_8h_a6850a6f8a50529d9990eeed270f457f9}{create\+IMUChart}} (int axis\+Index)
+\begin{DoxyCompactList}\small\item\em Funkcja tworząca wykres IMU. \end{DoxyCompactList}\item 
+QPixmap \mbox{\hyperlink{qtFunctions_8h_a03e1a720d308bcfb77b9305a105bf618}{create\+Flag\+Placeholder}} (const QString \&text, const QColor \&color)
+\begin{DoxyCompactList}\small\item\em Funkcja tworząca placeholder flagi. \end{DoxyCompactList}\item 
+QPixmap \mbox{\hyperlink{qtFunctions_8h_ab51cbc58ff34de8db768ea67250ded0f}{create\+Manipulator\+Placeholder}} ()
+\begin{DoxyCompactList}\small\item\em Funkcja tworząca placeholder manipulatora jeśli brak obrazu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{qtFunctions_8h_aeb04879c81c06914629a6e4e35febc2c}\label{qtFunctions_8h_aeb04879c81c06914629a6e4e35febc2c}} 
+\index{qtFunctions.h@{qtFunctions.h}!createAngleChart@{createAngleChart}}
+\index{createAngleChart@{createAngleChart}!qtFunctions.h@{qtFunctions.h}}
+\doxysubsubsection{\texorpdfstring{createAngleChart()}{createAngleChart()}}
+{\footnotesize\ttfamily QChart\+View$\ast$ create\+Angle\+Chart (\begin{DoxyParamCaption}\item[{int}]{color\+Index }\end{DoxyParamCaption})}
+
+
+
+Funkcja tworząca wykres kąta. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color\+Index} & Indeks koloru z tablicy ANGLE\+\_\+\+COLORS \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+QChart\+View z przygotowanym wykresem 
+\end{DoxyReturn}
+
+
+Definition at line 19 of file qt\+Functions.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19                                              \{}
+\DoxyCodeLine{20     QChart *chart = \textcolor{keyword}{new} QChart();}
+\DoxyCodeLine{21     chart-\/>legend()-\/>hide();}
+\DoxyCodeLine{22     chart-\/>setMargins(QMargins(5, 5, 5, 5));}
+\DoxyCodeLine{23     chart-\/>setBackgroundBrush(QBrush(Qt::white));}
+\DoxyCodeLine{24     chart-\/>setTitle(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     QLineSeries *series = \textcolor{keyword}{new} QLineSeries();}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     QPen pen(\mbox{\hyperlink{definitions_8h_af169e3459d1dd402d700f5b964941bf6}{ANGLE\_COLORS}}[colorIndex]);}
+\DoxyCodeLine{29     pen.setWidth(2);}
+\DoxyCodeLine{30     series-\/>setPen(pen);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32     chart-\/>addSeries(series);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     QValueAxis *axisX = \textcolor{keyword}{new} QValueAxis();}
+\DoxyCodeLine{35     axisX-\/>setRange(0, \mbox{\hyperlink{definitions_8h_a68894df2c21a98795f42da8a49c6fc5d}{CHART\_TIME\_RANGE}});}
+\DoxyCodeLine{36     axisX-\/>setGridLineVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{37     axisX-\/>setTickCount(7);}
+\DoxyCodeLine{38     axisX-\/>setTitleText(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{39     axisX-\/>setLabelsVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     QValueAxis *axisY = \textcolor{keyword}{new} QValueAxis();}
+\DoxyCodeLine{42     axisY-\/>setRange(0, \mbox{\hyperlink{definitions_8h_a2e9db20bcc3d4e009a3228864373e8e9}{ANGLE\_MAX\_VALUE}});}
+\DoxyCodeLine{43     axisY-\/>setGridLineVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{44     axisY-\/>setTickCount(5);}
+\DoxyCodeLine{45     axisY-\/>setTitleText(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{46     axisY-\/>setLabelsVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     chart-\/>setAxisX(axisX, series);}
+\DoxyCodeLine{49     chart-\/>setAxisY(axisY, series);}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51     QChartView *chartView = \textcolor{keyword}{new} QChartView(chart);}
+\DoxyCodeLine{52     chartView-\/>setRenderHint(QPainter::Antialiasing);}
+\DoxyCodeLine{53     chartView-\/>setMinimumHeight(80);}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \textcolor{keywordflow}{return} chartView;}
+\DoxyCodeLine{56 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{qtFunctions_8h_aeb04879c81c06914629a6e4e35febc2c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{qtFunctions_8h_a03e1a720d308bcfb77b9305a105bf618}\label{qtFunctions_8h_a03e1a720d308bcfb77b9305a105bf618}} 
+\index{qtFunctions.h@{qtFunctions.h}!createFlagPlaceholder@{createFlagPlaceholder}}
+\index{createFlagPlaceholder@{createFlagPlaceholder}!qtFunctions.h@{qtFunctions.h}}
+\doxysubsubsection{\texorpdfstring{createFlagPlaceholder()}{createFlagPlaceholder()}}
+{\footnotesize\ttfamily QPixmap create\+Flag\+Placeholder (\begin{DoxyParamCaption}\item[{const QString \&}]{text,  }\item[{const QColor \&}]{color }\end{DoxyParamCaption})}
+
+
+
+Funkcja tworząca placeholder flagi. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Tekst na placeholderze flagi \\
+\hline
+{\em color} & Kolor tła flagi \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+QPixmap z flagą 
+\end{DoxyReturn}
+
+
+Definition at line 95 of file qt\+Functions.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{95                                                                         \{}
+\DoxyCodeLine{96     QPixmap flagPixmap(30, 20);}
+\DoxyCodeLine{97     flagPixmap.fill(color);}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99     QPainter painter(\&flagPixmap);}
+\DoxyCodeLine{100     painter.setPen(Qt::black);}
+\DoxyCodeLine{101     painter.drawText(flagPixmap.rect(), Qt::AlignCenter, text);}
+\DoxyCodeLine{102     painter.drawRect(0, 0, flagPixmap.width() -\/ 1, flagPixmap.height() -\/ 1);}
+\DoxyCodeLine{103     painter.end();}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105     \textcolor{keywordflow}{return} flagPixmap;}
+\DoxyCodeLine{106 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{qtFunctions_8h_a6850a6f8a50529d9990eeed270f457f9}\label{qtFunctions_8h_a6850a6f8a50529d9990eeed270f457f9}} 
+\index{qtFunctions.h@{qtFunctions.h}!createIMUChart@{createIMUChart}}
+\index{createIMUChart@{createIMUChart}!qtFunctions.h@{qtFunctions.h}}
+\doxysubsubsection{\texorpdfstring{createIMUChart()}{createIMUChart()}}
+{\footnotesize\ttfamily QChart\+View$\ast$ create\+IMUChart (\begin{DoxyParamCaption}\item[{int}]{axis\+Index }\end{DoxyParamCaption})}
+
+
+
+Funkcja tworząca wykres IMU. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em axis\+Index} & Indeks osi (0-\/X, 1-\/Y, 2-\/Z) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+QChart\+View z przygotowanym wykresem IMU 
+\end{DoxyReturn}
+
+
+Definition at line 58 of file qt\+Functions.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{58                                           \{}
+\DoxyCodeLine{59     QChart *chart = \textcolor{keyword}{new} QChart();}
+\DoxyCodeLine{60     chart-\/>legend()-\/>hide();}
+\DoxyCodeLine{61     chart-\/>setMargins(QMargins(5, 5, 5, 5));}
+\DoxyCodeLine{62     chart-\/>setBackgroundBrush(QBrush(Qt::white));}
+\DoxyCodeLine{63     chart-\/>setTitle(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65     QLineSeries *series = \textcolor{keyword}{new} QLineSeries();}
+\DoxyCodeLine{66     QPen pen(\mbox{\hyperlink{definitions_8h_afaf2d36172b8a16f232e8d68c288a1b1}{IMU\_COLORS}}[axisIndex]);}
+\DoxyCodeLine{67     pen.setWidth(2);}
+\DoxyCodeLine{68     series-\/>setPen(pen);}
+\DoxyCodeLine{69     chart-\/>addSeries(series);}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71     QValueAxis *axisX = \textcolor{keyword}{new} QValueAxis();}
+\DoxyCodeLine{72     axisX-\/>setRange(0, \mbox{\hyperlink{definitions_8h_a68894df2c21a98795f42da8a49c6fc5d}{CHART\_TIME\_RANGE}});}
+\DoxyCodeLine{73     axisX-\/>setGridLineVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{74     axisX-\/>setTickCount(7);}
+\DoxyCodeLine{75     axisX-\/>setTitleText(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{76     axisX-\/>setLabelsVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     QValueAxis *axisY = \textcolor{keyword}{new} QValueAxis();}
+\DoxyCodeLine{79     axisY-\/>setRange(-\/\mbox{\hyperlink{definitions_8h_a1e48ab40c54d8794e21e10e3f14e358b}{IMU\_VALUE\_RANGE}}, \mbox{\hyperlink{definitions_8h_a1e48ab40c54d8794e21e10e3f14e358b}{IMU\_VALUE\_RANGE}});}
+\DoxyCodeLine{80     axisY-\/>setGridLineVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{81     axisY-\/>setTickCount(5);}
+\DoxyCodeLine{82     axisY-\/>setTitleText(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{83     axisY-\/>setLabelsVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85     chart-\/>setAxisX(axisX, series);}
+\DoxyCodeLine{86     chart-\/>setAxisY(axisY, series);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     QChartView *chartView = \textcolor{keyword}{new} QChartView(chart);}
+\DoxyCodeLine{89     chartView-\/>setRenderHint(QPainter::Antialiasing);}
+\DoxyCodeLine{90     chartView-\/>setMinimumHeight(80);}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92     \textcolor{keywordflow}{return} chartView;}
+\DoxyCodeLine{93 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{qtFunctions_8h_a6850a6f8a50529d9990eeed270f457f9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{qtFunctions_8h_ab51cbc58ff34de8db768ea67250ded0f}\label{qtFunctions_8h_ab51cbc58ff34de8db768ea67250ded0f}} 
+\index{qtFunctions.h@{qtFunctions.h}!createManipulatorPlaceholder@{createManipulatorPlaceholder}}
+\index{createManipulatorPlaceholder@{createManipulatorPlaceholder}!qtFunctions.h@{qtFunctions.h}}
+\doxysubsubsection{\texorpdfstring{createManipulatorPlaceholder()}{createManipulatorPlaceholder()}}
+{\footnotesize\ttfamily QPixmap create\+Manipulator\+Placeholder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Funkcja tworząca placeholder manipulatora jeśli brak obrazu. 
+
+\begin{DoxyReturn}{Returns}
+QPixmap z placeholderem 
+\end{DoxyReturn}
+
+
+Definition at line 108 of file qt\+Functions.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{108                                        \{}
+\DoxyCodeLine{109     QPixmap placeholder(\mbox{\hyperlink{definitions_8h_a81d44a4bcf5982305f4c307f6d7d2675}{MANIPULATOR\_WIDTH}}, \mbox{\hyperlink{definitions_8h_a0d7d34b2dbc18013efbfd36d6eff1d61}{MANIPULATOR\_HEIGHT}});}
+\DoxyCodeLine{110     placeholder.fill(Qt::white);}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112     QPainter painter(\&placeholder);}
+\DoxyCodeLine{113     painter.setPen(QPen(Qt::black, 2));}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115     \textcolor{keywordtype}{int} centerX = \mbox{\hyperlink{definitions_8h_a81d44a4bcf5982305f4c307f6d7d2675}{MANIPULATOR\_WIDTH}} / 2;}
+\DoxyCodeLine{116     \textcolor{keywordtype}{int} baseY = \mbox{\hyperlink{definitions_8h_a0d7d34b2dbc18013efbfd36d6eff1d61}{MANIPULATOR\_HEIGHT}} -\/ 50;}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118     painter.drawRect(centerX -\/ 50, baseY, 100, 30);}
+\DoxyCodeLine{119     painter.drawLine(centerX, baseY, centerX, baseY -\/ 100);}
+\DoxyCodeLine{120     painter.drawLine(centerX, baseY -\/ 100, centerX + 120, baseY -\/ 150);}
+\DoxyCodeLine{121     painter.drawLine(centerX + 120, baseY -\/ 150, centerX + 150, baseY -\/ 250);}
+\DoxyCodeLine{122     painter.drawEllipse(centerX + 140, baseY -\/ 270, 20, 20);}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124     painter.drawText(10, 20, \textcolor{stringliteral}{"{}Manipulator 6 DOF (placeholder)"{}});}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126     painter.end();}
+\DoxyCodeLine{127     \textcolor{keywordflow}{return} placeholder;}
+\DoxyCodeLine{128 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{qtFunctions_8h_a31cb5144525b60d455f9ade310995775}\label{qtFunctions_8h_a31cb5144525b60d455f9ade310995775}} 
+\index{qtFunctions.h@{qtFunctions.h}!createRotatedText@{createRotatedText}}
+\index{createRotatedText@{createRotatedText}!qtFunctions.h@{qtFunctions.h}}
+\doxysubsubsection{\texorpdfstring{createRotatedText()}{createRotatedText()}}
+{\footnotesize\ttfamily QT\+\_\+\+CHARTS\+\_\+\+USE\+\_\+\+NAMESPACE QPixmap create\+Rotated\+Text (\begin{DoxyParamCaption}\item[{const QString \&}]{text,  }\item[{const QFont \&}]{font,  }\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})}
+
+
+
+Funkcja tworząca obrócony tekst w etykiecie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Tekst do obrócenia \\
+\hline
+{\em font} & Czcionka dla tekstu \\
+\hline
+{\em width} & Szerokość wynikowego pixmapy \\
+\hline
+{\em height} & Wysokość wynikowej pixmapy \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+QPixmap z obróconym tekstem 
+\end{DoxyReturn}
+
+
+Definition at line 3 of file qt\+Functions.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{3                                                                                          \{}
+\DoxyCodeLine{4     QTransform transform;}
+\DoxyCodeLine{5     transform.rotate(-\/90);}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7     QPixmap pixmap(width, height);}
+\DoxyCodeLine{8     pixmap.fill(Qt::transparent);}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10     QPainter painter(\&pixmap);}
+\DoxyCodeLine{11     painter.setTransform(transform);}
+\DoxyCodeLine{12     painter.setFont(font);}
+\DoxyCodeLine{13     painter.drawText(QRect(-\/height, 0, height, width), Qt::AlignCenter, text);}
+\DoxyCodeLine{14     painter.end();}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16     \textcolor{keywordflow}{return} pixmap;}
+\DoxyCodeLine{17 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{qtFunctions_8h_a31cb5144525b60d455f9ade310995775_icgraph}
+\end{center}
+\end{figure}

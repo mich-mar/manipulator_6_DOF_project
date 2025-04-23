@@ -1,0 +1,110 @@
+\hypertarget{structinputData}{}\doxysection{input\+Data Struct Reference}
+\label{structinputData}\index{inputData@{inputData}}
+
+
+Struktura przechowująca dane wejściowe dla manipulatora 6 DOF.  
+
+
+
+
+{\ttfamily \#include $<$definitions.\+h$>$}
+
+
+
+Collaboration diagram for input\+Data\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structinputData__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structangles}{angles}} \mbox{\hyperlink{structinputData_a212d2753ea0b91fdb12aa69547976749}{angle\+Data}}
+\begin{DoxyCompactList}\small\item\em Dane kątów manipulatora. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structaccel}{accel}} \mbox{\hyperlink{structinputData_a9bd841eaf9cb883f85c16927ad429124}{accel\+Data}}
+\begin{DoxyCompactList}\small\item\em Dane z akcelerometru. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structgyro}{gyro}} \mbox{\hyperlink{structinputData_a9c43e94788499e45c11f356873b004d7}{gyro\+Data}}
+\begin{DoxyCompactList}\small\item\em Dane z żyroskopu. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structmag}{mag}} \mbox{\hyperlink{structinputData_a94eb4c7bc4e5a009d4e0d81c350bc75c}{mag\+Data}}
+\begin{DoxyCompactList}\small\item\em Dane z magnetometru. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Struktura przechowująca dane wejściowe dla manipulatora 6 DOF. 
+
+Struktura zawiera dane z różnych czujników\+: kąty, akcelerometr, żyroskop, magnetometr. Dane te są przechowywane w kolejce typu QQueue, umożliwiając organizację i przetwarzanie danych wejściowych w czasie rzeczywistym.
+
+\begin{DoxyNote}{Note}
+Kolejka pozwala na przechowywanie historycznych danych i ich późniejsze przetwarzanie. 
+\end{DoxyNote}
+
+
+Definition at line 151 of file definitions.\+h.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structinputData_a9bd841eaf9cb883f85c16927ad429124}\label{structinputData_a9bd841eaf9cb883f85c16927ad429124}} 
+\index{inputData@{inputData}!accelData@{accelData}}
+\index{accelData@{accelData}!inputData@{inputData}}
+\doxysubsubsection{\texorpdfstring{accelData}{accelData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structaccel}{accel}} input\+Data\+::accel\+Data}
+
+
+
+Dane z akcelerometru. 
+
+
+
+Definition at line 153 of file definitions.\+h.
+
+\mbox{\Hypertarget{structinputData_a212d2753ea0b91fdb12aa69547976749}\label{structinputData_a212d2753ea0b91fdb12aa69547976749}} 
+\index{inputData@{inputData}!angleData@{angleData}}
+\index{angleData@{angleData}!inputData@{inputData}}
+\doxysubsubsection{\texorpdfstring{angleData}{angleData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structangles}{angles}} input\+Data\+::angle\+Data}
+
+
+
+Dane kątów manipulatora. 
+
+
+
+Definition at line 152 of file definitions.\+h.
+
+\mbox{\Hypertarget{structinputData_a9c43e94788499e45c11f356873b004d7}\label{structinputData_a9c43e94788499e45c11f356873b004d7}} 
+\index{inputData@{inputData}!gyroData@{gyroData}}
+\index{gyroData@{gyroData}!inputData@{inputData}}
+\doxysubsubsection{\texorpdfstring{gyroData}{gyroData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgyro}{gyro}} input\+Data\+::gyro\+Data}
+
+
+
+Dane z żyroskopu. 
+
+
+
+Definition at line 154 of file definitions.\+h.
+
+\mbox{\Hypertarget{structinputData_a94eb4c7bc4e5a009d4e0d81c350bc75c}\label{structinputData_a94eb4c7bc4e5a009d4e0d81c350bc75c}} 
+\index{inputData@{inputData}!magData@{magData}}
+\index{magData@{magData}!inputData@{inputData}}
+\doxysubsubsection{\texorpdfstring{magData}{magData}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmag}{mag}} input\+Data\+::mag\+Data}
+
+
+
+Dane z magnetometru. 
+
+
+
+Definition at line 155 of file definitions.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+inc/\mbox{\hyperlink{definitions_8h}{definitions.\+h}}\end{DoxyCompactItemize}

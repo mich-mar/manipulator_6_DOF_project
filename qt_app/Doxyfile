@@ -1,41 +1,48 @@
-# Doxygen configuration file for project
+# Doxyfile 1.9.x
 
-# Project settings
-PROJECT_NAME           = "Manipulator 6 DOF"
-PROJECT_BRIEF          = "Aplikacja do wizualizacji i modelowania manipulatorem 6 DOF"
-OUTPUT_DIRECTORY       = "docs"  # Katalog, do którego będą zapisane pliki dokumentacji
-GENERATE_LATEX         = NO  # Jeżeli nie chcesz generować dokumentacji w formacie LaTeX
-GENERATE_HTML          = YES # Generowanie dokumentacji HTML
-HTML_OUTPUT            = "html"  # Katalog na dokumentację HTML
-HTML_HEADER            = ""  # Można dodać własny nagłówek HTML
-HTML_FOOTER            = ""  # Można dodać własną stopkę HTML
-GENERATE_TREEVIEW      = YES # Włączenie drzewa plików w dokumentacji HTML
-RECURSIVE              = YES # Obejmuje podkatalogi przy generowaniu dokumentacji
+# Project details
+PROJECT_NAME           = "Manipulator6DOF"
+PROJECT_BRIEF          = "Documentation for the Manipulator6DOF project"
+OUTPUT_DIRECTORY       = docs
+OUTPUT_LANGUAGE        = English
+INPUT                  = src inc
+FILE_PATTERNS          = *.cpp *.h
+RECURSIVE              = YES
 
-# Input settings
-INPUT                  = "main.cpp"  # Plik z kodem źródłowym
-FILE_PATTERNS          = "*.cpp" "*.h"  # Wzorce plików źródłowych
-EXCLUDE_PATTERNS       = "*.ui" "*.pro"  # Wzorce plików do wykluczenia
-EXCLUDE                = ""  # Jeśli chcesz wykluczyć określone pliki lub katalogi
+# Build options
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = NO
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_LOCAL_METHODS  = YES
+EXTRACT_ANON_NSPACES   = YES
 
-# Documentation generation settings
-OPTIMIZE_OUTPUT_FOR_C  = YES  # Optymalizacja dla języka C
-EXTRACT_ALL            = YES  # Ekstrakcja dokumentacji dla wszystkich funkcji/zmiennych
-EXTRACT_PRIVATE        = NO   # Nie generować dokumentacji dla prywatnych funkcji
-EXTRACT_STATIC         = NO   # Nie generować dokumentacji dla funkcji statycznych
-EXTRACT_LOCAL_CLASSES  = NO   # Nie generować dokumentacji dla lokalnych klas
+# Source browsing
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+STRIP_CODE_COMMENTS    = YES
 
-# Język
-INPUT_ENCODING         = UTF-8  # Kodowanie pliku wejściowego
-OUTPUT_ENCODING        = UTF-8  # Kodowanie wyjściowe
+# HTML output
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+GENERATE_TREEVIEW      = YES
 
-# HTML output settings
-HTML_COLORSTYLE_HUE    = 220  # Kolorystyka dokumentacji HTML
-HTML_COLORSTYLE_SAT    = 100  # Nasycenie kolorów HTML
-HTML_COLORSTYLE_LIGHT  = 200  # Jasność kolorów HTML
+# Dot diagrams (optional but recommended)
+HAVE_DOT               = YES
+DOT_NUM_THREADS        = 2
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+CLASS_DIAGRAMS         = YES
+COLLABORATION_GRAPH    = YES
+UML_LOOK               = YES
 
-# Extra configurations for documentation
-ENABLE_PREPROCESSING   = YES  # Umożliwia przetwarzanie preprocesora
-MACRO_EXPANSION        = YES  # Rozszerzanie makr w dokumentacji
-SHOW_INCLUDE_FILES     = YES  # Pokazuje pliki nagłówkowe
-INCLUDE_PATH           = ""  # Ścieżki do dodatkowych katalogów nagłówkowych, jeśli istnieją
+# Input encoding
+INPUT_ENCODING         = UTF-8
+
+# Other settings
+QUIET                  = NO
+WARN_IF_UNDOCUMENTED   = YES
+WARN_LOGFILE           = docs/doxygen_warnings.log
+
+# Exclude
+EXCLUDE                = cmake-build-debug docs/html

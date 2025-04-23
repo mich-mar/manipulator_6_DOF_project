@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['title_5ffont_5fsize_26',['TITLE_FONT_SIZE',['../main_8cpp.html#a9e59068493c4cf85b4be5be3732f8315',1,'main.cpp']]]
+  ['num_5fangle_5fcharts_38',['NUM_ANGLE_CHARTS',['../definitions_8h.html#ac53e2072c3bebea3b3a1197528b9474a',1,'definitions.h']]],
+  ['num_5fimu_5fcharts_39',['NUM_IMU_CHARTS',['../definitions_8h.html#a9015ccadacdb878b0fd9ba144f509ade',1,'definitions.h']]]
 ];

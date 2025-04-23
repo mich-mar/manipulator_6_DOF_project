@@ -1,29 +1,5 @@
 var main_8cpp =
 [
-    [ "ANGLE_MAX_VALUE", "main_8cpp.html#a2e9db20bcc3d4e009a3228864373e8e9", null ],
-    [ "APP_TITLE", "main_8cpp.html#abce3c9120e09e75fd797f72f1b4a4cfb", null ],
-    [ "CHART_TIME_RANGE", "main_8cpp.html#a68894df2c21a98795f42da8a49c6fc5d", null ],
-    [ "IMU_VALUE_RANGE", "main_8cpp.html#a1e48ab40c54d8794e21e10e3f14e358b", null ],
-    [ "LABEL_FONT_SIZE", "main_8cpp.html#a4b8500ab23725d2c25bd8f3d60fec5a2", null ],
-    [ "LANG_CODE", "main_8cpp.html#a67d73a15da3b323f7f2a01c86c3dc8ab", null ],
-    [ "LANG_FONT_SIZE", "main_8cpp.html#ad90d8cace23185fdab12227dbb5ca588", null ],
-    [ "LEFT_LAYOUT_WEIGHT", "main_8cpp.html#ad60cdec82c49840019b1a3aeccf28cad", null ],
-    [ "MANIPULATOR_HEIGHT", "main_8cpp.html#a0d7d34b2dbc18013efbfd36d6eff1d61", null ],
-    [ "MANIPULATOR_WIDTH", "main_8cpp.html#a81d44a4bcf5982305f4c307f6d7d2675", null ],
-    [ "NUM_ANGLE_CHARTS", "main_8cpp.html#ac53e2072c3bebea3b3a1197528b9474a", null ],
-    [ "NUM_IMU_CHARTS", "main_8cpp.html#a9015ccadacdb878b0fd9ba144f509ade", null ],
-    [ "RIGHT_LAYOUT_WEIGHT", "main_8cpp.html#a82301c329e9ba2e528b62001ee3b6c5c", null ],
-    [ "TITLE_FONT_SIZE", "main_8cpp.html#a9e59068493c4cf85b4be5be3732f8315", null ],
-    [ "createAngleChart", "main_8cpp.html#aeb04879c81c06914629a6e4e35febc2c", null ],
-    [ "createFlagPlaceholder", "main_8cpp.html#a03e1a720d308bcfb77b9305a105bf618", null ],
-    [ "createIMUChart", "main_8cpp.html#a6850a6f8a50529d9990eeed270f457f9", null ],
-    [ "createManipulatorPlaceholder", "main_8cpp.html#ab51cbc58ff34de8db768ea67250ded0f", null ],
-    [ "createRotatedText", "main_8cpp.html#a2b418dc933edb6831f688e8a47db3d5e", null ],
     [ "main", "main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97", null ],
-    [ "ANGLE_COLORS", "main_8cpp.html#af169e3459d1dd402d700f5b964941bf6", null ],
-    [ "ANGLES_DATA", "main_8cpp.html#a9b0083b556a47b8d7c4d48bfe3465e75", null ],
-    [ "IMU_AXIS_LABELS", "main_8cpp.html#adbc2805d4e7382a1dea79aaf10cb58d6", null ],
-    [ "IMU_COLORS", "main_8cpp.html#afaf2d36172b8a16f232e8d68c288a1b1", null ],
-    [ "IMU_DATA", "main_8cpp.html#ae41a86425aaa839507eb49e27425d56f", null ],
-    [ "IMU_LABELS", "main_8cpp.html#aebe696819611528caf2f810fb3dc6a31", null ]
+    [ "dataQueue", "main_8cpp.html#a826017a547d1d93b61cafb47d6d29bdf", null ]
 ];

@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['num_5fangle_5fcharts_23',['NUM_ANGLE_CHARTS',['../main_8cpp.html#ac53e2072c3bebea3b3a1197528b9474a',1,'main.cpp']]],
-  ['num_5fimu_5fcharts_24',['NUM_IMU_CHARTS',['../main_8cpp.html#a9015ccadacdb878b0fd9ba144f509ade',1,'main.cpp']]]
+  ['label_5ffont_5fsize_28',['LABEL_FONT_SIZE',['../definitions_8h.html#a4b8500ab23725d2c25bd8f3d60fec5a2',1,'definitions.h']]],
+  ['lang_5fcode_29',['LANG_CODE',['../definitions_8h.html#a67d73a15da3b323f7f2a01c86c3dc8ab',1,'definitions.h']]],
+  ['lang_5ffont_5fsize_30',['LANG_FONT_SIZE',['../definitions_8h.html#ad90d8cace23185fdab12227dbb5ca588',1,'definitions.h']]],
+  ['left_5flayout_5fweight_31',['LEFT_LAYOUT_WEIGHT',['../definitions_8h.html#ad60cdec82c49840019b1a3aeccf28cad',1,'definitions.h']]]
 ];

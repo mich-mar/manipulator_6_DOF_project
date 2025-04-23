@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['imu_5faxis_5flabels_10',['IMU_AXIS_LABELS',['../main_8cpp.html#adbc2805d4e7382a1dea79aaf10cb58d6',1,'main.cpp']]],
-  ['imu_5fcolors_11',['IMU_COLORS',['../main_8cpp.html#afaf2d36172b8a16f232e8d68c288a1b1',1,'main.cpp']]],
-  ['imu_5fdata_12',['IMU_DATA',['../main_8cpp.html#ae41a86425aaa839507eb49e27425d56f',1,'main.cpp']]],
-  ['imu_5flabels_13',['IMU_LABELS',['../main_8cpp.html#aebe696819611528caf2f810fb3dc6a31',1,'main.cpp']]],
-  ['imu_5fvalue_5frange_14',['IMU_VALUE_RANGE',['../main_8cpp.html#a1e48ab40c54d8794e21e10e3f14e358b',1,'main.cpp']]]
+  ['dataqueue_19',['dataQueue',['../main_8cpp.html#a826017a547d1d93b61cafb47d6d29bdf',1,'main.cpp']]],
+  ['definitions_2eh_20',['definitions.h',['../definitions_8h.html',1,'']]]
 ];

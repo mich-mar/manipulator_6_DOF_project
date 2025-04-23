@@ -1,0 +1,258 @@
+\hypertarget{main_8cpp}{}\doxysection{src/main.cpp File Reference}
+\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+
+
+Aplikacja do wizualizacji i modelowania manipulatorem 6 DOF.  
+
+
+{\ttfamily \#include \char`\"{}definitions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}qt\+Functions.\+h\char`\"{}}\newline
+Include dependency graph for main.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Główna funkcja programu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+QQueue$<$ \mbox{\hyperlink{structinputData}{input\+Data}} $>$ \mbox{\hyperlink{main_8cpp_a826017a547d1d93b61cafb47d6d29bdf}{data\+Queue}}
+\begin{DoxyCompactList}\small\item\em Kolejka przechowująca dane wejściowe typu \mbox{\hyperlink{structinputData}{input\+Data}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Aplikacja do wizualizacji i modelowania manipulatorem 6 DOF. 
+
+\begin{DoxyAuthor}{Author}
+Michał Markuzel 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025-\/04-\/22
+\end{DoxyDate}
+Program umożliwia monitorowanie kątów przegubów manipulatora oraz danych z IMU. Aplikacja zawiera wykresy dla 6 potencjometrów oraz 3 zestawy wykresów dla danych z IMU. Dodatkowo przygotowane jest miejsce na wizualizację 3D manipulatora. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Główna funkcja programu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Liczba argumentów wiersza poleceń \\
+\hline
+{\em argv} & Tablica argumentów wiersza poleceń \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Kod zakończenia programu 
+\end{DoxyReturn}
+
+
+Definition at line 30 of file main.\+cpp.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30                                  \{}
+\DoxyCodeLine{31     QApplication app(argc, argv);}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33     \textcolor{comment}{// Tworzenie głównego okna}}
+\DoxyCodeLine{34     QMainWindow window;}
+\DoxyCodeLine{35     window.setWindowTitle(\mbox{\hyperlink{definitions_8h_abce3c9120e09e75fd797f72f1b4a4cfb}{APP\_TITLE}});}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \textcolor{comment}{// Główny widżet}}
+\DoxyCodeLine{38     QWidget *centralWidget = \textcolor{keyword}{new} QWidget(\&window);}
+\DoxyCodeLine{39     window.setCentralWidget(centralWidget);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     \textcolor{comment}{// Główny układ}}
+\DoxyCodeLine{42     QHBoxLayout *mainLayout = \textcolor{keyword}{new} QHBoxLayout(centralWidget);}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{comment}{// Część lewa -\/ wykresy i potencjometry}}
+\DoxyCodeLine{45     QVBoxLayout *leftLayout = \textcolor{keyword}{new} QVBoxLayout();}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     \textcolor{comment}{// Tworzymy siatkę dla lewej części}}
+\DoxyCodeLine{48     QGridLayout *chartsGridLayout = \textcolor{keyword}{new} QGridLayout();}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     \textcolor{comment}{// Przygotowanie czcionki dla etykiet}}
+\DoxyCodeLine{51     QFont labelFont;}
+\DoxyCodeLine{52     labelFont.setBold(\textcolor{keyword}{true});}
+\DoxyCodeLine{53     labelFont.setPointSize(\mbox{\hyperlink{definitions_8h_a4b8500ab23725d2c25bd8f3d60fec5a2}{LABEL\_FONT\_SIZE}});}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \textcolor{comment}{// Dodajemy pionowy napis ANGLES}}
+\DoxyCodeLine{56     QLabel *anglesLabel = \textcolor{keyword}{new} QLabel(\textcolor{stringliteral}{"{}ANGLES"{}});}
+\DoxyCodeLine{57     anglesLabel-\/>setFixedWidth(40);}
+\DoxyCodeLine{58     anglesLabel-\/>setFont(labelFont);}
+\DoxyCodeLine{59     anglesLabel-\/>setPixmap(\mbox{\hyperlink{qtFunctions_8cpp_a2b418dc933edb6831f688e8a47db3d5e}{createRotatedText}}(\textcolor{stringliteral}{"{}ANGLES"{}}, labelFont, 50, 200));}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61     chartsGridLayout-\/>addWidget(anglesLabel, 0, 0, \mbox{\hyperlink{definitions_8h_ac53e2072c3bebea3b3a1197528b9474a}{NUM\_ANGLE\_CHARTS}}, 1);}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63     \textcolor{comment}{// Tworzenie wykresów dla potencjometrów}}
+\DoxyCodeLine{64     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{definitions_8h_ac53e2072c3bebea3b3a1197528b9474a}{NUM\_ANGLE\_CHARTS}}; i++) \{}
+\DoxyCodeLine{65         \textcolor{comment}{// Etykieta dla angle}}
+\DoxyCodeLine{66         QLabel *angleLabel = \textcolor{keyword}{new} QLabel(\textcolor{stringliteral}{"{}angle"{}});}
+\DoxyCodeLine{67         angleLabel-\/>setFixedWidth(40);}
+\DoxyCodeLine{68         QString label = QString(\textcolor{stringliteral}{"{}angle\_\%1"{}}).arg(i + 1);}
+\DoxyCodeLine{69         angleLabel-\/>setPixmap(\mbox{\hyperlink{qtFunctions_8cpp_a2b418dc933edb6831f688e8a47db3d5e}{createRotatedText}}(label, labelFont, 40, 100));}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71         \textcolor{comment}{// Tworzenie wykresu}}
+\DoxyCodeLine{72         QChartView *chartView = \mbox{\hyperlink{qtFunctions_8cpp_aeb04879c81c06914629a6e4e35febc2c}{createAngleChart}}(i);}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74         \textcolor{comment}{// Potencjometr}}
+\DoxyCodeLine{75         QDial *dial = \textcolor{keyword}{new} QDial();}
+\DoxyCodeLine{76         dial-\/>setFixedSize(60, 60);}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78         \textcolor{comment}{// Dodajemy wykres i potencjometr do siatki}}
+\DoxyCodeLine{79         chartsGridLayout-\/>addWidget(angleLabel, i, 1);}
+\DoxyCodeLine{80         chartsGridLayout-\/>addWidget(chartView, i, 2);}
+\DoxyCodeLine{81         chartsGridLayout-\/>addWidget(dial, i, 3);}
+\DoxyCodeLine{82     \}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84     \textcolor{comment}{// Sekcja IMU}}
+\DoxyCodeLine{85     QLabel *imuLabel = \textcolor{keyword}{new} QLabel(\textcolor{stringliteral}{"{}IMU"{}});}
+\DoxyCodeLine{86     imuLabel-\/>setFixedWidth(40);}
+\DoxyCodeLine{87     imuLabel-\/>setPixmap(\mbox{\hyperlink{qtFunctions_8cpp_a2b418dc933edb6831f688e8a47db3d5e}{createRotatedText}}(\textcolor{stringliteral}{"{}IMU"{}}, labelFont, 50, 150));}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89     chartsGridLayout-\/>addWidget(imuLabel, \mbox{\hyperlink{definitions_8h_ac53e2072c3bebea3b3a1197528b9474a}{NUM\_ANGLE\_CHARTS}}, 0, \mbox{\hyperlink{definitions_8h_a9015ccadacdb878b0fd9ba144f509ade}{NUM\_IMU\_CHARTS}}, 1);}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91     \textcolor{comment}{// Tworzymy wykresy dla IMU -\/ z tym samym wyglądem jak dla angles}}
+\DoxyCodeLine{92     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{definitions_8h_a9015ccadacdb878b0fd9ba144f509ade}{NUM\_IMU\_CHARTS}}; i++) \{}
+\DoxyCodeLine{93         \textcolor{comment}{// Etykieta dla osi IMU (X, Y, Z)}}
+\DoxyCodeLine{94         QLabel *axisLabel = \textcolor{keyword}{new} QLabel(\mbox{\hyperlink{definitions_8h_adbc2805d4e7382a1dea79aaf10cb58d6}{IMU\_AXIS\_LABELS}}[i]);}
+\DoxyCodeLine{95         axisLabel-\/>setFixedWidth(40);}
+\DoxyCodeLine{96         axisLabel-\/>setPixmap(\mbox{\hyperlink{qtFunctions_8cpp_a2b418dc933edb6831f688e8a47db3d5e}{createRotatedText}}(\mbox{\hyperlink{definitions_8h_adbc2805d4e7382a1dea79aaf10cb58d6}{IMU\_AXIS\_LABELS}}[i], labelFont, 40, 80));}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98         \textcolor{comment}{// Tworzenie wykresu IMU z tym samym stylem co wykresy angle}}
+\DoxyCodeLine{99         QChartView *chartView = \mbox{\hyperlink{qtFunctions_8cpp_a6850a6f8a50529d9990eeed270f457f9}{createIMUChart}}(i);}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101         \textcolor{comment}{// Legenda pod wykresem}}
+\DoxyCodeLine{102         QHBoxLayout *legendLayout = \textcolor{keyword}{new} QHBoxLayout();}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < 4; j++) \{}
+\DoxyCodeLine{105             QLabel *legendLabel = \textcolor{keyword}{new} QLabel(\textcolor{stringliteral}{"{}■ "{}} + \mbox{\hyperlink{definitions_8h_aebe696819611528caf2f810fb3dc6a31}{IMU\_LABELS}}[j]);}
+\DoxyCodeLine{106             QString styleSheet = QString(\textcolor{stringliteral}{"{}color: \%1; font-\/size: 8pt;"{}}).arg(\mbox{\hyperlink{definitions_8h_afaf2d36172b8a16f232e8d68c288a1b1}{IMU\_COLORS}}[j].name());}
+\DoxyCodeLine{107             legendLabel-\/>setStyleSheet(styleSheet);}
+\DoxyCodeLine{108             legendLabel-\/>setAlignment(Qt::AlignCenter);}
+\DoxyCodeLine{109             legendLayout-\/>addWidget(legendLabel);}
+\DoxyCodeLine{110         \}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112         QVBoxLayout *imuChartLayout = \textcolor{keyword}{new} QVBoxLayout();}
+\DoxyCodeLine{113         imuChartLayout-\/>addWidget(chartView);}
+\DoxyCodeLine{114         imuChartLayout-\/>addLayout(legendLayout);}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116         chartsGridLayout-\/>addWidget(axisLabel, i + \mbox{\hyperlink{definitions_8h_ac53e2072c3bebea3b3a1197528b9474a}{NUM\_ANGLE\_CHARTS}}, 1);}
+\DoxyCodeLine{117         chartsGridLayout-\/>addLayout(imuChartLayout, i + \mbox{\hyperlink{definitions_8h_ac53e2072c3bebea3b3a1197528b9474a}{NUM\_ANGLE\_CHARTS}}, 2);}
+\DoxyCodeLine{118     \}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120     \textcolor{comment}{// Ustawiamy rozciąganie wierszy}}
+\DoxyCodeLine{121     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{definitions_8h_ac53e2072c3bebea3b3a1197528b9474a}{NUM\_ANGLE\_CHARTS}} + \mbox{\hyperlink{definitions_8h_a9015ccadacdb878b0fd9ba144f509ade}{NUM\_IMU\_CHARTS}}; i++) \{}
+\DoxyCodeLine{122         chartsGridLayout-\/>setRowStretch(i, 1);}
+\DoxyCodeLine{123     \}}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125     \textcolor{comment}{// Dodajemy siatkę wykresów do lewego layoutu}}
+\DoxyCodeLine{126     leftLayout-\/>addLayout(chartsGridLayout);}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128     \textcolor{comment}{// Część prawa -\/ tytuł i wizualizacja manipulatora}}
+\DoxyCodeLine{129     QVBoxLayout *rightLayout = \textcolor{keyword}{new} QVBoxLayout();}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131     \textcolor{comment}{// Tytuł}}
+\DoxyCodeLine{132     QLabel *titleLabel = \textcolor{keyword}{new} QLabel(\mbox{\hyperlink{definitions_8h_abce3c9120e09e75fd797f72f1b4a4cfb}{APP\_TITLE}});}
+\DoxyCodeLine{133     QFont titleFont = titleLabel-\/>font();}
+\DoxyCodeLine{134     titleFont.setBold(\textcolor{keyword}{true});}
+\DoxyCodeLine{135     titleFont.setPointSize(\mbox{\hyperlink{definitions_8h_a9e59068493c4cf85b4be5be3732f8315}{TITLE\_FONT\_SIZE}});}
+\DoxyCodeLine{136     titleLabel-\/>setFont(titleFont);}
+\DoxyCodeLine{137     titleLabel-\/>setAlignment(Qt::AlignCenter);}
+\DoxyCodeLine{138     rightLayout-\/>addWidget(titleLabel);}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140     \textcolor{comment}{// Miejsce na wizualizację manipulatora}}
+\DoxyCodeLine{141     QGraphicsScene *scene = \textcolor{keyword}{new} QGraphicsScene();}
+\DoxyCodeLine{142     QGraphicsView *manipulatorView = \textcolor{keyword}{new} QGraphicsView(scene);}
+\DoxyCodeLine{143     manipulatorView-\/>setMinimumSize(400, 400);}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145     \textcolor{comment}{// Ladowanie obrazu manipulatora}}
+\DoxyCodeLine{146     QPixmap manipulatorPixmap;}
+\DoxyCodeLine{147     manipulatorPixmap = QPixmap(\textcolor{stringliteral}{"{}:/icons/icons/manipulator\_6dof.png"{}});}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149     QGraphicsPixmapItem *manipulatorItem = scene-\/>addPixmap(manipulatorPixmap);}
+\DoxyCodeLine{150     manipulatorItem-\/>setPos(0, 0);}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152     rightLayout-\/>addWidget(manipulatorView);}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154     \textcolor{comment}{// Ikony flag}}
+\DoxyCodeLine{155     QHBoxLayout *flagsLayout = \textcolor{keyword}{new} QHBoxLayout();}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157     \textcolor{comment}{// Ladowanie ikon flag}}
+\DoxyCodeLine{158     QPixmap ukFlagPixmap;}
+\DoxyCodeLine{159     QPixmap plFlagPixmap;}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161     ukFlagPixmap = QPixmap(\textcolor{stringliteral}{"{}:/icons/icons/uk.png"{}});}
+\DoxyCodeLine{162     plFlagPixmap = QPixmap(\textcolor{stringliteral}{"{}:/icons/icons/pl.png"{}});}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165     \textcolor{comment}{// Tworzenie etykiet z ikonami flag}}
+\DoxyCodeLine{166     QLabel *ukFlagLabel = \textcolor{keyword}{new} QLabel();}
+\DoxyCodeLine{167     ukFlagLabel-\/>setPixmap(ukFlagPixmap.scaled(30, 20, Qt::KeepAspectRatio));}
+\DoxyCodeLine{168     ukFlagLabel-\/>setToolTip(\textcolor{stringliteral}{"{}English"{}});}
+\DoxyCodeLine{169     ukFlagLabel-\/>setCursor(Qt::PointingHandCursor);}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171     QLabel *plFlagLabel = \textcolor{keyword}{new} QLabel();}
+\DoxyCodeLine{172     plFlagLabel-\/>setPixmap(plFlagPixmap.scaled(30, 20, Qt::KeepAspectRatio));}
+\DoxyCodeLine{173     plFlagLabel-\/>setToolTip(\textcolor{stringliteral}{"{}Polski"{}});}
+\DoxyCodeLine{174     plFlagLabel-\/>setCursor(Qt::PointingHandCursor);}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176     flagsLayout-\/>addStretch();}
+\DoxyCodeLine{177     flagsLayout-\/>addWidget(ukFlagLabel);}
+\DoxyCodeLine{178     flagsLayout-\/>addSpacing(10);}
+\DoxyCodeLine{179     flagsLayout-\/>addWidget(plFlagLabel);}
+\DoxyCodeLine{180     flagsLayout-\/>addSpacing(10);}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182     rightLayout-\/>addLayout(flagsLayout);}
+\DoxyCodeLine{183     rightLayout-\/>addStretch();}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185     \textcolor{comment}{// Dodanie lewy i prawego layout'u do głównego layoutu}}
+\DoxyCodeLine{186     mainLayout-\/>addLayout(leftLayout, \mbox{\hyperlink{definitions_8h_ad60cdec82c49840019b1a3aeccf28cad}{LEFT\_LAYOUT\_WEIGHT}});}
+\DoxyCodeLine{187     mainLayout-\/>addLayout(rightLayout, \mbox{\hyperlink{definitions_8h_a82301c329e9ba2e528b62001ee3b6c5c}{RIGHT\_LAYOUT\_WEIGHT}});}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189     \textcolor{comment}{// Ustawiamy okno jako zmaksymalizowane}}
+\DoxyCodeLine{190     window.showMaximized();}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192     \textcolor{keywordflow}{return} app.exec();}
+\DoxyCodeLine{193 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{main_8cpp_a826017a547d1d93b61cafb47d6d29bdf}\label{main_8cpp_a826017a547d1d93b61cafb47d6d29bdf}} 
+\index{main.cpp@{main.cpp}!dataQueue@{dataQueue}}
+\index{dataQueue@{dataQueue}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{dataQueue}{dataQueue}}
+{\footnotesize\ttfamily QQueue$<$\mbox{\hyperlink{structinputData}{input\+Data}}$>$ data\+Queue}
+
+
+
+Kolejka przechowująca dane wejściowe typu \mbox{\hyperlink{structinputData}{input\+Data}}. 
+
+Kolejka typu QQueue przechowuje obiekty \mbox{\hyperlink{structinputData}{input\+Data}}, które zawierają pełne zestawy danych z czujników manipulatora 6 DOF. Umożliwia to efektywne przechowywanie oraz późniejsze przetwarzanie tych danych w aplikacji. 
+
+Definition at line 22 of file main.\+cpp.
+

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Manipulator 6 DOF: main.cpp File Reference</title>
+<title>Manipulator6DOF: src/main.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,9 +25,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Manipulator 6 DOF
+   <div id="projectname">Manipulator6DOF
    </div>
-   <div id="projectbrief">Aplikacja do wizualizacji i modelowania manipulatorem 6 DOF</div>
+   <div id="projectbrief">Documentation for the Manipulator6DOF project</div>
   </td>
  </tr>
  </tbody>
@@ -83,7 +83,6 @@ $(document).ready(function(){initNavTree('main_8cpp.html',''); initResizable(); 
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -93,542 +92,61 @@ $(document).ready(function(){initNavTree('main_8cpp.html',''); initResizable(); 
 
 <p>Aplikacja do wizualizacji i modelowania manipulatorem 6 DOF.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;QApplication&gt;</code><br />
-<code>#include &lt;QMainWindow&gt;</code><br />
-<code>#include &lt;QGridLayout&gt;</code><br />
-<code>#include &lt;QVBoxLayout&gt;</code><br />
-<code>#include &lt;QHBoxLayout&gt;</code><br />
-<code>#include &lt;QLabel&gt;</code><br />
-<code>#include &lt;QChart&gt;</code><br />
-<code>#include &lt;QChartView&gt;</code><br />
-<code>#include &lt;QLineSeries&gt;</code><br />
-<code>#include &lt;QValueAxis&gt;</code><br />
-<code>#include &lt;QFont&gt;</code><br />
-<code>#include &lt;QFrame&gt;</code><br />
-<code>#include &lt;QDial&gt;</code><br />
-<code>#include &lt;QPixmap&gt;</code><br />
-<code>#include &lt;QGraphicsScene&gt;</code><br />
-<code>#include &lt;QGraphicsView&gt;</code><br />
-<code>#include &lt;QGraphicsPixmapItem&gt;</code><br />
-<code>#include &lt;QPainter&gt;</code><br />
-<code>#include &lt;QLineEdit&gt;</code><br />
-<code>#include &lt;QResource&gt;</code><br />
-<code>#include &lt;QDebug&gt;</code><br />
-<code>#include &lt;QDir&gt;</code><br />
-<code>#include &lt;QDirIterator&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="definitions_8h_source.html">definitions.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="qtFunctions_8h_source.html">qtFunctions.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="main_8cpp__incl.png" border="0" usemap="#amain_8cpp" alt=""/></div>
-<map name="amain_8cpp" id="amain_8cpp">
-<area shape="rect" title="Aplikacja do wizualizacji i modelowania manipulatorem 6 DOF." alt="" coords="1298,5,1381,32"/>
-<area shape="rect" title=" " alt="" coords="5,80,111,107"/>
-<area shape="rect" title=" " alt="" coords="135,80,251,107"/>
-<area shape="rect" title=" " alt="" coords="275,80,377,107"/>
-<area shape="rect" title=" " alt="" coords="401,80,512,107"/>
-<area shape="rect" title=" " alt="" coords="536,80,647,107"/>
-<area shape="rect" title=" " alt="" coords="671,80,738,107"/>
-<area shape="rect" title=" " alt="" coords="762,80,829,107"/>
-<area shape="rect" title=" " alt="" coords="853,80,951,107"/>
-<area shape="rect" title=" " alt="" coords="975,80,1074,107"/>
-<area shape="rect" title=" " alt="" coords="1098,80,1194,107"/>
-<area shape="rect" title=" " alt="" coords="1219,80,1279,107"/>
-<area shape="rect" title=" " alt="" coords="1303,80,1376,107"/>
-<area shape="rect" title=" " alt="" coords="1401,80,1459,107"/>
-<area shape="rect" title=" " alt="" coords="1484,80,1565,107"/>
-<area shape="rect" title=" " alt="" coords="1590,80,1718,107"/>
-<area shape="rect" title=" " alt="" coords="1743,80,1864,107"/>
-<area shape="rect" title=" " alt="" coords="1889,80,2057,107"/>
-<area shape="rect" title=" " alt="" coords="2081,80,2158,107"/>
-<area shape="rect" title=" " alt="" coords="2183,80,2267,107"/>
-<area shape="rect" title=" " alt="" coords="2291,80,2383,107"/>
-<area shape="rect" title=" " alt="" coords="2407,80,2482,107"/>
-<area shape="rect" title=" " alt="" coords="2506,80,2557,107"/>
-<area shape="rect" title=" " alt="" coords="2581,80,2679,107"/>
+<div class="center"><img src="main_8cpp__incl.png" border="0" usemap="#asrc_2main_8cpp" alt=""/></div>
+<map name="asrc_2main_8cpp" id="asrc_2main_8cpp">
+<area shape="rect" title="Aplikacja do wizualizacji i modelowania manipulatorem 6 DOF." alt="" coords="1071,5,1176,32"/>
+<area shape="rect" href="definitions_8h.html" title=" " alt="" coords="1072,155,1175,181"/>
+<area shape="rect" href="qtFunctions_8h.html" title=" " alt="" coords="1115,80,1225,107"/>
+<area shape="rect" title=" " alt="" coords="5,229,111,256"/>
+<area shape="rect" title=" " alt="" coords="135,229,251,256"/>
+<area shape="rect" title=" " alt="" coords="275,229,385,256"/>
+<area shape="rect" title=" " alt="" coords="410,229,477,256"/>
+<area shape="rect" title=" " alt="" coords="501,229,567,256"/>
+<area shape="rect" title=" " alt="" coords="591,229,690,256"/>
+<area shape="rect" title=" " alt="" coords="714,229,813,256"/>
+<area shape="rect" title=" " alt="" coords="837,229,933,256"/>
+<area shape="rect" title=" " alt="" coords="957,229,1017,256"/>
+<area shape="rect" title=" " alt="" coords="1041,229,1115,256"/>
+<area shape="rect" title=" " alt="" coords="1139,229,1198,256"/>
+<area shape="rect" title=" " alt="" coords="1223,229,1304,256"/>
+<area shape="rect" title=" " alt="" coords="1329,229,1457,256"/>
+<area shape="rect" title=" " alt="" coords="1481,229,1603,256"/>
+<area shape="rect" title=" " alt="" coords="1627,229,1795,256"/>
+<area shape="rect" title=" " alt="" coords="1819,229,1897,256"/>
+<area shape="rect" title=" " alt="" coords="1921,229,2005,256"/>
+<area shape="rect" title=" " alt="" coords="2030,229,2105,256"/>
+<area shape="rect" title=" " alt="" coords="2129,229,2179,256"/>
+<area shape="rect" title=" " alt="" coords="2203,229,2278,256"/>
 </map>
 </div>
-</div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:abce3c9120e09e75fd797f72f1b4a4cfb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#abce3c9120e09e75fd797f72f1b4a4cfb">APP_TITLE</a>&#160;&#160;&#160;&quot;Manipulator 6 DOF&quot;</td></tr>
-<tr class="memdesc:abce3c9120e09e75fd797f72f1b4a4cfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stałe konfiguracyjne dla aplikacji.  <a href="main_8cpp.html#abce3c9120e09e75fd797f72f1b4a4cfb">More...</a><br /></td></tr>
-<tr class="separator:abce3c9120e09e75fd797f72f1b4a4cfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67d73a15da3b323f7f2a01c86c3dc8ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a67d73a15da3b323f7f2a01c86c3dc8ab">LANG_CODE</a>&#160;&#160;&#160;&quot;EN&quot;</td></tr>
-<tr class="memdesc:a67d73a15da3b323f7f2a01c86c3dc8ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Domyślny kod języka.  <a href="main_8cpp.html#a67d73a15da3b323f7f2a01c86c3dc8ab">More...</a><br /></td></tr>
-<tr class="separator:a67d73a15da3b323f7f2a01c86c3dc8ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad60cdec82c49840019b1a3aeccf28cad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ad60cdec82c49840019b1a3aeccf28cad">LEFT_LAYOUT_WEIGHT</a>&#160;&#160;&#160;7</td></tr>
-<tr class="memdesc:ad60cdec82c49840019b1a3aeccf28cad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waga lewego panelu w układzie.  <a href="main_8cpp.html#ad60cdec82c49840019b1a3aeccf28cad">More...</a><br /></td></tr>
-<tr class="separator:ad60cdec82c49840019b1a3aeccf28cad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82301c329e9ba2e528b62001ee3b6c5c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a82301c329e9ba2e528b62001ee3b6c5c">RIGHT_LAYOUT_WEIGHT</a>&#160;&#160;&#160;3</td></tr>
-<tr class="memdesc:a82301c329e9ba2e528b62001ee3b6c5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waga prawego panelu w układzie.  <a href="main_8cpp.html#a82301c329e9ba2e528b62001ee3b6c5c">More...</a><br /></td></tr>
-<tr class="separator:a82301c329e9ba2e528b62001ee3b6c5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac53e2072c3bebea3b3a1197528b9474a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ac53e2072c3bebea3b3a1197528b9474a">NUM_ANGLE_CHARTS</a>&#160;&#160;&#160;6</td></tr>
-<tr class="memdesc:ac53e2072c3bebea3b3a1197528b9474a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba wykresów kątów (potencjometrów)  <a href="main_8cpp.html#ac53e2072c3bebea3b3a1197528b9474a">More...</a><br /></td></tr>
-<tr class="separator:ac53e2072c3bebea3b3a1197528b9474a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9015ccadacdb878b0fd9ba144f509ade"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a9015ccadacdb878b0fd9ba144f509ade">NUM_IMU_CHARTS</a>&#160;&#160;&#160;3</td></tr>
-<tr class="memdesc:a9015ccadacdb878b0fd9ba144f509ade"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liczba wykresów IMU.  <a href="main_8cpp.html#a9015ccadacdb878b0fd9ba144f509ade">More...</a><br /></td></tr>
-<tr class="separator:a9015ccadacdb878b0fd9ba144f509ade"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68894df2c21a98795f42da8a49c6fc5d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a68894df2c21a98795f42da8a49c6fc5d">CHART_TIME_RANGE</a>&#160;&#160;&#160;30</td></tr>
-<tr class="memdesc:a68894df2c21a98795f42da8a49c6fc5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zakres czasu dla osi X (w sekundach)  <a href="main_8cpp.html#a68894df2c21a98795f42da8a49c6fc5d">More...</a><br /></td></tr>
-<tr class="separator:a68894df2c21a98795f42da8a49c6fc5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e9db20bcc3d4e009a3228864373e8e9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a2e9db20bcc3d4e009a3228864373e8e9">ANGLE_MAX_VALUE</a>&#160;&#160;&#160;180</td></tr>
-<tr class="memdesc:a2e9db20bcc3d4e009a3228864373e8e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maksymalna wartość kąta (w stopniach)  <a href="main_8cpp.html#a2e9db20bcc3d4e009a3228864373e8e9">More...</a><br /></td></tr>
-<tr class="separator:a2e9db20bcc3d4e009a3228864373e8e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e48ab40c54d8794e21e10e3f14e358b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a1e48ab40c54d8794e21e10e3f14e358b">IMU_VALUE_RANGE</a>&#160;&#160;&#160;20</td></tr>
-<tr class="memdesc:a1e48ab40c54d8794e21e10e3f14e358b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zakres wartości IMU (od -IMU_VALUE_RANGE do +IMU_VALUE_RANGE)  <a href="main_8cpp.html#a1e48ab40c54d8794e21e10e3f14e358b">More...</a><br /></td></tr>
-<tr class="separator:a1e48ab40c54d8794e21e10e3f14e358b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e59068493c4cf85b4be5be3732f8315"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a9e59068493c4cf85b4be5be3732f8315">TITLE_FONT_SIZE</a>&#160;&#160;&#160;24</td></tr>
-<tr class="memdesc:a9e59068493c4cf85b4be5be3732f8315"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rozmiar czcionki tytułu.  <a href="main_8cpp.html#a9e59068493c4cf85b4be5be3732f8315">More...</a><br /></td></tr>
-<tr class="separator:a9e59068493c4cf85b4be5be3732f8315"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b8500ab23725d2c25bd8f3d60fec5a2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a4b8500ab23725d2c25bd8f3d60fec5a2">LABEL_FONT_SIZE</a>&#160;&#160;&#160;12</td></tr>
-<tr class="memdesc:a4b8500ab23725d2c25bd8f3d60fec5a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rozmiar czcionki etykiet.  <a href="main_8cpp.html#a4b8500ab23725d2c25bd8f3d60fec5a2">More...</a><br /></td></tr>
-<tr class="separator:a4b8500ab23725d2c25bd8f3d60fec5a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad90d8cace23185fdab12227dbb5ca588"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ad90d8cace23185fdab12227dbb5ca588">LANG_FONT_SIZE</a>&#160;&#160;&#160;12</td></tr>
-<tr class="memdesc:ad90d8cace23185fdab12227dbb5ca588"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rozmiar czcionki dla oznaczenia języka.  <a href="main_8cpp.html#ad90d8cace23185fdab12227dbb5ca588">More...</a><br /></td></tr>
-<tr class="separator:ad90d8cace23185fdab12227dbb5ca588"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81d44a4bcf5982305f4c307f6d7d2675"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a81d44a4bcf5982305f4c307f6d7d2675">MANIPULATOR_WIDTH</a>&#160;&#160;&#160;350</td></tr>
-<tr class="memdesc:a81d44a4bcf5982305f4c307f6d7d2675"><td class="mdescLeft">&#160;</td><td class="mdescRight">Szerokość placeholdera manipulatora.  <a href="main_8cpp.html#a81d44a4bcf5982305f4c307f6d7d2675">More...</a><br /></td></tr>
-<tr class="separator:a81d44a4bcf5982305f4c307f6d7d2675"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d7d34b2dbc18013efbfd36d6eff1d61"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a0d7d34b2dbc18013efbfd36d6eff1d61">MANIPULATOR_HEIGHT</a>&#160;&#160;&#160;350</td></tr>
-<tr class="memdesc:a0d7d34b2dbc18013efbfd36d6eff1d61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wysokość placeholdera manipulatora.  <a href="main_8cpp.html#a0d7d34b2dbc18013efbfd36d6eff1d61">More...</a><br /></td></tr>
-<tr class="separator:a0d7d34b2dbc18013efbfd36d6eff1d61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
+</div>
+<p><a href="main_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a2b418dc933edb6831f688e8a47db3d5e"><td class="memItemLeft" align="right" valign="top">QPixmap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a2b418dc933edb6831f688e8a47db3d5e">createRotatedText</a> (const QString &amp;text, const QFont &amp;font, int width, int height)</td></tr>
-<tr class="memdesc:a2b418dc933edb6831f688e8a47db3d5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja tworząca obrócony tekst w etykiecie.  <a href="main_8cpp.html#a2b418dc933edb6831f688e8a47db3d5e">More...</a><br /></td></tr>
-<tr class="separator:a2b418dc933edb6831f688e8a47db3d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb04879c81c06914629a6e4e35febc2c"><td class="memItemLeft" align="right" valign="top">QChartView *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aeb04879c81c06914629a6e4e35febc2c">createAngleChart</a> (int colorIndex)</td></tr>
-<tr class="memdesc:aeb04879c81c06914629a6e4e35febc2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja tworząca wykres kąta.  <a href="main_8cpp.html#aeb04879c81c06914629a6e4e35febc2c">More...</a><br /></td></tr>
-<tr class="separator:aeb04879c81c06914629a6e4e35febc2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6850a6f8a50529d9990eeed270f457f9"><td class="memItemLeft" align="right" valign="top">QChartView *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a6850a6f8a50529d9990eeed270f457f9">createIMUChart</a> (int axisIndex)</td></tr>
-<tr class="memdesc:a6850a6f8a50529d9990eeed270f457f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja tworząca wykres IMU.  <a href="main_8cpp.html#a6850a6f8a50529d9990eeed270f457f9">More...</a><br /></td></tr>
-<tr class="separator:a6850a6f8a50529d9990eeed270f457f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03e1a720d308bcfb77b9305a105bf618"><td class="memItemLeft" align="right" valign="top">QPixmap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a03e1a720d308bcfb77b9305a105bf618">createFlagPlaceholder</a> (const QString &amp;text, const QColor &amp;color)</td></tr>
-<tr class="memdesc:a03e1a720d308bcfb77b9305a105bf618"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja tworząca placeholder flagi.  <a href="main_8cpp.html#a03e1a720d308bcfb77b9305a105bf618">More...</a><br /></td></tr>
-<tr class="separator:a03e1a720d308bcfb77b9305a105bf618"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab51cbc58ff34de8db768ea67250ded0f"><td class="memItemLeft" align="right" valign="top">QPixmap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ab51cbc58ff34de8db768ea67250ded0f">createManipulatorPlaceholder</a> ()</td></tr>
-<tr class="memdesc:ab51cbc58ff34de8db768ea67250ded0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja tworząca placeholder manipulatora jeśli brak obrazu.  <a href="main_8cpp.html#ab51cbc58ff34de8db768ea67250ded0f">More...</a><br /></td></tr>
-<tr class="separator:ab51cbc58ff34de8db768ea67250ded0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 <tr class="memdesc:a0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Główna funkcja programu.  <a href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">More...</a><br /></td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:af169e3459d1dd402d700f5b964941bf6"><td class="memItemLeft" align="right" valign="top">const QColor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#af169e3459d1dd402d700f5b964941bf6">ANGLE_COLORS</a> []</td></tr>
-<tr class="memdesc:af169e3459d1dd402d700f5b964941bf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tablice z kolorami dla wykresów.  <a href="main_8cpp.html#af169e3459d1dd402d700f5b964941bf6">More...</a><br /></td></tr>
-<tr class="separator:af169e3459d1dd402d700f5b964941bf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afaf2d36172b8a16f232e8d68c288a1b1"><td class="memItemLeft" align="right" valign="top">const QColor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#afaf2d36172b8a16f232e8d68c288a1b1">IMU_COLORS</a> []</td></tr>
-<tr class="separator:afaf2d36172b8a16f232e8d68c288a1b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebe696819611528caf2f810fb3dc6a31"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aebe696819611528caf2f810fb3dc6a31">IMU_LABELS</a> []</td></tr>
-<tr class="separator:aebe696819611528caf2f810fb3dc6a31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbc2805d4e7382a1dea79aaf10cb58d6"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#adbc2805d4e7382a1dea79aaf10cb58d6">IMU_AXIS_LABELS</a> []</td></tr>
-<tr class="memdesc:adbc2805d4e7382a1dea79aaf10cb58d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Etykiety dla osi IMU.  <a href="main_8cpp.html#adbc2805d4e7382a1dea79aaf10cb58d6">More...</a><br /></td></tr>
-<tr class="separator:adbc2805d4e7382a1dea79aaf10cb58d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b0083b556a47b8d7c4d48bfe3465e75"><td class="memItemLeft" align="right" valign="top">angles&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a9b0083b556a47b8d7c4d48bfe3465e75">ANGLES_DATA</a></td></tr>
-<tr class="memdesc:a9b0083b556a47b8d7c4d48bfe3465e75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zmienna globalna przechowująca wartości kątów.  <a href="main_8cpp.html#a9b0083b556a47b8d7c4d48bfe3465e75">More...</a><br /></td></tr>
-<tr class="separator:a9b0083b556a47b8d7c4d48bfe3465e75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae41a86425aaa839507eb49e27425d56f"><td class="memItemLeft" align="right" valign="top">imu_data&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ae41a86425aaa839507eb49e27425d56f">IMU_DATA</a></td></tr>
-<tr class="memdesc:ae41a86425aaa839507eb49e27425d56f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zmienna globalna przechowująca dane z czujników IMU.  <a href="main_8cpp.html#ae41a86425aaa839507eb49e27425d56f">More...</a><br /></td></tr>
-<tr class="separator:ae41a86425aaa839507eb49e27425d56f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a826017a547d1d93b61cafb47d6d29bdf"><td class="memItemLeft" align="right" valign="top">QQueue&lt; <a class="el" href="structinputData.html">inputData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a826017a547d1d93b61cafb47d6d29bdf">dataQueue</a></td></tr>
+<tr class="memdesc:a826017a547d1d93b61cafb47d6d29bdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kolejka przechowująca dane wejściowe typu <a class="el" href="structinputData.html" title="Struktura przechowująca dane wejściowe dla manipulatora 6 DOF.">inputData</a>.  <a href="main_8cpp.html#a826017a547d1d93b61cafb47d6d29bdf">More...</a><br /></td></tr>
+<tr class="separator:a826017a547d1d93b61cafb47d6d29bdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Aplikacja do wizualizacji i modelowania manipulatorem 6 DOF. </p>
 <dl class="section author"><dt>Author</dt><dd>Michał Markuzel </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025-04-22</dd></dl>
 <p>Program umożliwia monitorowanie kątów przegubów manipulatora oraz danych z IMU. Aplikacja zawiera wykresy dla 6 potencjometrów oraz 3 zestawy wykresów dla danych z IMU. Dodatkowo przygotowane jest miejsce na wizualizację 3D manipulatora. </p>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a2e9db20bcc3d4e009a3228864373e8e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e9db20bcc3d4e009a3228864373e8e9">&#9670;&nbsp;</a></span>ANGLE_MAX_VALUE</h2>
 
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ANGLE_MAX_VALUE&#160;&#160;&#160;180</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Maksymalna wartość kąta (w stopniach) </p>
-
-</div>
-</div>
-<a id="abce3c9120e09e75fd797f72f1b4a4cfb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abce3c9120e09e75fd797f72f1b4a4cfb">&#9670;&nbsp;</a></span>APP_TITLE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define APP_TITLE&#160;&#160;&#160;&quot;Manipulator 6 DOF&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Stałe konfiguracyjne dla aplikacji. </p>
-<p>Tytuł aplikacji </p>
-
-</div>
-</div>
-<a id="a68894df2c21a98795f42da8a49c6fc5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68894df2c21a98795f42da8a49c6fc5d">&#9670;&nbsp;</a></span>CHART_TIME_RANGE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CHART_TIME_RANGE&#160;&#160;&#160;30</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Zakres czasu dla osi X (w sekundach) </p>
-
-</div>
-</div>
-<a id="a1e48ab40c54d8794e21e10e3f14e358b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e48ab40c54d8794e21e10e3f14e358b">&#9670;&nbsp;</a></span>IMU_VALUE_RANGE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define IMU_VALUE_RANGE&#160;&#160;&#160;20</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Zakres wartości IMU (od -IMU_VALUE_RANGE do +IMU_VALUE_RANGE) </p>
-
-</div>
-</div>
-<a id="a4b8500ab23725d2c25bd8f3d60fec5a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b8500ab23725d2c25bd8f3d60fec5a2">&#9670;&nbsp;</a></span>LABEL_FONT_SIZE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LABEL_FONT_SIZE&#160;&#160;&#160;12</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Rozmiar czcionki etykiet. </p>
-
-</div>
-</div>
-<a id="a67d73a15da3b323f7f2a01c86c3dc8ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a67d73a15da3b323f7f2a01c86c3dc8ab">&#9670;&nbsp;</a></span>LANG_CODE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LANG_CODE&#160;&#160;&#160;&quot;EN&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Domyślny kod języka. </p>
-
-</div>
-</div>
-<a id="ad90d8cace23185fdab12227dbb5ca588"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad90d8cace23185fdab12227dbb5ca588">&#9670;&nbsp;</a></span>LANG_FONT_SIZE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LANG_FONT_SIZE&#160;&#160;&#160;12</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Rozmiar czcionki dla oznaczenia języka. </p>
-
-</div>
-</div>
-<a id="ad60cdec82c49840019b1a3aeccf28cad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad60cdec82c49840019b1a3aeccf28cad">&#9670;&nbsp;</a></span>LEFT_LAYOUT_WEIGHT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define LEFT_LAYOUT_WEIGHT&#160;&#160;&#160;7</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Waga lewego panelu w układzie. </p>
-
-</div>
-</div>
-<a id="a0d7d34b2dbc18013efbfd36d6eff1d61"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d7d34b2dbc18013efbfd36d6eff1d61">&#9670;&nbsp;</a></span>MANIPULATOR_HEIGHT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MANIPULATOR_HEIGHT&#160;&#160;&#160;350</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Wysokość placeholdera manipulatora. </p>
-
-</div>
-</div>
-<a id="a81d44a4bcf5982305f4c307f6d7d2675"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81d44a4bcf5982305f4c307f6d7d2675">&#9670;&nbsp;</a></span>MANIPULATOR_WIDTH</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MANIPULATOR_WIDTH&#160;&#160;&#160;350</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Szerokość placeholdera manipulatora. </p>
-
-</div>
-</div>
-<a id="ac53e2072c3bebea3b3a1197528b9474a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac53e2072c3bebea3b3a1197528b9474a">&#9670;&nbsp;</a></span>NUM_ANGLE_CHARTS</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NUM_ANGLE_CHARTS&#160;&#160;&#160;6</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Liczba wykresów kątów (potencjometrów) </p>
-
-</div>
-</div>
-<a id="a9015ccadacdb878b0fd9ba144f509ade"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9015ccadacdb878b0fd9ba144f509ade">&#9670;&nbsp;</a></span>NUM_IMU_CHARTS</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NUM_IMU_CHARTS&#160;&#160;&#160;3</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Liczba wykresów IMU. </p>
-
-</div>
-</div>
-<a id="a82301c329e9ba2e528b62001ee3b6c5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a82301c329e9ba2e528b62001ee3b6c5c">&#9670;&nbsp;</a></span>RIGHT_LAYOUT_WEIGHT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define RIGHT_LAYOUT_WEIGHT&#160;&#160;&#160;3</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Waga prawego panelu w układzie. </p>
-
-</div>
-</div>
-<a id="a9e59068493c4cf85b4be5be3732f8315"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e59068493c4cf85b4be5be3732f8315">&#9670;&nbsp;</a></span>TITLE_FONT_SIZE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define TITLE_FONT_SIZE&#160;&#160;&#160;24</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Rozmiar czcionki tytułu. </p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="aeb04879c81c06914629a6e4e35febc2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb04879c81c06914629a6e4e35febc2c">&#9670;&nbsp;</a></span>createAngleChart()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QChartView* createAngleChart </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>colorIndex</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Funkcja tworząca wykres kąta. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">colorIndex</td><td>Indeks koloru z tablicy ANGLE_COLORS </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>QChartView z przygotowanym wykresem </dd></dl>
-
-</div>
-</div>
-<a id="a03e1a720d308bcfb77b9305a105bf618"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03e1a720d308bcfb77b9305a105bf618">&#9670;&nbsp;</a></span>createFlagPlaceholder()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QPixmap createFlagPlaceholder </td>
-          <td>(</td>
-          <td class="paramtype">const QString &amp;&#160;</td>
-          <td class="paramname"><em>text</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const QColor &amp;&#160;</td>
-          <td class="paramname"><em>color</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Funkcja tworząca placeholder flagi. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">text</td><td>Tekst na placeholderze flagi </td></tr>
-    <tr><td class="paramname">color</td><td>Kolor tła flagi </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>QPixmap z flagą </dd></dl>
-
-</div>
-</div>
-<a id="a6850a6f8a50529d9990eeed270f457f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6850a6f8a50529d9990eeed270f457f9">&#9670;&nbsp;</a></span>createIMUChart()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QChartView* createIMUChart </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>axisIndex</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Funkcja tworząca wykres IMU. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">axisIndex</td><td>Indeks osi (0-X, 1-Y, 2-Z) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>QChartView z przygotowanym wykresem IMU </dd></dl>
-
-</div>
-</div>
-<a id="ab51cbc58ff34de8db768ea67250ded0f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab51cbc58ff34de8db768ea67250ded0f">&#9670;&nbsp;</a></span>createManipulatorPlaceholder()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QPixmap createManipulatorPlaceholder </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Funkcja tworząca placeholder manipulatora jeśli brak obrazu. </p>
-<dl class="section return"><dt>Returns</dt><dd>QPixmap z placeholderem </dd></dl>
-
-</div>
-</div>
-<a id="a2b418dc933edb6831f688e8a47db3d5e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b418dc933edb6831f688e8a47db3d5e">&#9670;&nbsp;</a></span>createRotatedText()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QPixmap createRotatedText </td>
-          <td>(</td>
-          <td class="paramtype">const QString &amp;&#160;</td>
-          <td class="paramname"><em>text</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const QFont &amp;&#160;</td>
-          <td class="paramname"><em>font</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>width</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>height</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Funkcja tworząca obrócony tekst w etykiecie. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">text</td><td>Tekst do obrócenia </td></tr>
-    <tr><td class="paramname">font</td><td>Czcionka dla tekstu </td></tr>
-    <tr><td class="paramname">width</td><td>Szerokość wynikowego pixmapy </td></tr>
-    <tr><td class="paramname">height</td><td>Wysokość wynikowej pixmapy </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>QPixmap z obróconym tekstem </dd></dl>
-
-</div>
-</div>
+<p class="definition">Definition in file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a0ddf1224851353fc92bfbff6f499fa97"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0ddf1224851353fc92bfbff6f499fa97">&#9670;&nbsp;</a></span>main()</h2>
 
@@ -665,126 +183,216 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Kod zakończenia programu </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00030">30</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                                 {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    QApplication app(argc, argv);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">// Tworzenie głównego okna</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    QMainWindow window;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    window.setWindowTitle(<a class="code" href="definitions_8h.html#abce3c9120e09e75fd797f72f1b4a4cfb">APP_TITLE</a>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="comment">// Główny widżet</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    QWidget *centralWidget = <span class="keyword">new</span> QWidget(&amp;window);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    window.setCentralWidget(centralWidget);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// Główny układ</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    QHBoxLayout *mainLayout = <span class="keyword">new</span> QHBoxLayout(centralWidget);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">// Część lewa - wykresy i potencjometry</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    QVBoxLayout *leftLayout = <span class="keyword">new</span> QVBoxLayout();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">// Tworzymy siatkę dla lewej części</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    QGridLayout *chartsGridLayout = <span class="keyword">new</span> QGridLayout();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// Przygotowanie czcionki dla etykiet</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    QFont labelFont;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    labelFont.setBold(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    labelFont.setPointSize(<a class="code" href="definitions_8h.html#a4b8500ab23725d2c25bd8f3d60fec5a2">LABEL_FONT_SIZE</a>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">// Dodajemy pionowy napis ANGLES</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    QLabel *anglesLabel = <span class="keyword">new</span> QLabel(<span class="stringliteral">&quot;ANGLES&quot;</span>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    anglesLabel-&gt;setFixedWidth(40);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    anglesLabel-&gt;setFont(labelFont);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    anglesLabel-&gt;setPixmap(<a class="code" href="qtFunctions_8cpp.html#a2b418dc933edb6831f688e8a47db3d5e">createRotatedText</a>(<span class="stringliteral">&quot;ANGLES&quot;</span>, labelFont, 50, 200));</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    chartsGridLayout-&gt;addWidget(anglesLabel, 0, 0, <a class="code" href="definitions_8h.html#ac53e2072c3bebea3b3a1197528b9474a">NUM_ANGLE_CHARTS</a>, 1);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// Tworzenie wykresów dla potencjometrów</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="definitions_8h.html#ac53e2072c3bebea3b3a1197528b9474a">NUM_ANGLE_CHARTS</a>; i++) {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="comment">// Etykieta dla angle</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        QLabel *angleLabel = <span class="keyword">new</span> QLabel(<span class="stringliteral">&quot;angle&quot;</span>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        angleLabel-&gt;setFixedWidth(40);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        QString label = QString(<span class="stringliteral">&quot;angle_%1&quot;</span>).arg(i + 1);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        angleLabel-&gt;setPixmap(<a class="code" href="qtFunctions_8cpp.html#a2b418dc933edb6831f688e8a47db3d5e">createRotatedText</a>(label, labelFont, 40, 100));</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="comment">// Tworzenie wykresu</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        QChartView *chartView = <a class="code" href="qtFunctions_8cpp.html#aeb04879c81c06914629a6e4e35febc2c">createAngleChart</a>(i);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="comment">// Potencjometr</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        QDial *dial = <span class="keyword">new</span> QDial();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        dial-&gt;setFixedSize(60, 60);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="comment">// Dodajemy wykres i potencjometr do siatki</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        chartsGridLayout-&gt;addWidget(angleLabel, i, 1);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        chartsGridLayout-&gt;addWidget(chartView, i, 2);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        chartsGridLayout-&gt;addWidget(dial, i, 3);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">// Sekcja IMU</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    QLabel *imuLabel = <span class="keyword">new</span> QLabel(<span class="stringliteral">&quot;IMU&quot;</span>);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    imuLabel-&gt;setFixedWidth(40);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    imuLabel-&gt;setPixmap(<a class="code" href="qtFunctions_8cpp.html#a2b418dc933edb6831f688e8a47db3d5e">createRotatedText</a>(<span class="stringliteral">&quot;IMU&quot;</span>, labelFont, 50, 150));</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    chartsGridLayout-&gt;addWidget(imuLabel, <a class="code" href="definitions_8h.html#ac53e2072c3bebea3b3a1197528b9474a">NUM_ANGLE_CHARTS</a>, 0, <a class="code" href="definitions_8h.html#a9015ccadacdb878b0fd9ba144f509ade">NUM_IMU_CHARTS</a>, 1);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// Tworzymy wykresy dla IMU - z tym samym wyglądem jak dla angles</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="definitions_8h.html#a9015ccadacdb878b0fd9ba144f509ade">NUM_IMU_CHARTS</a>; i++) {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="comment">// Etykieta dla osi IMU (X, Y, Z)</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        QLabel *axisLabel = <span class="keyword">new</span> QLabel(<a class="code" href="definitions_8h.html#adbc2805d4e7382a1dea79aaf10cb58d6">IMU_AXIS_LABELS</a>[i]);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        axisLabel-&gt;setFixedWidth(40);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        axisLabel-&gt;setPixmap(<a class="code" href="qtFunctions_8cpp.html#a2b418dc933edb6831f688e8a47db3d5e">createRotatedText</a>(<a class="code" href="definitions_8h.html#adbc2805d4e7382a1dea79aaf10cb58d6">IMU_AXIS_LABELS</a>[i], labelFont, 40, 80));</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="comment">// Tworzenie wykresu IMU z tym samym stylem co wykresy angle</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        QChartView *chartView = <a class="code" href="qtFunctions_8cpp.html#a6850a6f8a50529d9990eeed270f457f9">createIMUChart</a>(i);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="comment">// Legenda pod wykresem</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        QHBoxLayout *legendLayout = <span class="keyword">new</span> QHBoxLayout();</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 4; j++) {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            QLabel *legendLabel = <span class="keyword">new</span> QLabel(<span class="stringliteral">&quot;■ &quot;</span> + <a class="code" href="definitions_8h.html#aebe696819611528caf2f810fb3dc6a31">IMU_LABELS</a>[j]);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            QString styleSheet = QString(<span class="stringliteral">&quot;color: %1; font-size: 8pt;&quot;</span>).arg(<a class="code" href="definitions_8h.html#afaf2d36172b8a16f232e8d68c288a1b1">IMU_COLORS</a>[j].name());</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            legendLabel-&gt;setStyleSheet(styleSheet);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            legendLabel-&gt;setAlignment(Qt::AlignCenter);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            legendLayout-&gt;addWidget(legendLabel);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        }</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        QVBoxLayout *imuChartLayout = <span class="keyword">new</span> QVBoxLayout();</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        imuChartLayout-&gt;addWidget(chartView);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        imuChartLayout-&gt;addLayout(legendLayout);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        chartsGridLayout-&gt;addWidget(axisLabel, i + <a class="code" href="definitions_8h.html#ac53e2072c3bebea3b3a1197528b9474a">NUM_ANGLE_CHARTS</a>, 1);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        chartsGridLayout-&gt;addLayout(imuChartLayout, i + <a class="code" href="definitions_8h.html#ac53e2072c3bebea3b3a1197528b9474a">NUM_ANGLE_CHARTS</a>, 2);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="comment">// Ustawiamy rozciąganie wierszy</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="definitions_8h.html#ac53e2072c3bebea3b3a1197528b9474a">NUM_ANGLE_CHARTS</a> + <a class="code" href="definitions_8h.html#a9015ccadacdb878b0fd9ba144f509ade">NUM_IMU_CHARTS</a>; i++) {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        chartsGridLayout-&gt;setRowStretch(i, 1);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="comment">// Dodajemy siatkę wykresów do lewego layoutu</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    leftLayout-&gt;addLayout(chartsGridLayout);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="comment">// Część prawa - tytuł i wizualizacja manipulatora</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    QVBoxLayout *rightLayout = <span class="keyword">new</span> QVBoxLayout();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="comment">// Tytuł</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    QLabel *titleLabel = <span class="keyword">new</span> QLabel(<a class="code" href="definitions_8h.html#abce3c9120e09e75fd797f72f1b4a4cfb">APP_TITLE</a>);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    QFont titleFont = titleLabel-&gt;font();</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    titleFont.setBold(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    titleFont.setPointSize(<a class="code" href="definitions_8h.html#a9e59068493c4cf85b4be5be3732f8315">TITLE_FONT_SIZE</a>);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    titleLabel-&gt;setFont(titleFont);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    titleLabel-&gt;setAlignment(Qt::AlignCenter);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    rightLayout-&gt;addWidget(titleLabel);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="comment">// Miejsce na wizualizację manipulatora</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    QGraphicsScene *scene = <span class="keyword">new</span> QGraphicsScene();</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    QGraphicsView *manipulatorView = <span class="keyword">new</span> QGraphicsView(scene);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    manipulatorView-&gt;setMinimumSize(400, 400);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="comment">// Ladowanie obrazu manipulatora</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    QPixmap manipulatorPixmap;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    manipulatorPixmap = QPixmap(<span class="stringliteral">&quot;:/icons/icons/manipulator_6dof.png&quot;</span>);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    QGraphicsPixmapItem *manipulatorItem = scene-&gt;addPixmap(manipulatorPixmap);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    manipulatorItem-&gt;setPos(0, 0);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    rightLayout-&gt;addWidget(manipulatorView);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="comment">// Ikony flag</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    QHBoxLayout *flagsLayout = <span class="keyword">new</span> QHBoxLayout();</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="comment">// Ladowanie ikon flag</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    QPixmap ukFlagPixmap;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    QPixmap plFlagPixmap;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    ukFlagPixmap = QPixmap(<span class="stringliteral">&quot;:/icons/icons/uk.png&quot;</span>);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    plFlagPixmap = QPixmap(<span class="stringliteral">&quot;:/icons/icons/pl.png&quot;</span>);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="comment">// Tworzenie etykiet z ikonami flag</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    QLabel *ukFlagLabel = <span class="keyword">new</span> QLabel();</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    ukFlagLabel-&gt;setPixmap(ukFlagPixmap.scaled(30, 20, Qt::KeepAspectRatio));</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    ukFlagLabel-&gt;setToolTip(<span class="stringliteral">&quot;English&quot;</span>);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    ukFlagLabel-&gt;setCursor(Qt::PointingHandCursor);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    QLabel *plFlagLabel = <span class="keyword">new</span> QLabel();</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    plFlagLabel-&gt;setPixmap(plFlagPixmap.scaled(30, 20, Qt::KeepAspectRatio));</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    plFlagLabel-&gt;setToolTip(<span class="stringliteral">&quot;Polski&quot;</span>);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    plFlagLabel-&gt;setCursor(Qt::PointingHandCursor);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    flagsLayout-&gt;addStretch();</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    flagsLayout-&gt;addWidget(ukFlagLabel);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    flagsLayout-&gt;addSpacing(10);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    flagsLayout-&gt;addWidget(plFlagLabel);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    flagsLayout-&gt;addSpacing(10);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160; </div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    rightLayout-&gt;addLayout(flagsLayout);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    rightLayout-&gt;addStretch();</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="comment">// Dodanie lewy i prawego layout&#39;u do głównego layoutu</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    mainLayout-&gt;addLayout(leftLayout, <a class="code" href="definitions_8h.html#ad60cdec82c49840019b1a3aeccf28cad">LEFT_LAYOUT_WEIGHT</a>);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    mainLayout-&gt;addLayout(rightLayout, <a class="code" href="definitions_8h.html#a82301c329e9ba2e528b62001ee3b6c5c">RIGHT_LAYOUT_WEIGHT</a>);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="comment">// Ustawiamy okno jako zmaksymalizowane</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    window.showMaximized();</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="keywordflow">return</span> app.exec();</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;}</div>
+<div class="ttc" id="adefinitions_8h_html_a4b8500ab23725d2c25bd8f3d60fec5a2"><div class="ttname"><a href="definitions_8h.html#a4b8500ab23725d2c25bd8f3d60fec5a2">LABEL_FONT_SIZE</a></div><div class="ttdeci">#define LABEL_FONT_SIZE</div><div class="ttdoc">Rozmiar czcionki etykiet.</div><div class="ttdef"><b>Definition:</b> <a href="definitions_8h_source.html#l00049">definitions.h:49</a></div></div>
+<div class="ttc" id="adefinitions_8h_html_a82301c329e9ba2e528b62001ee3b6c5c"><div class="ttname"><a href="definitions_8h.html#a82301c329e9ba2e528b62001ee3b6c5c">RIGHT_LAYOUT_WEIGHT</a></div><div class="ttdeci">#define RIGHT_LAYOUT_WEIGHT</div><div class="ttdoc">Waga prawego panelu w układzie.</div><div class="ttdef"><b>Definition:</b> <a href="definitions_8h_source.html#l00038">definitions.h:38</a></div></div>
+<div class="ttc" id="adefinitions_8h_html_a9015ccadacdb878b0fd9ba144f509ade"><div class="ttname"><a href="definitions_8h.html#a9015ccadacdb878b0fd9ba144f509ade">NUM_IMU_CHARTS</a></div><div class="ttdeci">#define NUM_IMU_CHARTS</div><div class="ttdoc">Liczba wykresów IMU.</div><div class="ttdef"><b>Definition:</b> <a href="definitions_8h_source.html#l00042">definitions.h:42</a></div></div>
+<div class="ttc" id="adefinitions_8h_html_a9e59068493c4cf85b4be5be3732f8315"><div class="ttname"><a href="definitions_8h.html#a9e59068493c4cf85b4be5be3732f8315">TITLE_FONT_SIZE</a></div><div class="ttdeci">#define TITLE_FONT_SIZE</div><div class="ttdoc">Rozmiar czcionki tytułu.</div><div class="ttdef"><b>Definition:</b> <a href="definitions_8h_source.html#l00048">definitions.h:48</a></div></div>
+<div class="ttc" id="adefinitions_8h_html_abce3c9120e09e75fd797f72f1b4a4cfb"><div class="ttname"><a href="definitions_8h.html#abce3c9120e09e75fd797f72f1b4a4cfb">APP_TITLE</a></div><div class="ttdeci">#define APP_TITLE</div><div class="ttdoc">Stałe konfiguracyjne dla aplikacji.</div><div class="ttdef"><b>Definition:</b> <a href="definitions_8h_source.html#l00033">definitions.h:33</a></div></div>
+<div class="ttc" id="adefinitions_8h_html_ac53e2072c3bebea3b3a1197528b9474a"><div class="ttname"><a href="definitions_8h.html#ac53e2072c3bebea3b3a1197528b9474a">NUM_ANGLE_CHARTS</a></div><div class="ttdeci">#define NUM_ANGLE_CHARTS</div><div class="ttdoc">Liczba wykresów kątów (potencjometrów)</div><div class="ttdef"><b>Definition:</b> <a href="definitions_8h_source.html#l00041">definitions.h:41</a></div></div>
+<div class="ttc" id="adefinitions_8h_html_ad60cdec82c49840019b1a3aeccf28cad"><div class="ttname"><a href="definitions_8h.html#ad60cdec82c49840019b1a3aeccf28cad">LEFT_LAYOUT_WEIGHT</a></div><div class="ttdeci">#define LEFT_LAYOUT_WEIGHT</div><div class="ttdoc">Waga lewego panelu w układzie.</div><div class="ttdef"><b>Definition:</b> <a href="definitions_8h_source.html#l00037">definitions.h:37</a></div></div>
+<div class="ttc" id="adefinitions_8h_html_adbc2805d4e7382a1dea79aaf10cb58d6"><div class="ttname"><a href="definitions_8h.html#adbc2805d4e7382a1dea79aaf10cb58d6">IMU_AXIS_LABELS</a></div><div class="ttdeci">const QString IMU_AXIS_LABELS[]</div><div class="ttdoc">Etykiety dla osi IMU.</div><div class="ttdef"><b>Definition:</b> <a href="definitions_8h_source.html#l00085">definitions.h:85</a></div></div>
+<div class="ttc" id="adefinitions_8h_html_aebe696819611528caf2f810fb3dc6a31"><div class="ttname"><a href="definitions_8h.html#aebe696819611528caf2f810fb3dc6a31">IMU_LABELS</a></div><div class="ttdeci">const QString IMU_LABELS[]</div><div class="ttdef"><b>Definition:</b> <a href="definitions_8h_source.html#l00075">definitions.h:75</a></div></div>
+<div class="ttc" id="adefinitions_8h_html_afaf2d36172b8a16f232e8d68c288a1b1"><div class="ttname"><a href="definitions_8h.html#afaf2d36172b8a16f232e8d68c288a1b1">IMU_COLORS</a></div><div class="ttdeci">const QColor IMU_COLORS[]</div><div class="ttdef"><b>Definition:</b> <a href="definitions_8h_source.html#l00068">definitions.h:68</a></div></div>
+<div class="ttc" id="aqtFunctions_8cpp_html_a2b418dc933edb6831f688e8a47db3d5e"><div class="ttname"><a href="qtFunctions_8cpp.html#a2b418dc933edb6831f688e8a47db3d5e">createRotatedText</a></div><div class="ttdeci">QPixmap createRotatedText(const QString &amp;text, const QFont &amp;font, int width, int height)</div><div class="ttdoc">Funkcja tworząca obrócony tekst w etykiecie.</div><div class="ttdef"><b>Definition:</b> <a href="qtFunctions_8cpp_source.html#l00003">qtFunctions.cpp:3</a></div></div>
+<div class="ttc" id="aqtFunctions_8cpp_html_a6850a6f8a50529d9990eeed270f457f9"><div class="ttname"><a href="qtFunctions_8cpp.html#a6850a6f8a50529d9990eeed270f457f9">createIMUChart</a></div><div class="ttdeci">QChartView * createIMUChart(int axisIndex)</div><div class="ttdoc">Funkcja tworząca wykres IMU.</div><div class="ttdef"><b>Definition:</b> <a href="qtFunctions_8cpp_source.html#l00058">qtFunctions.cpp:58</a></div></div>
+<div class="ttc" id="aqtFunctions_8cpp_html_aeb04879c81c06914629a6e4e35febc2c"><div class="ttname"><a href="qtFunctions_8cpp.html#aeb04879c81c06914629a6e4e35febc2c">createAngleChart</a></div><div class="ttdeci">QChartView * createAngleChart(int colorIndex)</div><div class="ttdoc">Funkcja tworząca wykres kąta.</div><div class="ttdef"><b>Definition:</b> <a href="qtFunctions_8cpp_source.html#l00019">qtFunctions.cpp:19</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph.png" border="0" usemap="#amain_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph" alt=""/></div>
+<map name="amain_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph" id="amain_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph">
+<area shape="rect" title="Główna funkcja programu." alt="" coords="5,56,60,83"/>
+<area shape="rect" href="qtFunctions_8cpp.html#aeb04879c81c06914629a6e4e35febc2c" title="Funkcja tworząca wykres kąta." alt="" coords="111,5,246,32"/>
+<area shape="rect" href="qtFunctions_8cpp.html#a6850a6f8a50529d9990eeed270f457f9" title="Funkcja tworząca wykres IMU." alt="" coords="117,56,241,83"/>
+<area shape="rect" href="qtFunctions_8cpp.html#a2b418dc933edb6831f688e8a47db3d5e" title="Funkcja tworząca obrócony tekst w etykiecie." alt="" coords="108,107,249,133"/>
+</map>
+</div>
+
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="af169e3459d1dd402d700f5b964941bf6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af169e3459d1dd402d700f5b964941bf6">&#9670;&nbsp;</a></span>ANGLE_COLORS</h2>
+<a id="a826017a547d1d93b61cafb47d6d29bdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a826017a547d1d93b61cafb47d6d29bdf">&#9670;&nbsp;</a></span>dataQueue</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const QColor ANGLE_COLORS[]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">        QColor(255, 0, 0),     </div>
-<div class="line">        QColor(0, 0, 255),     </div>
-<div class="line">        QColor(0, 200, 0),     </div>
-<div class="line">        QColor(255, 200, 0),   </div>
-<div class="line">        QColor(200, 0, 200),   </div>
-<div class="line">        QColor(150, 75, 75)    </div>
-<div class="line">}</div>
-</div><!-- fragment -->
-<p>Tablice z kolorami dla wykresów. </p>
-
-</div>
-</div>
-<a id="a9b0083b556a47b8d7c4d48bfe3465e75"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b0083b556a47b8d7c4d48bfe3465e75">&#9670;&nbsp;</a></span>ANGLES_DATA</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">angles ANGLES_DATA</td>
+          <td class="memname">QQueue&lt;<a class="el" href="structinputData.html">inputData</a>&gt; dataQueue</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Zmienna globalna przechowująca wartości kątów. </p>
-<p>Zawiera sześć zmiennych typu float, które reprezentują różne kąty, przechowywane w jednostkach stopni. Zmienna przechowująca kąty </p>
+<p>Kolejka przechowująca dane wejściowe typu <a class="el" href="structinputData.html" title="Struktura przechowująca dane wejściowe dla manipulatora 6 DOF.">inputData</a>. </p>
+<p>Kolejka typu QQueue przechowuje obiekty <a class="el" href="structinputData.html" title="Struktura przechowująca dane wejściowe dla manipulatora 6 DOF.">inputData</a>, które zawierają pełne zestawy danych z czujników manipulatora 6 DOF. Umożliwia to efektywne przechowywanie oraz późniejsze przetwarzanie tych danych w aplikacji. </p>
 
-</div>
-</div>
-<a id="adbc2805d4e7382a1dea79aaf10cb58d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adbc2805d4e7382a1dea79aaf10cb58d6">&#9670;&nbsp;</a></span>IMU_AXIS_LABELS</h2>
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00022">22</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const QString IMU_AXIS_LABELS[]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">        <span class="stringliteral">&quot;X axis&quot;</span>,              </div>
-<div class="line">        <span class="stringliteral">&quot;Y axis&quot;</span>,              </div>
-<div class="line">        <span class="stringliteral">&quot;Z axis&quot;</span>               </div>
-<div class="line">}</div>
-</div><!-- fragment -->
-<p>Etykiety dla osi IMU. </p>
-
-</div>
-</div>
-<a id="afaf2d36172b8a16f232e8d68c288a1b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afaf2d36172b8a16f232e8d68c288a1b1">&#9670;&nbsp;</a></span>IMU_COLORS</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const QColor IMU_COLORS[]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">        QColor(255, 0, 0),     </div>
-<div class="line">        QColor(0, 200, 0),     </div>
-<div class="line">        QColor(0, 0, 255),     </div>
-<div class="line">        QColor(0, 0, 0)        </div>
-<div class="line">}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="ae41a86425aaa839507eb49e27425d56f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae41a86425aaa839507eb49e27425d56f">&#9670;&nbsp;</a></span>IMU_DATA</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">imu_data IMU_DATA</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Zmienna globalna przechowująca dane z czujników IMU. </p>
-<p>Zawiera dane z trzech czujników: akcelerometru, żyroskopu i magnetometru. Każdy czujnik dostarcza wartości dla trzech osi (X, Y, Z) przechowywanych w zmiennych typu float. Zmienna przechowująca dane z czujników IMU </p>
-
-</div>
-</div>
-<a id="aebe696819611528caf2f810fb3dc6a31"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebe696819611528caf2f810fb3dc6a31">&#9670;&nbsp;</a></span>IMU_LABELS</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const QString IMU_LABELS[]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">        <span class="stringliteral">&quot;Accel&quot;</span>,             </div>
-<div class="line">        <span class="stringliteral">&quot;Gyro&quot;</span>,              </div>
-<div class="line">        <span class="stringliteral">&quot;Mag&quot;</span>,               </div>
-<div class="line">        <span class="stringliteral">&quot;Position&quot;</span>           </div>
-<div class="line">}</div>
-</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
@@ -792,7 +400,7 @@ Variables</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
