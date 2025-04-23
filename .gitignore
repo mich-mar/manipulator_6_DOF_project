@@ -1,0 +1,51 @@
+# Build directories
+**/build/
+**/Debug/
+**/Release/
+**/CMakeFiles/
+**/cmake-build-*/
+
+# CMake generated files
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# STM32CubeMX generated files
+*.ioc
+
+# Object files and binaries
+*.o
+*.obj
+*.elf
+*.hex
+*.bin
+*.map
+*.lst
+
+# Editor/IDE files
+*.swp
+*.swo
+*.bak
+*.tmp
+*.log
+*.user
+*.d
+
+# Backup and temp files
+*~
+*.orig
+*.rej
+*.sublime-workspace
+*.sublime-project
+
+# VSCode
+.vscode/
+
+# CLion
+.idea/
+*.iml
+
+# Misc
+*.DS_Store
+Thumbs.db
+
