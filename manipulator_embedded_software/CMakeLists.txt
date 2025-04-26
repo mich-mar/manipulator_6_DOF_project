@@ -1,9 +1,17 @@
 cmake_minimum_required(VERSION 3.22)
 
+#
+# This file is generated only once,
+# and is not re-generated if converter is called multiple times.
+#
+# User is free to modify the file as much as necessary
+#
+
 # Setup compiler settings
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
+
 
 # Define the build type
 if(NOT CMAKE_BUILD_TYPE)
@@ -11,7 +19,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 # Set the project name
-set(CMAKE_PROJECT_NAME manipulator_6_dof)
+set(CMAKE_PROJECT_NAME blackpill_v5)
 
 # Include toolchain file
 include("cmake/gcc-arm-none-eabi.cmake")
@@ -34,33 +42,31 @@ add_subdirectory(cmake/stm32cubemx)
 
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
-    # User-defined library search paths can be added here
+    # Add user defined library search paths
 )
 
+# Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
-    ${PROJECT_SOURCE_DIR}/Core/Src/main.c
-    ${PROJECT_SOURCE_DIR}/Core/Src/GY85.c
-    # Dodaj inne pliki źródłowe w razie potrzeby
+    # Add user sources here
+    Core/Src/ads1115.c   # <== changed
+    Core/Src/GY85.c # <== changed
+    Core/Src/sendUSB.c # <== changed
 )
 
-
-
+# Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
-    ${PROJECT_SOURCE_DIR}/Core/Inc
-    ${PROJECT_SOURCE_DIR}/Drivers/CMSIS/Core/Include
-    ${PROJECT_SOURCE_DIR}/Drivers/CMSIS/Device/ST/STM32L4xx/Include
-    ${PROJECT_SOURCE_DIR}/Drivers/STM32L4xx_HAL_Driver/Inc
+    # Add user defined include paths
+    Core/Src    # <== changed
 )
-
 
 # Add project symbols (macros)
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
-    # User-defined symbols can be added here
+    # Add user defined symbols
 )
 
-# Link libraries (ensure you have the correct libraries for HAL)
+# Add linked libraries
 target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
-    m
-    # Link the HAL library here if needed
+
+    # Add user defined libraries
 )

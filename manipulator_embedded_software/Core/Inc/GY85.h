@@ -8,11 +8,11 @@
  #ifndef GY85_H
  #define GY85_H
  
- #include "stm32l4xx_hal.h" // Dostosuj do swojej rodziny STM32
+ #include "stm32f4xx_hal.h" // Dostosuj do swojej rodziny STM32
  #include "stdint.h"
  #include "stdio.h"
  #include "i2c.h"
- #include "usart.h"
+ #include "sendUSB.h"
 
  #define PI 3.1415
  
@@ -91,5 +91,7 @@
  HAL_StatusTypeDef GY85_ReadMag(GY85_HandleTypeDef *hgy85);
  HAL_StatusTypeDef GY85_ReadTemperature(GY85_HandleTypeDef *hgy85);
  HAL_StatusTypeDef GY85_SelfTest(GY85_HandleTypeDef *hgy85);
+ HAL_StatusTypeDef GY85_SendAllData(GY85_HandleTypeDef *hgy85);
+ HAL_StatusTypeDef GY85_Begin(GY85_HandleTypeDef *hgy85, I2C_HandleTypeDef *hi2c);
  
  #endif /* GY85_H */

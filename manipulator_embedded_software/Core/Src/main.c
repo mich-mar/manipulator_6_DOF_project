@@ -18,33 +18,31 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "dma.h"
 #include "i2c.h"
-#include "usart.h"
+#include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "GY85.h"
 #include "ads1115.h"
-#include "uart_print.h"
+#include "sendUSB.h"
+#include "ftos.h"
+#include "GY85.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+GY85_HandleTypeDef hgy85;
+
+// LED PC13
+// SDA PB7
+// SCL PB6
 
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define I2C_TIMEOUT 100
-
-// Bufory do przechowywania danych
-char uartBuffer[256];
-
-// I2C_HandleTypeDef hi2c1;
-// UART_HandleTypeDef huart2;
-GY85_HandleTypeDef hgy85;
+#define ADC_READ_INTERVAL 1000 // Czas między odczytami w ms
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -61,44 +59,11 @@ GY85_HandleTypeDef hgy85;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-HAL_StatusTypeDef I2C_IsDeviceReady(I2C_HandleTypeDef *hi2c, uint8_t DevAddress);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-/**I2C1 GPIO Configuration
-   PB6    ------> I2C1_SCL
-   PB7    ------> I2C1_SDA
-*/
-
-// Sprawdzanie czy urządzenie I2C jest dostępne
-HAL_StatusTypeDef I2C_IsDeviceReady(I2C_HandleTypeDef *hi2c, uint8_t DevAddress)
-{
-  return HAL_I2C_IsDeviceReady(hi2c, DevAddress << 1, 3, I2C_TIMEOUT);
-}
-
-/**
- * @brief Wyświetlenie danych z sensorów przez UART
- */
-static void print_data(void)
-{
-  char buffer[256];
-
-  snprintf(buffer, sizeof(buffer),
-           "\r\n--- GY-85 Sensor Data ---\r\n"
-           "Accelerometer (m/s^2): X=%.2f, Y=%.2f, Z=%.2f\r\n"
-           "Gyroscope (rad/s): X=%.2f, Y=%.2f, Z=%.2f\r\n"
-           "Magnetometer (Gauss): X=%.2f, Y=%.2f, Z=%.2f\r\n"
-           "Temperature: %.2f °C\r\n"
-           "--------------------------\r\n",
-           hgy85.accel.x, hgy85.accel.y, hgy85.accel.z,
-           hgy85.gyro.x, hgy85.gyro.y, hgy85.gyro.z,
-           hgy85.mag.x, hgy85.mag.y, hgy85.mag.z,
-           hgy85.temperature);
-
-  uart_print(buffer);
-}
 
 /* USER CODE END 0 */
 
@@ -108,7 +73,6 @@ static void print_data(void)
  */
 int main(void)
 {
-
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -131,126 +95,68 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
+  MX_USB_DEVICE_Init();
   MX_I2C1_Init();
-  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  char buffer[100];
-  HAL_StatusTypeDef status;
+  HAL_Delay(500); // stabilizacja USB
 
-  // Sprawdzenie czy UART działa
-  uart_print("\r\n\r\n=============================\r\n");
-  uart_print("Test UART - System uruchomiony\r\n");
-  uart_print("=============================\r\n");
+  ADS1115_Init(); // Bez sprawdzania błędu, zakładamy że się udało
 
-  // Sprawdzenie adresów I2C
-  uart_print("Skanowanie urządzeń I2C...\r\n");
-  uint8_t devices_found = 0;
-
-  for (uint8_t addr = 1; addr < 128; addr++)
-  {
-    status = I2C_IsDeviceReady(&hi2c1, addr);
-    if (status == HAL_OK)
-    {
-      sprintf(buffer, "Znaleziono urządzenie I2C pod adresem: 0x%02X\r\n", addr);
-      uart_print(buffer);
-      devices_found++;
-    }
-  }
-
-  if (devices_found == 0)
-  {
-    uart_print("Nie znaleziono żadnych urządzeń I2C!\r\n");
-  }
-  else
-  {
-    sprintf(buffer, "Znaleziono urządzeń I2C: %d\r\n", devices_found);
-    uart_print(buffer);
-  }
-
-  // Sprawdzenie czy ADS1115 jest dostępny
-  uart_print("Sprawdzanie ADS1115...\r\n");
-  status = I2C_IsDeviceReady(&hi2c1, ADS1115_ADDRESS_GND);
+  HAL_StatusTypeDef status = GY85_Begin(&hgy85, &hi2c1);
   if (status != HAL_OK)
   {
-    uart_print("BŁĄD: ADS1115 nie został znaleziony pod adresem 0x48!\r\n");
-    uart_print("Sprawdź połączenia lub spróbuj inny adres.\r\n");
-  }
-  else
-  {
-    uart_print("ADS1115 znaleziony! Inicjalizacja...\r\n");
-
-    // Inicjalizacja ADS1115
-    ADS1115_Init();
-    uart_print("ADS1115 zainicjalizowany.\r\n");
-
-    // Krótkie opóźnienie po inicjalizacji
-    HAL_Delay(100);
+    // błąd inicjalizacji
+    Error_Handler();
   }
 
-  // Informacja o rozpoczęciu pomiarów
-  uart_print("Rozpoczynam odczyty z ADS1115 A0...\r\n");
-
-  // GY85_Init(&hgy85, &hi2c1);
-  GY85_Init(&hgy85, &hi2c1);
+  int16_t adc_value_0, adc_value_1, adc_value_2;
+  float voltage;
+  char msg[100];
+  char voltage_str[50];
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
   while (1)
   {
-    // Status LED (jeśli jest dostępny)
-    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5); // Zakładając, że LED jest na PA5 (typowo dla większości płytek STM32)
+    HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 
-    // Próba odczytu z ADS1115
-    uart_print("Odczyt z ADS1115...\r\n");
+    adc_value_0 = ADS1115_ReadADC_A0(NULL);
+    adc_value_1 = ADS1115_ReadADC_A1(NULL);
+    adc_value_2 = ADS1115_ReadADC_A2(NULL);
 
-    // Odczyt konfiguracji
-    uint16_t config_reg = 0;
-    status = ADS1115_ReadRegister(ADS1115_REG_CONFIG, &config_reg);
-    if (status != HAL_OK)
-    {
-      uart_print("BŁĄD: Nie można odczytać rejestru konfiguracji!\r\n");
-    }
-    else
-    {
-      sprintf(buffer, "Rejestr CONFIG: 0x%04X\r\n", config_reg);
-      uart_print(buffer);
-    }
+    // kanał A0
+    voltage = ADS1115_ConvertToVoltage(adc_value_0, ADS1115_PGA_4_096V);
+    floatToString(voltage, voltage_str);
+    sprintf(msg, "A0: %d, %s V\r\n", adc_value_0, voltage_str);
+    sendUSBmsg(msg);
 
-    // Odczyt z kanału A0
-    int16_t raw_value = 0;
-    float voltage = 0.0f;
+    // kanał A1
+    voltage = ADS1115_ConvertToVoltage(adc_value_1, ADS1115_PGA_4_096V);
+    floatToString(voltage, voltage_str);
+    sprintf(msg, "A1: %d, %s V\r\n", adc_value_1, voltage_str);
+    sendUSBmsg(msg);
 
-    raw_value = ADS1115_ReadADC_A0();
-    voltage = ADS1115_ConvertToVoltage(raw_value, ADS1115_PGA_2_048V);
+    // kanał A2
+    voltage = ADS1115_ConvertToVoltage(adc_value_2, ADS1115_PGA_4_096V);
+    floatToString(voltage, voltage_str);
+    sprintf(msg, "A2: %d, %s V\r\n", adc_value_2, voltage_str);
+    sendUSBmsg(msg);
 
-    sprintf(buffer, "ADC Raw: %d, Voltage: %.3f V\r\n", raw_value, voltage);
-    uart_print(buffer);
+    HAL_Delay(100);
 
-    // Opóźnienie przed kolejnym odczytem (1 sekunda)
-    uart_print("Czekam 1 sekundę...\r\n\r\n");
-    HAL_Delay(1000);
+    sendUSBmsg("\r\n");
 
-    // /* Odczyt danych z sensorów */
-    // if (GY85_ReadAllSensors(&hgy85) == HAL_OK)
-    // {
-    //   /* Wyświetlenie danych */
-    //   print_data();
+    GY85_SendAllData(&hgy85);
 
-    //   /* Zapalenie diody LED po udanym odczycie */
-    //   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
-    // }
-    // else
-    // {
-    //   /* Zgaszenie diody LED przy błędzie */
-    //   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
-    // }
+    sprintf(msg, "accel x: %d\r\n", (int)(hgy85.accel.x*10000));
 
-    // /* Opóźnienie pomiędzy odczytami */
-    // HAL_Delay(500);
+    sendUSBmsg(msg);
+
+    HAL_Delay(100);
 
     /* USER CODE END WHILE */
 
@@ -270,24 +176,22 @@ void SystemClock_Config(void)
 
   /** Configure the main internal regulator output voltage
    */
-  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
-  {
-    Error_Handler();
-  }
+  __HAL_RCC_PWR_CLK_ENABLE();
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
   /** Initializes the RCC Oscillators according to the specified parameters
    * in the RCC_OscInitTypeDef structure.
    */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI | RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLM = 1;
-  RCC_OscInitStruct.PLL.PLLN = 10;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV7;
-  RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
-  RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLM = 15;
+  RCC_OscInitStruct.PLL.PLLN = 144;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+  RCC_OscInitStruct.PLL.PLLQ = 5;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -296,12 +200,12 @@ void SystemClock_Config(void)
   /** Initializes the CPU, AHB and APB buses clocks
    */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
   {
     Error_Handler();
   }

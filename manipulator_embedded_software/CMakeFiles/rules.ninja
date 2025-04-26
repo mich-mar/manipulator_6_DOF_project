@@ -6,7 +6,7 @@
 # It is included in the main 'build.ninja'.
 
 # =============================================================================
-# Project: manipulator_6_dof
+# Project: blackpill_v5
 # Configurations: Debug
 # =============================================================================
 # =============================================================================
@@ -14,7 +14,7 @@
 #############################################
 # Rule for compiling ASM files.
 
-rule ASM_COMPILER__manipulator_6_dof_Debug
+rule ASM_COMPILER__blackpill_v5_Debug
   depfile = $DEP_FILE
   deps = gcc
   command = /usr/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -24,7 +24,7 @@ rule ASM_COMPILER__manipulator_6_dof_Debug
 #############################################
 # Rule for compiling C files.
 
-rule C_COMPILER__manipulator_6_dof_Debug
+rule C_COMPILER__blackpill_v5_Debug
   depfile = $DEP_FILE
   deps = gcc
   command = /usr/bin/arm-none-eabi-gcc $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -34,8 +34,8 @@ rule C_COMPILER__manipulator_6_dof_Debug
 #############################################
 # Rule for linking C executable.
 
-rule C_EXECUTABLE_LINKER__manipulator_6_dof_Debug
-  command = $PRE_LINK && /usr/bin/arm-none-eabi-gcc $FLAGS -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -T "/home/michal/Documents/programing_projects/manipulator_6_dof/STM32L476RGTx_FLASH.ld" --specs=nano.specs -Wl,-Map=manipulator_6_dof.map -Wl,--gc-sections -Wl,--start-group -lc -lm -Wl,--end-group -Wl,--print-memory-usage $LINK_FLAGS $in -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
+rule C_EXECUTABLE_LINKER__blackpill_v5_Debug
+  command = $PRE_LINK && /usr/bin/arm-none-eabi-gcc $FLAGS -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard  -T "/home/michal/Documents/programing_projects/blackpill_v5/STM32F411CEUx_FLASH.ld" --specs=nano.specs -Wl,-Map=blackpill_v5.map -Wl,--gc-sections -Wl,--start-group -lc -lm -Wl,--end-group -Wl,--print-memory-usage $LINK_FLAGS $in -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
   description = Linking C executable $TARGET_FILE
   restat = $RESTAT
 
@@ -52,7 +52,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /usr/bin/cmake --regenerate-during-build -S/home/michal/Documents/programing_projects/manipulator_6_dof -B/home/michal/Documents/programing_projects/manipulator_6_dof
+  command = /usr/bin/cmake --regenerate-during-build -S/home/michal/Documents/programing_projects/blackpill_v5 -B/home/michal/Documents/programing_projects/blackpill_v5
   description = Re-running CMake...
   generator = 1
 

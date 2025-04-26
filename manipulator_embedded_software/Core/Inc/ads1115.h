@@ -1,10 +1,11 @@
 #ifndef ADS1115_H
 #define ADS1115_H
 
-#include <stdint.h>
-#include "stm32l4xx_hal.h" // lub inny, zależnie od Twojego MCU
-#include "usart.h"
+#include "stm32f4xx_hal.h" // lub inny, zależnie od Twojego MCU
+#include "usbd_cdc_if.h"
 #include "i2c.h"
+#include <stdint.h>
+#include <stdbool.h>
 
 // Domyślny adres I2C (ADDR do GND)
 #define ADS1115_ADDRESS_GND 0x48
@@ -20,7 +21,7 @@
 
 // Bity w rejestrze konfiguracji
 #define ADS1115_OS_SINGLE 0x8000 // Start single conversion
-#define ADS1115_OS_BUSY 0x0000   // Conversion in progress
+#define ADS1115_OS_BUSY 0x0000 // Conversion in progress
 #define ADS1115_OS_NOTBUSY 0x8000 // Device is not performing a conversion
 
 // MUX - wybór kanału/wejścia różnicowego
@@ -57,32 +58,62 @@
 
 // Komparator (tryby pracy)
 #define ADS1115_COMP_MODE_TRADITIONAL 0x0000 // Traditional comparator
-#define ADS1115_COMP_MODE_WINDOW 0x0010      // Window comparator
+#define ADS1115_COMP_MODE_WINDOW 0x0010 // Window comparator
 
 // Komparator (polaryzacja)
-#define ADS1115_COMP_POL_ACTIVE_LOW 0x0000  // Active low
+#define ADS1115_COMP_POL_ACTIVE_LOW 0x0000 // Active low
 #define ADS1115_COMP_POL_ACTIVE_HIGH 0x0008 // Active high
 
 // Komparator (tryb zatrzasku)
 #define ADS1115_COMP_LAT_NON_LATCHING 0x0000 // Non-latching
-#define ADS1115_COMP_LAT_LATCHING 0x0004     // Latching
+#define ADS1115_COMP_LAT_LATCHING 0x0004 // Latching
 
 // Komparator (liczba konwersji)
-#define ADS1115_COMP_QUE_AFTER_ONE 0x0000    // Assert after one conversion
-#define ADS1115_COMP_QUE_AFTER_TWO 0x0001    // Assert after two conversions
-#define ADS1115_COMP_QUE_AFTER_FOUR 0x0002   // Assert after four conversions
-#define ADS1115_COMP_QUE_DISABLE 0x0003      // Disable comparator and set ALERT/RDY pin to high-impedance
+#define ADS1115_COMP_QUE_AFTER_ONE 0x0000 // Assert after one conversion
+#define ADS1115_COMP_QUE_AFTER_TWO 0x0001 // Assert after two conversions
+#define ADS1115_COMP_QUE_AFTER_FOUR 0x0002 // Assert after four conversions
+#define ADS1115_COMP_QUE_DISABLE 0x0003 // Disable comparator and set ALERT/RDY pin to high-impedance
 
 // Domyślny adres I2C
 #define ADS1115_I2C_ADDR ADS1115_ADDRESS_GND
 
+// Timeout dla konwersji [ms]
+#define ADS1115_CONVERSION_TIMEOUT 200
+
+// Status błędów ADS1115
+typedef enum {
+    ADS1115_OK = 0,          // Brak błędów
+    ADS1115_ERROR_I2C,       // Błąd komunikacji I2C
+    ADS1115_ERROR_TIMEOUT,   // Timeout konwersji
+    ADS1115_ERROR_INIT,      // Błąd inicjalizacji
+    ADS1115_ERROR_PARAM      // Błędny parametr
+} ADS1115_Status;
+
+// Struktura debugowania
+typedef struct {
+    uint32_t total_reads;       // Całkowita liczba prób odczytu
+    uint32_t successful_reads;  // Udane odczyty
+    uint32_t i2c_errors;        // Liczba błędów I2C
+    uint32_t timeouts;          // Liczba timeoutów
+    uint32_t last_error_code;   // Kod ostatniego błędu
+    uint32_t last_config;       // Ostatnia konfiguracja
+    int16_t last_raw_value;     // Ostatnia surowa wartość
+    float last_voltage;         // Ostatnie obliczone napięcie
+    bool device_detected;       // Czy urządzenie wykryto na magistrali
+} ADS1115_Debug_t;
+
+extern ADS1115_Debug_t ADS1115_Debug;
+
 // Funkcje inicjalizacji i ogólne
-void ADS1115_Init(void);
-int16_t ADS1115_Read(void);
+ADS1115_Status ADS1115_Init(void);
+int16_t ADS1115_Read(ADS1115_Status* status);
+bool ADS1115_IsDeviceConnected(void);
 
 // Funkcje odczytu z konkretnych kanałów
-int16_t ADS1115_ReadADC_SingleEnded(uint8_t channel);
-int16_t ADS1115_ReadADC_A0(void);
+int16_t ADS1115_ReadADC_SingleEnded(uint8_t channel, ADS1115_Status* status);
+int16_t ADS1115_ReadADC_A0(ADS1115_Status* status);
+int16_t ADS1115_ReadADC_A1(ADS1115_Status* status);
+int16_t ADS1115_ReadADC_A2(ADS1115_Status* status);
 float ADS1115_ConvertToVoltage(int16_t raw_adc, uint16_t pga);
 
 // Funkcje konfiguracji
@@ -90,5 +121,10 @@ HAL_StatusTypeDef ADS1115_StartConversion(uint16_t config);
 HAL_StatusTypeDef ADS1115_WriteRegister(uint8_t reg, uint16_t value);
 HAL_StatusTypeDef ADS1115_ReadRegister(uint8_t reg, uint16_t *value);
 HAL_StatusTypeDef ADS1115_IsConversionReady(uint8_t *ready);
+
+// Funkcje debugowania
+void ADS1115_PrintDebugInfo(void);
+const char* ADS1115_GetErrorString(ADS1115_Status status);
+void ADS1115_Reset_Debug_Counters(void);
 
 #endif // ADS1115_H
