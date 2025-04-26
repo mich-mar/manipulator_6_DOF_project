@@ -12,6 +12,8 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS ON)
 
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -u _printf_float")
+
 
 # Define the build type
 if(NOT CMAKE_BUILD_TYPE)
@@ -51,6 +53,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     Core/Src/ads1115.c   # <== changed
     Core/Src/GY85.c # <== changed
     Core/Src/sendUSB.c # <== changed
+    Core/Src/sendData.c # <== changed
 )
 
 # Add include paths

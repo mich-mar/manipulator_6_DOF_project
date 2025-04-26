@@ -28,11 +28,14 @@
 #include "sendUSB.h"
 #include "ftos.h"
 #include "GY85.h"
+#include "sendData.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+
 GY85_HandleTypeDef hgy85;
+ADS1115_Readings hadc;
 
 // LED PC13
 // SDA PB7
@@ -110,11 +113,6 @@ int main(void)
     Error_Handler();
   }
 
-  int16_t adc_value_0, adc_value_1, adc_value_2;
-  float voltage;
-  char msg[100];
-  char voltage_str[50];
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -122,40 +120,10 @@ int main(void)
 
   while (1)
   {
-    HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-
-    adc_value_0 = ADS1115_ReadADC_A0(NULL);
-    adc_value_1 = ADS1115_ReadADC_A1(NULL);
-    adc_value_2 = ADS1115_ReadADC_A2(NULL);
-
-    // kanał A0
-    voltage = ADS1115_ConvertToVoltage(adc_value_0, ADS1115_PGA_4_096V);
-    floatToString(voltage, voltage_str);
-    sprintf(msg, "A0: %d, %s V\r\n", adc_value_0, voltage_str);
-    sendUSBmsg(msg);
-
-    // kanał A1
-    voltage = ADS1115_ConvertToVoltage(adc_value_1, ADS1115_PGA_4_096V);
-    floatToString(voltage, voltage_str);
-    sprintf(msg, "A1: %d, %s V\r\n", adc_value_1, voltage_str);
-    sendUSBmsg(msg);
-
-    // kanał A2
-    voltage = ADS1115_ConvertToVoltage(adc_value_2, ADS1115_PGA_4_096V);
-    floatToString(voltage, voltage_str);
-    sprintf(msg, "A2: %d, %s V\r\n", adc_value_2, voltage_str);
-    sendUSBmsg(msg);
-
-    HAL_Delay(100);
-
-    sendUSBmsg("\r\n");
-
-    GY85_SendAllData(&hgy85);
-
-    sprintf(msg, "accel x: %d\r\n", (int)(hgy85.accel.x*10000));
-
-    sendUSBmsg(msg);
-
+    ReadAllSensors(&hadc,&hgy85,FORMAT_HUMAN_READABLE);
+    
+    // ReadAllSensors(&hadc,&hgy85,FORMAT_CSV);
+    
     HAL_Delay(100);
 
     /* USER CODE END WHILE */

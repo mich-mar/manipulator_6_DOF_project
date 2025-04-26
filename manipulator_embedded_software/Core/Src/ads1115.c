@@ -393,3 +393,26 @@ void ADS1115_Reset_Debug_Counters(void) {
     ADS1115_Debug.i2c_errors = 0;
     ADS1115_Debug.timeouts = 0;
 }
+
+void ADS1115_ReadAllValues(ADS1115_Readings *ADCdata) {
+    int16_t adc_value;
+    float voltage;
+
+    // kanał A0
+    adc_value = ADS1115_ReadADC_A0(NULL);
+    voltage = ADS1115_ConvertToVoltage(adc_value, ADS1115_PGA_4_096V);
+    ADCdata->A0_adc_raw = adc_value;
+    ADCdata->A0_adc = voltage;
+
+    // kanał A1
+    adc_value = ADS1115_ReadADC_A1(NULL);
+    voltage = ADS1115_ConvertToVoltage(adc_value, ADS1115_PGA_4_096V);
+    ADCdata->A1_adc_raw = adc_value;
+    ADCdata->A1_adc = voltage;
+
+    // kanał A2
+    adc_value = ADS1115_ReadADC_A2(NULL);
+    voltage = ADS1115_ConvertToVoltage(adc_value, ADS1115_PGA_4_096V);
+    ADCdata->A2_adc_raw = adc_value;
+    ADCdata->A2_adc = voltage;
+}
