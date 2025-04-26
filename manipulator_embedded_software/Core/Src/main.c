@@ -22,13 +22,12 @@
 #include "i2c.h"
 #include "usart.h"
 #include "gpio.h"
-#include <stdio.h>
-#include <string.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-// #include "imu_handler.h"
+#include "GY85.h"
 #include "ads1115.h"
+#include "uart_print.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -39,6 +38,13 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define I2C_TIMEOUT 100
+
+// Bufory do przechowywania danych
+char uartBuffer[256];
+
+// I2C_HandleTypeDef hi2c1;
+// UART_HandleTypeDef huart2;
+GY85_HandleTypeDef hgy85;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -56,25 +62,42 @@
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 HAL_StatusTypeDef I2C_IsDeviceReady(I2C_HandleTypeDef *hi2c, uint8_t DevAddress);
-void uart_print(const char* str);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
 /**I2C1 GPIO Configuration
-   PB8/D15     ------> I2C1_SCL
-   PB9/D14     ------> I2C1_SDA
+   PB6    ------> I2C1_SCL
+   PB7    ------> I2C1_SDA
 */
 
-// Funkcja pomocnicza do wysyłania tekstu przez UART
-void uart_print(const char* str) {
-  HAL_UART_Transmit(&huart2, (uint8_t*)str, strlen(str), HAL_MAX_DELAY);
+// Sprawdzanie czy urządzenie I2C jest dostępne
+HAL_StatusTypeDef I2C_IsDeviceReady(I2C_HandleTypeDef *hi2c, uint8_t DevAddress)
+{
+  return HAL_I2C_IsDeviceReady(hi2c, DevAddress << 1, 3, I2C_TIMEOUT);
 }
 
-// Sprawdzanie czy urządzenie I2C jest dostępne
-HAL_StatusTypeDef I2C_IsDeviceReady(I2C_HandleTypeDef *hi2c, uint8_t DevAddress) {
-  return HAL_I2C_IsDeviceReady(hi2c, DevAddress << 1, 3, I2C_TIMEOUT);
+/**
+ * @brief Wyświetlenie danych z sensorów przez UART
+ */
+static void print_data(void)
+{
+  char buffer[256];
+
+  snprintf(buffer, sizeof(buffer),
+           "\r\n--- GY-85 Sensor Data ---\r\n"
+           "Accelerometer (m/s^2): X=%.2f, Y=%.2f, Z=%.2f\r\n"
+           "Gyroscope (rad/s): X=%.2f, Y=%.2f, Z=%.2f\r\n"
+           "Magnetometer (Gauss): X=%.2f, Y=%.2f, Z=%.2f\r\n"
+           "Temperature: %.2f °C\r\n"
+           "--------------------------\r\n",
+           hgy85.accel.x, hgy85.accel.y, hgy85.accel.z,
+           hgy85.gyro.x, hgy85.gyro.y, hgy85.gyro.z,
+           hgy85.mag.x, hgy85.mag.y, hgy85.mag.z,
+           hgy85.temperature);
+
+  uart_print(buffer);
 }
 
 /* USER CODE END 0 */
@@ -120,46 +143,57 @@ int main(void)
   uart_print("\r\n\r\n=============================\r\n");
   uart_print("Test UART - System uruchomiony\r\n");
   uart_print("=============================\r\n");
-  
+
   // Sprawdzenie adresów I2C
   uart_print("Skanowanie urządzeń I2C...\r\n");
   uint8_t devices_found = 0;
-  
-  for(uint8_t addr = 1; addr < 128; addr++) {
+
+  for (uint8_t addr = 1; addr < 128; addr++)
+  {
     status = I2C_IsDeviceReady(&hi2c1, addr);
-    if(status == HAL_OK) {
+    if (status == HAL_OK)
+    {
       sprintf(buffer, "Znaleziono urządzenie I2C pod adresem: 0x%02X\r\n", addr);
       uart_print(buffer);
       devices_found++;
     }
   }
-  
-  if(devices_found == 0) {
+
+  if (devices_found == 0)
+  {
     uart_print("Nie znaleziono żadnych urządzeń I2C!\r\n");
-  } else {
+  }
+  else
+  {
     sprintf(buffer, "Znaleziono urządzeń I2C: %d\r\n", devices_found);
     uart_print(buffer);
   }
-  
+
   // Sprawdzenie czy ADS1115 jest dostępny
   uart_print("Sprawdzanie ADS1115...\r\n");
   status = I2C_IsDeviceReady(&hi2c1, ADS1115_ADDRESS_GND);
-  if(status != HAL_OK) {
+  if (status != HAL_OK)
+  {
     uart_print("BŁĄD: ADS1115 nie został znaleziony pod adresem 0x48!\r\n");
     uart_print("Sprawdź połączenia lub spróbuj inny adres.\r\n");
-  } else {
+  }
+  else
+  {
     uart_print("ADS1115 znaleziony! Inicjalizacja...\r\n");
-    
+
     // Inicjalizacja ADS1115
     ADS1115_Init();
     uart_print("ADS1115 zainicjalizowany.\r\n");
-    
+
     // Krótkie opóźnienie po inicjalizacji
     HAL_Delay(100);
   }
-  
+
   // Informacja o rozpoczęciu pomiarów
   uart_print("Rozpoczynam odczyty z ADS1115 A0...\r\n");
+
+  // GY85_Init(&hgy85, &hi2c1);
+  GY85_Init(&hgy85, &hi2c1);
 
   /* USER CODE END 2 */
 
@@ -168,34 +202,55 @@ int main(void)
   while (1)
   {
     // Status LED (jeśli jest dostępny)
-    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);  // Zakładając, że LED jest na PA5 (typowo dla większości płytek STM32)
-    
+    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5); // Zakładając, że LED jest na PA5 (typowo dla większości płytek STM32)
+
     // Próba odczytu z ADS1115
     uart_print("Odczyt z ADS1115...\r\n");
-    
+
     // Odczyt konfiguracji
     uint16_t config_reg = 0;
     status = ADS1115_ReadRegister(ADS1115_REG_CONFIG, &config_reg);
-    if(status != HAL_OK) {
+    if (status != HAL_OK)
+    {
       uart_print("BŁĄD: Nie można odczytać rejestru konfiguracji!\r\n");
-    } else {
+    }
+    else
+    {
       sprintf(buffer, "Rejestr CONFIG: 0x%04X\r\n", config_reg);
       uart_print(buffer);
     }
-    
+
     // Odczyt z kanału A0
     int16_t raw_value = 0;
     float voltage = 0.0f;
-    
+
     raw_value = ADS1115_ReadADC_A0();
     voltage = ADS1115_ConvertToVoltage(raw_value, ADS1115_PGA_2_048V);
-    
+
     sprintf(buffer, "ADC Raw: %d, Voltage: %.3f V\r\n", raw_value, voltage);
     uart_print(buffer);
-    
+
     // Opóźnienie przed kolejnym odczytem (1 sekunda)
     uart_print("Czekam 1 sekundę...\r\n\r\n");
     HAL_Delay(1000);
+
+    // /* Odczyt danych z sensorów */
+    // if (GY85_ReadAllSensors(&hgy85) == HAL_OK)
+    // {
+    //   /* Wyświetlenie danych */
+    //   print_data();
+
+    //   /* Zapalenie diody LED po udanym odczycie */
+    //   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
+    // }
+    // else
+    // {
+    //   /* Zgaszenie diody LED przy błędzie */
+    //   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+    // }
+
+    // /* Opóźnienie pomiędzy odczytami */
+    // HAL_Delay(500);
 
     /* USER CODE END WHILE */
 
@@ -207,7 +262,7 @@ int main(void)
 /**
  * @brief System Clock Configuration
  * @retval None
- */ 
+ */
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};

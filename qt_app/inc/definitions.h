@@ -97,14 +97,14 @@ const QString IMU_AXIS_LABELS[] = {
  *
  * @note Kąty są przechowywane w jednostkach miary stopni.
  */
-typedef struct {
+struct angles {
     float ang_1; /**< Kąt 1 */
     float ang_2; /**< Kąt 2 */
     float ang_3; /**< Kąt 3 */
     float ang_4; /**< Kąt 4 */
     float ang_5; /**< Kąt 5 */
     float ang_6; /**< Kąt 6 */
-} angles;
+};
 
 /**
  * @brief Dane z akcelerometru.

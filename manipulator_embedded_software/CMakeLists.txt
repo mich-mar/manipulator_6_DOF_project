@@ -37,19 +37,21 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # User-defined library search paths can be added here
 )
 
-# Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
-    # User sources can be added here
+    ${PROJECT_SOURCE_DIR}/Core/Src/main.c
+    ${PROJECT_SOURCE_DIR}/Core/Src/GY85.c
+    # Dodaj inne pliki źródłowe w razie potrzeby
 )
 
-# Add include paths for HAL and other necessary includes
-include_directories(
+
+
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     ${PROJECT_SOURCE_DIR}/Core/Inc
-    ${PROJECT_SOURCE_DIR}/Core/Src
     ${PROJECT_SOURCE_DIR}/Drivers/CMSIS/Core/Include
     ${PROJECT_SOURCE_DIR}/Drivers/CMSIS/Device/ST/STM32L4xx/Include
     ${PROJECT_SOURCE_DIR}/Drivers/STM32L4xx_HAL_Driver/Inc
 )
+
 
 # Add project symbols (macros)
 target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
@@ -59,5 +61,6 @@ target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
 # Link libraries (ensure you have the correct libraries for HAL)
 target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
+    m
     # Link the HAL library here if needed
 )

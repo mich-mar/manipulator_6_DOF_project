@@ -1,7 +1,7 @@
 /**
  * @file main.cpp
  * @author Michał Markuzel
- * @date 2025-04-22
+ * @date 2025-04-15
  * @brief Aplikacja do wizualizacji i modelowania manipulatorem 6 DOF
  *
  * Program umożliwia monitorowanie kątów przegubów manipulatora oraz danych z IMU.
@@ -125,7 +125,7 @@ int main(int argc, char *argv[]) {
     // Utworzenie widoku dla wizualizacji manipulatora
     QGraphicsScene *scene = new QGraphicsScene();
     QGraphicsView *manipulatorView = new QGraphicsView(scene);
-    manipulatorView->setMinimumSize(400, 400);
+    manipulatorView->setMinimumSize(500, 500);
 
     // Załadowanie i dodanie obrazu manipulatora
     QPixmap manipulatorPixmap(":/icons/icons/manipulator_6dof.png");
@@ -141,12 +141,12 @@ int main(int argc, char *argv[]) {
     QPixmap plFlagPixmap(":/icons/icons/pl.png");
 
     QLabel *ukFlagLabel = new QLabel();
-    ukFlagLabel->setPixmap(ukFlagPixmap.scaled(30, 20, Qt::KeepAspectRatio));
+    ukFlagLabel->setPixmap(ukFlagPixmap.scaled(50, 50, Qt::KeepAspectRatio));
     ukFlagLabel->setToolTip("English");
     ukFlagLabel->setCursor(Qt::PointingHandCursor);
 
     QLabel *plFlagLabel = new QLabel();
-    plFlagLabel->setPixmap(plFlagPixmap.scaled(30, 20, Qt::KeepAspectRatio));
+    plFlagLabel->setPixmap(plFlagPixmap.scaled(50, 50, Qt::KeepAspectRatio));
     plFlagLabel->setToolTip("Polski");
     plFlagLabel->setCursor(Qt::PointingHandCursor);
 

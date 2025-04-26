@@ -12,3 +12,13 @@
 1304	1660	1745393069664041837	Manipulator6DOF	ce87f8abf4a69dc0
 4	1214	1745393814693649026	CMakeFiles/Manipulator6DOF.dir/src/main.cpp.o	43b574fbc6ec4374
 1214	1527	1745393815903737017	Manipulator6DOF	ce87f8abf4a69dc0
+4	1462	1745400930909952443	CMakeFiles/Manipulator6DOF.dir/src/main.cpp.o	43b574fbc6ec4374
+1462	1815	1745400932368326107	Manipulator6DOF	ce87f8abf4a69dc0
+6	40	1745401232930758809	qrc_resources.cpp	4c45addc2c2a293c
+6	40	1745401232930758809	/home/michal/Documents/programing_projects/manipulator_6_DOF_project/qt_app/cmake-build-debug/qrc_resources.cpp	4c45addc2c2a293c
+40	438	1745401232935757741	CMakeFiles/Manipulator6DOF.dir/qrc_resources.cpp.o	2905008c608fba2f
+438	1154	1745401233333674820	Manipulator6DOF	ce87f8abf4a69dc0
+7	2544	1745401620623693607	CMakeFiles/Manipulator6DOF.dir/src/main.cpp.o	43b574fbc6ec4374
+2544	3001	1745401623161163107	Manipulator6DOF	ce87f8abf4a69dc0
+4	3219	1745402617174944488	CMakeFiles/Manipulator6DOF.dir/src/main.cpp.o	43b574fbc6ec4374
+3219	3990	1745402620389727459	Manipulator6DOF	ce87f8abf4a69dc0

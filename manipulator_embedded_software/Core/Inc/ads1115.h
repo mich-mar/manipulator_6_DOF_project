@@ -1,5 +1,6 @@
 #ifndef ADS1115_H
 #define ADS1115_H
+
 #include <stdint.h>
 #include "stm32l4xx_hal.h" // lub inny, zależnie od Twojego MCU
 #include "usart.h"
