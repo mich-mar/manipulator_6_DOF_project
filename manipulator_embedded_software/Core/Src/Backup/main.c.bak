@@ -24,18 +24,28 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "usbd_cdc_if.h"
 #include "ads1115.h"
+#include "sendUSB.h"
+#include "ftos.h"
+#include "GY85.h"
+#include "sendData.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
+GY85_HandleTypeDef hgy85;
+ADS1115_Readings hadc;
+
+// LED PC13
+// SDA PB7
+// SCL PB6
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define ADC_READ_INTERVAL 1000 // Czas między odczytami w ms
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -66,7 +76,6 @@ void SystemClock_Config(void);
  */
 int main(void)
 {
-
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -84,7 +93,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-  MX_USB_DEVICE_Init();
+
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -93,65 +102,29 @@ int main(void)
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
-  // Inicjalizacja ADS1115
-  // ADS1115_Init();
+  HAL_Delay(500); // stabilizacja USB
+
+  ADS1115_Init(); // Bez sprawdzania błędu, zakładamy że się udało
+
+  HAL_StatusTypeDef status = GY85_Begin(&hgy85, &hi2c1);
+  if (status != HAL_OK)
+  {
+    // błąd inicjalizacji
+    Error_Handler();
+  }
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  // SystemInit(); // Inicjalizacja systemu i peryferiów
-
-  // int16_t adc_value;
-  // float voltage;
-
-  // char msg[100];
-
-  // sprintf(msg, "USB initialized!\r\n");
-  // CDC_Transmit_FS((uint8_t *)msg, strlen(msg));
-  // HAL_Delay(500);
-
-  // int i = 0;
-
   while (1)
   {
-
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);   // Włącz LED
-    HAL_Delay(500);                                       // Czekaj 500 ms
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET); // Wyłącz LED
-
-    // char data[50];  // Zwiększ rozmiar w zależności od potrzeb
-
-    // // Sformatuj dane
-    // sprintf(data, "heej! %d\r\n", i);
-
-    // // Transmituj przez USB
-    // CDC_Transmit_FS((uint8_t*)data, strlen(data));
-    // HAL_Delay(500);
-
-    // i++;
-
-    // // Odczyt wartości z kanału A0
-    // adc_value = ADS1115_ReadADC_A0(); // Funkcja z ADS1115.h
-
-    // // Konwersja surowego odczytu na napięcie
-    // voltage = ADS1115_ConvertToVoltage(adc_value, ADS1115_PGA_2_048V);
-
-    // // Przygotowanie komunikatu do wysłania przez UART
-    // sprintf(msg, "ADC Value: %d, Voltage: %.3f V\r\n", adc_value, voltage);
-
-    // // Wysłanie danych przez UART
-    // CDC_Transmit_FS((uint8_t *)msg, strlen(msg));
-
-    // // Opóźnienie
-    // HAL_Delay(1000); // Czekaj 1 sekundę przed kolejnym odczytem
-
-    // // Przygotowanie komunikatu do wysłania przez UART
-    // sprintf(msg, "działa!");
-
-    // // Wysłanie danych przez UART
-    // CDC_Transmit_FS((uint8_t *)msg, strlen(msg));
+    ReadAllSensors(&hadc,&hgy85,FORMAT_HUMAN_READABLE);
+    
+    // ReadAllSensors(&hadc,&hgy85,FORMAT_CSV);
+    
+    HAL_Delay(100);
 
     /* USER CODE END WHILE */
 

@@ -8,6 +8,7 @@
 #include "stdio.h"    // dla sprintf
 #include "sendUSB.h"
 #include "stm32f4xx_hal.h" // albo Twoje HAL
+#include "crc.h"
 
 // Typ wyliczeniowy formatu wyjściowego
 typedef enum {
