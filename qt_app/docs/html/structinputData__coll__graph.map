@@ -1,7 +1,0 @@
-<map id="inputData" name="inputData">
-<area shape="rect" id="node1" title="Struktura przechowująca dane wejściowe dla manipulatora 6 DOF." alt="" coords="155,219,242,296"/>
-<area shape="rect" id="node2" href="$structaccel.html" title="Dane z akcelerometru." alt="" coords="5,27,61,134"/>
-<area shape="rect" id="node3" href="$structmag.html" title="Dane z magnetometru." alt="" coords="120,27,171,134"/>
-<area shape="rect" id="node4" href="$structgyro.html" title="Dane z żyroskopu." alt="" coords="227,27,277,134"/>
-<area shape="rect" id="node5" href="$structangles.html" title="Struktura przechowująca wartości kątów." alt="" coords="321,5,397,156"/>
-</map>

@@ -1,3 +1,0 @@
-/home/michal/Documents/programing_projects/manipulator_6_DOF_project/qt_app/cmake-build-debug/CMakeFiles/Manipulator6DOF.dir
-/home/michal/Documents/programing_projects/manipulator_6_DOF_project/qt_app/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/michal/Documents/programing_projects/manipulator_6_DOF_project/qt_app/cmake-build-debug/CMakeFiles/rebuild_cache.dir

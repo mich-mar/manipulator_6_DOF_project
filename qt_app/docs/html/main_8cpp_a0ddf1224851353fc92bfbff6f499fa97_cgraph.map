@@ -1,6 +1,0 @@
-<map id="main" name="main">
-<area shape="rect" id="node1" title="Główna funkcja programu." alt="" coords="5,56,60,83"/>
-<area shape="rect" id="node2" href="$qtFunctions_8cpp.html#aeb04879c81c06914629a6e4e35febc2c" title="Funkcja tworząca wykres kąta." alt="" coords="111,5,246,32"/>
-<area shape="rect" id="node3" href="$qtFunctions_8cpp.html#a6850a6f8a50529d9990eeed270f457f9" title="Funkcja tworząca wykres IMU." alt="" coords="117,56,241,83"/>
-<area shape="rect" id="node4" href="$qtFunctions_8cpp.html#a2b418dc933edb6831f688e8a47db3d5e" title="Funkcja tworząca obrócony tekst w etykiecie." alt="" coords="108,107,249,133"/>
-</map>
