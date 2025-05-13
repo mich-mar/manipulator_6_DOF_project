@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    this->setWindowTitle("Manipulator 6 DOF");
+
     // Inicjalizacja licznika punktów
     dataCounter = 0;
 
@@ -21,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->imuButton, &QPushButton::clicked, this, &MainWindow::on_imuButton_clicked);
     connect(ui->anglesButton, &QPushButton::clicked, this, &MainWindow::on_anglesButton_clicked);
     connect(ui->valuesButton, &QPushButton::clicked, this, &MainWindow::on_valuesButton_clicked);
+    connect(ui->compareButton, &QPushButton::clicked, this, &MainWindow::on_compareButton_clicked);
 }
 
 // Implementacja slotów do przełączania stron
@@ -42,6 +45,11 @@ void MainWindow::on_anglesButton_clicked()
 void MainWindow::on_valuesButton_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->valuesPage);
+}
+
+void MainWindow::on_compareButton_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->comparePage);
 }
 
 void MainWindow::setupCharts()

@@ -103,14 +103,13 @@ int main(void)
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
-  HAL_Delay(500); // stabilizacja USB
+  HAL_Delay(500);
 
-  ADS1115_Init(); // Bez sprawdzania błędu, zakładamy że się udało
+  ADS1115_Init();
 
   HAL_StatusTypeDef status = GY85_Begin(&hgy85, &hi2c1);
   if (status != HAL_OK)
   {
-    // błąd inicjalizacji
     Error_Handler();
   }
 

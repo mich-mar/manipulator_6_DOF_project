@@ -31,6 +31,7 @@ private slots:
     void on_imuButton_clicked();
     void on_anglesButton_clicked();
     void on_valuesButton_clicked();
+    void on_compareButton_clicked();
 
 private:
     Ui::MainWindow *ui;

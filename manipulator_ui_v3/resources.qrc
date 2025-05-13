@@ -1,5 +1,9 @@
 <RCC>
     <qresource prefix="/img">
         <file>img/manipulatopr.png</file>
+        <file>img/moon.png</file>
+        <file>img/pl.png</file>
+        <file>img/sun.png</file>
+        <file>img/uk.png</file>
     </qresource>
 </RCC>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>786</width>
-    <height>600</height>
+    <width>878</width>
+    <height>744</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -31,10 +31,10 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QWidget" name="widget" native="true">
+     <widget class="QWidget" name="buttonsWidget" native="true">
       <property name="minimumSize">
        <size>
-        <width>100</width>
+        <width>120</width>
         <height>0</height>
        </size>
       </property>
@@ -43,8 +43,10 @@
         <widget class="QPushButton" name="modelButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    width: 100px;
-    height: 100px;
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 100px;
+    max-height: 100px;
     background-color: #4169E1;    /* Royal Blue - jaśniejszy odcień */
     border-radius: 20px;
     color: white;
@@ -53,19 +55,21 @@
 }
 
 QPushButton:checked {
-    width: 90px;              /* mniejszy rozmiar gdy aktywny */
-    height: 90px;
-    background-color: #1e3c8c; /* ciemniejszy odcień niebieskiego */
-    border-radius: 18px;      /* proporcjonalnie mniejszy radius */
-    font-size: 12pt;          /* mniejsza czcionka */
+    min-width: 90px;              /* mniejszy rozmiar gdy aktywny */
+    max-width: 90px;
+    min-height: 90px;
+    max-height: 90px;
+    background-color: #1e3c8c;    /* ciemniejszy odcień niebieskiego */
+    border-radius: 18px;          /* proporcjonalnie mniejszy radius */
+    font-size: 12pt;              /* mniejsza czcionka */
 }
 
 QPushButton:hover {
-    background-color: #5a7ee5; /* jaśniejszy przy hover */
+    background-color: #5a7ee5;    /* jaśniejszy przy hover */
 }
 
 QPushButton:pressed {
-    background-color: #0d1b3f; /* najciemniejszy przy wciśnięciu */
+    background-color: #0d1b3f;    /* najciemniejszy przy wciśnięciu */
 }</string>
          </property>
          <property name="text">
@@ -77,8 +81,10 @@ QPushButton:pressed {
         <widget class="QPushButton" name="imuButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    width: 100px;
-    height: 100px;
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 100px;
+    max-height: 100px;
     background-color: #4169E1;    /* Royal Blue - jaśniejszy odcień */
     border-radius: 20px;
     color: white;
@@ -87,19 +93,21 @@ QPushButton:pressed {
 }
 
 QPushButton:checked {
-    width: 90px;              /* mniejszy rozmiar gdy aktywny */
-    height: 90px;
-    background-color: #1e3c8c; /* ciemniejszy odcień niebieskiego */
-    border-radius: 18px;      /* proporcjonalnie mniejszy radius */
-    font-size: 12pt;          /* mniejsza czcionka */
+    min-width: 90px;              /* mniejszy rozmiar gdy aktywny */
+    max-width: 90px;
+    min-height: 90px;
+    max-height: 90px;
+    background-color: #1e3c8c;    /* ciemniejszy odcień niebieskiego */
+    border-radius: 18px;          /* proporcjonalnie mniejszy radius */
+    font-size: 12pt;              /* mniejsza czcionka */
 }
 
 QPushButton:hover {
-    background-color: #5a7ee5; /* jaśniejszy przy hover */
+    background-color: #5a7ee5;    /* jaśniejszy przy hover */
 }
 
 QPushButton:pressed {
-    background-color: #0d1b3f; /* najciemniejszy przy wciśnięciu */
+    background-color: #0d1b3f;    /* najciemniejszy przy wciśnięciu */
 }</string>
          </property>
          <property name="text">
@@ -111,8 +119,10 @@ QPushButton:pressed {
         <widget class="QPushButton" name="anglesButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    width: 100px;
-    height: 100px;
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 100px;
+    max-height: 100px;
     background-color: #4169E1;    /* Royal Blue - jaśniejszy odcień */
     border-radius: 20px;
     color: white;
@@ -121,19 +131,21 @@ QPushButton:pressed {
 }
 
 QPushButton:checked {
-    width: 90px;              /* mniejszy rozmiar gdy aktywny */
-    height: 90px;
-    background-color: #1e3c8c; /* ciemniejszy odcień niebieskiego */
-    border-radius: 18px;      /* proporcjonalnie mniejszy radius */
-    font-size: 12pt;          /* mniejsza czcionka */
+    min-width: 90px;              /* mniejszy rozmiar gdy aktywny */
+    max-width: 90px;
+    min-height: 90px;
+    max-height: 90px;
+    background-color: #1e3c8c;    /* ciemniejszy odcień niebieskiego */
+    border-radius: 18px;          /* proporcjonalnie mniejszy radius */
+    font-size: 12pt;              /* mniejsza czcionka */
 }
 
 QPushButton:hover {
-    background-color: #5a7ee5; /* jaśniejszy przy hover */
+    background-color: #5a7ee5;    /* jaśniejszy przy hover */
 }
 
 QPushButton:pressed {
-    background-color: #0d1b3f; /* najciemniejszy przy wciśnięciu */
+    background-color: #0d1b3f;    /* najciemniejszy przy wciśnięciu */
 }</string>
          </property>
          <property name="text">
@@ -145,8 +157,10 @@ QPushButton:pressed {
         <widget class="QPushButton" name="valuesButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    width: 100px;
-    height: 100px;
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 100px;
+    max-height: 100px;
     background-color: #4169E1;    /* Royal Blue - jaśniejszy odcień */
     border-radius: 20px;
     color: white;
@@ -155,23 +169,63 @@ QPushButton:pressed {
 }
 
 QPushButton:checked {
-    width: 90px;              /* mniejszy rozmiar gdy aktywny */
-    height: 90px;
-    background-color: #1e3c8c; /* ciemniejszy odcień niebieskiego */
-    border-radius: 18px;      /* proporcjonalnie mniejszy radius */
-    font-size: 12pt;          /* mniejsza czcionka */
+    min-width: 90px;              /* mniejszy rozmiar gdy aktywny */
+    max-width: 90px;
+    min-height: 90px;
+    max-height: 90px;
+    background-color: #1e3c8c;    /* ciemniejszy odcień niebieskiego */
+    border-radius: 18px;          /* proporcjonalnie mniejszy radius */
+    font-size: 12pt;              /* mniejsza czcionka */
 }
 
 QPushButton:hover {
-    background-color: #5a7ee5; /* jaśniejszy przy hover */
+    background-color: #5a7ee5;    /* jaśniejszy przy hover */
 }
 
 QPushButton:pressed {
-    background-color: #0d1b3f; /* najciemniejszy przy wciśnięciu */
+    background-color: #0d1b3f;    /* najciemniejszy przy wciśnięciu */
 }</string>
          </property>
          <property name="text">
           <string>Values</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="compareButton">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 100px;
+    max-height: 100px;
+    background-color: #4169E1;    /* Royal Blue - jaśniejszy odcień */
+    border-radius: 20px;
+    color: white;
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+QPushButton:checked {
+    min-width: 90px;              /* mniejszy rozmiar gdy aktywny */
+    max-width: 90px;
+    min-height: 90px;
+    max-height: 90px;
+    background-color: #1e3c8c;    /* ciemniejszy odcień niebieskiego */
+    border-radius: 18px;          /* proporcjonalnie mniejszy radius */
+    font-size: 12pt;              /* mniejsza czcionka */
+}
+
+QPushButton:hover {
+    background-color: #5a7ee5;    /* jaśniejszy przy hover */
+}
+
+QPushButton:pressed {
+    background-color: #0d1b3f;    /* najciemniejszy przy wciśnięciu */
+}</string>
+         </property>
+         <property name="text">
+          <string>Compare</string>
          </property>
         </widget>
        </item>
@@ -193,7 +247,7 @@ QPushButton:pressed {
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>80</height>
+           <height>16777215</height>
           </size>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -202,7 +256,7 @@ QPushButton:pressed {
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>16777215</height>
              </size>
             </property>
             <property name="layoutDirection">
@@ -210,40 +264,112 @@ QPushButton:pressed {
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_6">
              <item>
-              <widget class="QPushButton" name="pushButton">
+              <widget class="QPushButton" name="plButton">
                <property name="minimumSize">
                 <size>
-                 <width>0</width>
-                 <height>20</height>
+                 <width>34</width>
+                 <height>34</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>30</width>
-                 <height>16777215</height>
+                 <width>34</width>
+                 <height>34</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    border-image: url(&quot;:/img/img/pl.png&quot;) 0 0 0 0 stretch stretch;
+    min-width: 30px;
+    max-width: 30px;
+    min-height: 30px;
+    max-height: 30px;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 0px;
+}
+
+QPushButton:checked {
+    min-width: 45px;
+    max-width: 45px;
+    min-height: 45px;
+    max-height: 45px;
+    border-radius: 22.5px;
+    border: 2px solid #1e3c8c;
+    margin: 2.5px;
+}
+
+QPushButton:hover {
+    border: 2px solid #5a7ee5;
+}
+
+QPushButton:pressed {
+    min-width: 45px;
+    max-width: 45px;
+    min-height: 45px;
+    max-height: 45px;
+    border-radius: 22.5px;
+    border: 2px solid #0d1b3f;
+    margin: 2.5px;
+}</string>
+               </property>
                <property name="text">
-                <string>PL</string>
+                <string/>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="engButton">
                <property name="minimumSize">
                 <size>
-                 <width>0</width>
-                 <height>20</height>
+                 <width>34</width>
+                 <height>34</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>30</width>
-                 <height>16777215</height>
+                 <width>34</width>
+                 <height>34</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    border-image: url(&quot;:/img/img/uk.png&quot;) 0 0 0 0 stretch stretch;
+    min-width: 30px;
+    max-width: 30px;
+    min-height: 30px;
+    max-height: 30px;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 0px;
+}
+
+QPushButton:checked {
+    min-width: 45px;
+    max-width: 45px;
+    min-height: 45px;
+    max-height: 45px;
+    border-radius: 22.5px;
+    border: 2px solid #1e3c8c;
+    margin: 2.5px;
+}
+
+QPushButton:hover {
+    border: 2px solid #5a7ee5;
+}
+
+QPushButton:pressed {
+    min-width: 45px;
+    max-width: 45px;
+    min-height: 45px;
+    max-height: 45px;
+    border-radius: 22.5px;
+    border: 2px solid #0d1b3f;
+    margin: 2.5px;
+}</string>
+               </property>
                <property name="text">
-                <string>ENG</string>
+                <string/>
                </property>
               </widget>
              </item>
@@ -255,45 +381,120 @@ QPushButton:pressed {
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>16777215</height>
              </size>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_5">
              <item>
-              <widget class="QPushButton" name="pushButton_4">
+              <widget class="QPushButton" name="sunButton">
                <property name="minimumSize">
                 <size>
-                 <width>0</width>
-                 <height>20</height>
+                 <width>34</width>
+                 <height>34</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>30</width>
-                 <height>16777215</height>
+                 <width>34</width>
+                 <height>34</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    border-image: url(&quot;:/img/img/sun.png&quot;) 0 0 0 0 stretch stretch;
+    min-width: 30px;
+    max-width: 30px;
+    min-height: 30px;
+    max-height: 30px;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 0px;
+}
+
+QPushButton:checked {
+    min-width: 45px;
+    max-width: 45px;
+    min-height: 45px;
+    max-height: 45px;
+    border-radius: 22.5px;
+    border: 2px solid #1e3c8c;
+    margin: 2.5px;
+}
+
+QPushButton:hover {
+    border: 2px solid #5a7ee5;
+}
+
+QPushButton:pressed {
+    min-width: 45px;
+    max-width: 45px;
+    min-height: 45px;
+    max-height: 45px;
+    border-radius: 22.5px;
+    border: 2px solid #0d1b3f;
+    margin: 2.5px;
+}</string>
+               </property>
                <property name="text">
-                <string>SUN</string>
+                <string/>
+               </property>
+               <property name="default">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_3">
+              <widget class="QPushButton" name="moonButton">
                <property name="minimumSize">
                 <size>
-                 <width>0</width>
-                 <height>20</height>
+                 <width>34</width>
+                 <height>34</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>30</width>
-                 <height>30</height>
+                 <width>34</width>
+                 <height>34</height>
                 </size>
                </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+    border-image: url(&quot;:/img/img/moon.png&quot;) 0 0 0 0 stretch stretch;
+    min-width: 30px;
+    max-width: 30px;
+    min-height: 30px;
+    max-height: 30px;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 0px;
+}
+
+QPushButton:checked {
+    min-width: 45px;
+    max-width: 45px;
+    min-height: 45px;
+    max-height: 45px;
+    border-radius: 22.5px;
+    border: 2px solid #1e3c8c;
+    margin: 2.5px;
+}
+
+QPushButton:hover {
+    border: 2px solid #5a7ee5;
+}
+
+QPushButton:pressed {
+    min-width: 45px;
+    max-width: 45px;
+    min-height: 45px;
+    max-height: 45px;
+    border-radius: 22.5px;
+    border: 2px solid #0d1b3f;
+    margin: 2.5px;
+}</string>
+               </property>
                <property name="text">
-                <string>MOON</string>
+                <string/>
                </property>
               </widget>
              </item>
@@ -309,10 +510,55 @@ QPushButton:pressed {
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="modelPage">
        <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <spacer name="verticalSpacer_8">
+          <property name="orientation">
+           <enum>Qt::Orientation::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Policy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: black;
+font-weight: bold;
+font-size: 30pt;
+min-height: 30px;
+margin-bottom: 5px;</string>
+          </property>
+          <property name="text">
+           <string>MANIPULATOR 3D MODEL</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="QWidget" name="centerWidget" native="true">
           <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -320,8 +566,8 @@ QPushButton:pressed {
             <widget class="QLabel" name="manipulatorPicture">
              <property name="maximumSize">
               <size>
-               <width>300</width>
-               <height>300</height>
+               <width>350</width>
+               <height>350</height>
               </size>
              </property>
              <property name="text">
@@ -1131,6 +1377,518 @@ qproperty-alignment: AlignCenter;</string>
               </size>
              </property>
             </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="comparePage">
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <item>
+         <widget class="QWidget" name="widget" native="true">
+          <layout class="QVBoxLayout" name="verticalLayout_13">
+           <item>
+            <widget class="QLabel" name="imuAnglesLabel">
+             <property name="styleSheet">
+              <string notr="true">color: black;
+font-weight: bold;
+font-size: 20pt;
+min-height: 30px;
+margin-bottom: 5px;</string>
+             </property>
+             <property name="text">
+              <string>IMU ANGLES</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="imuJointLabel1">
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;
+font-weight: bold;
+font-size: 12pt;
+min-height: 30px;
+margin-bottom: 5px;</string>
+             </property>
+             <property name="text">
+              <string>JOINT_1</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="imuJointValue1">
+             <property name="styleSheet">
+              <string notr="true">background-color: #2F3542;
+color: white;
+border: none;
+border-radius: 15px;
+padding: 5px;
+min-width: 30px;
+min-height: 20px;
+max-height: 20px;
+qproperty-alignment: AlignCenter;</string>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="imuJointLabel2">
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;
+font-weight: bold;
+font-size: 12pt;
+min-height: 30px;
+margin-bottom: 5px;</string>
+             </property>
+             <property name="text">
+              <string>JOINT_2</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="imuJointValue2">
+             <property name="styleSheet">
+              <string notr="true">background-color: #2F3542;
+color: white;
+border: none;
+border-radius: 15px;
+padding: 5px;
+min-width: 30px;
+min-height: 20px;
+max-height: 20px;
+qproperty-alignment: AlignCenter;</string>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="imuJointLabel3">
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;
+font-weight: bold;
+font-size: 12pt;
+min-height: 30px;
+margin-bottom: 5px;</string>
+             </property>
+             <property name="text">
+              <string>JOINT_3</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="imuJointValue3">
+             <property name="styleSheet">
+              <string notr="true">background-color: #2F3542;
+color: white;
+border: none;
+border-radius: 15px;
+padding: 5px;
+min-width: 30px;
+min-height: 20px;
+max-height: 20px;
+qproperty-alignment: AlignCenter;</string>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="imuJointLabel4">
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;
+font-weight: bold;
+font-size: 12pt;
+min-height: 30px;
+margin-bottom: 5px;</string>
+             </property>
+             <property name="text">
+              <string>JOINT_4</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="imuJointValue4">
+             <property name="styleSheet">
+              <string notr="true">background-color: #2F3542;
+color: white;
+border: none;
+border-radius: 15px;
+padding: 5px;
+min-width: 30px;
+min-height: 20px;
+max-height: 20px;
+qproperty-alignment: AlignCenter;</string>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="imuJointLabel5">
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;
+font-weight: bold;
+font-size: 12pt;
+min-height: 30px;
+margin-bottom: 5px;</string>
+             </property>
+             <property name="text">
+              <string>JOINT_5</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="imuJointValue5">
+             <property name="styleSheet">
+              <string notr="true">background-color: #2F3542;
+color: white;
+border: none;
+border-radius: 15px;
+padding: 5px;
+min-width: 30px;
+min-height: 20px;
+max-height: 20px;
+qproperty-alignment: AlignCenter;</string>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="imuJointLabel6">
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;
+font-weight: bold;
+font-size: 12pt;
+min-height: 30px;
+margin-bottom: 5px;</string>
+             </property>
+             <property name="text">
+              <string>JOINT_6</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="imuJointValue6">
+             <property name="styleSheet">
+              <string notr="true">background-color: #2F3542;
+color: white;
+border: none;
+border-radius: 15px;
+padding: 5px;
+min-width: 30px;
+min-height: 20px;
+max-height: 20px;
+qproperty-alignment: AlignCenter;</string>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget_2" native="true">
+          <layout class="QVBoxLayout" name="verticalLayout_14">
+           <item>
+            <widget class="QLabel" name="potAnglesLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;
+font-weight: bold;
+font-size: 20pt;
+min-height: 30px;
+margin-bottom: 5px;</string>
+             </property>
+             <property name="text">
+              <string>POTENTIOMETRS ANGLES</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="potJointLabel1">
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;
+font-weight: bold;
+font-size: 12pt;
+min-height: 30px;
+margin-bottom: 5px;</string>
+             </property>
+             <property name="text">
+              <string>JOINT_1</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="potJointValue1">
+             <property name="styleSheet">
+              <string notr="true">background-color: #2F3542;
+color: white;
+border: none;
+border-radius: 15px;
+padding: 5px;
+min-width: 30px;
+min-height: 20px;
+max-height: 20px;
+qproperty-alignment: AlignCenter;</string>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="potJointLabel2">
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;
+font-weight: bold;
+font-size: 12pt;
+min-height: 30px;
+margin-bottom: 5px;</string>
+             </property>
+             <property name="text">
+              <string>JOINT_2</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="potJointValue2">
+             <property name="styleSheet">
+              <string notr="true">background-color: #2F3542;
+color: white;
+border: none;
+border-radius: 15px;
+padding: 5px;
+min-width: 30px;
+min-height: 20px;
+max-height: 20px;
+qproperty-alignment: AlignCenter;</string>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="potJointLabel3">
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;
+font-weight: bold;
+font-size: 12pt;
+min-height: 30px;
+margin-bottom: 5px;</string>
+             </property>
+             <property name="text">
+              <string>JOINT_3</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="potJointValue3">
+             <property name="styleSheet">
+              <string notr="true">background-color: #2F3542;
+color: white;
+border: none;
+border-radius: 15px;
+padding: 5px;
+min-width: 30px;
+min-height: 20px;
+max-height: 20px;
+qproperty-alignment: AlignCenter;</string>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="potJointLabel4">
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;
+font-weight: bold;
+font-size: 12pt;
+min-height: 30px;
+margin-bottom: 5px;</string>
+             </property>
+             <property name="text">
+              <string>JOINT_4</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="potJointValue4">
+             <property name="styleSheet">
+              <string notr="true">background-color: #2F3542;
+color: white;
+border: none;
+border-radius: 15px;
+padding: 5px;
+min-width: 30px;
+min-height: 20px;
+max-height: 20px;
+qproperty-alignment: AlignCenter;</string>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="potJointLabel5">
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;
+font-weight: bold;
+font-size: 12pt;
+min-height: 30px;
+margin-bottom: 5px;</string>
+             </property>
+             <property name="text">
+              <string>JOINT_5</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="potJointValue5">
+             <property name="styleSheet">
+              <string notr="true">background-color: #2F3542;
+color: white;
+border: none;
+border-radius: 15px;
+padding: 5px;
+min-width: 30px;
+min-height: 20px;
+max-height: 20px;
+qproperty-alignment: AlignCenter;</string>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="potJointLabel6">
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: black;
+font-weight: bold;
+font-size: 12pt;
+min-height: 30px;
+margin-bottom: 5px;</string>
+             </property>
+             <property name="text">
+              <string>JOINT_6</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="potJointValue6">
+             <property name="styleSheet">
+              <string notr="true">background-color: #2F3542;
+color: white;
+border: none;
+border-radius: 15px;
+padding: 5px;
+min-width: 30px;
+min-height: 20px;
+max-height: 20px;
+qproperty-alignment: AlignCenter;</string>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
