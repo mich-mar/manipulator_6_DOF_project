@@ -10,6 +10,8 @@
 #include <QVector>
 #include <QTimer>
 #include <QRandomGenerator>
+#include <QTranslator>
+#include <QSettings>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -32,9 +34,14 @@ private slots:
     void on_anglesButton_clicked();
     void on_valuesButton_clicked();
     void on_compareButton_clicked();
+    void on_plButton_clicked();
+    void on_engButton_clicked();
 
 private:
     Ui::MainWindow *ui;
+
+    void switchLanguage(const QString& language);
+    QTranslator translator;
 
     void setupCharts();
     void setupIMUCharts();

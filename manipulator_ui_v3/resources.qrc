@@ -6,4 +6,8 @@
         <file>img/sun.png</file>
         <file>img/uk.png</file>
     </qresource>
+    <qresource prefix="/translations">
+        <file>translations/manipulator_pl.ts</file>
+        <file>translations/manipulator_en.ts</file>
+    </qresource>
 </RCC>

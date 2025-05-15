@@ -5,6 +5,7 @@ find_package(Qt6 6.5 REQUIRED COMPONENTS
     Core
     Widgets
     Charts
+    LinguistTools
 )
 
 qt_standard_project_setup()
@@ -28,6 +29,15 @@ target_link_libraries(manipulator_ui_v3
         Qt::Widgets
         Qt::Charts
 )
+
+# Zdefiniuj pliki tłumaczeń
+set(TS_FILES
+    translations/manipulator_en.ts
+    translations/manipulator_pl.ts
+)
+
+# Generuj pliki .ts
+qt_create_translation(QM_FILES ${PROJECT_SOURCES} ${TS_FILES})
 
 include(GNUInstallDirs)
 

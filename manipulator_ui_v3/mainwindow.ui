@@ -40,6 +40,9 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
+        <layout class="QGridLayout" name="gridLayout"/>
+       </item>
+       <item>
         <widget class="QPushButton" name="modelButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
@@ -535,7 +538,7 @@ QPushButton:pressed {
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>100</height>
+            <height>35</height>
            </size>
           </property>
           <property name="maximumSize">

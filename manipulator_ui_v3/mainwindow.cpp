@@ -7,7 +7,16 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    this->setWindowTitle("Manipulator 6 DOF");
+    // Ustaw domyślnie język angielski
+    switchLanguage("en");
+
+    // Połącz przyciski zmiany języka
+    connect(ui->plButton, &QPushButton::clicked, this, [this]() {
+        switchLanguage("pl");
+    });
+    connect(ui->engButton, &QPushButton::clicked, this, [this]() {
+        switchLanguage("en");
+    });
 
     // Inicjalizacja licznika punktów
     dataCounter = 0;
@@ -50,6 +59,135 @@ void MainWindow::on_valuesButton_clicked()
 void MainWindow::on_compareButton_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->comparePage);
+}
+
+void MainWindow::switchLanguage(const QString& language)
+{
+    // Usuń poprzednie tłumaczenie jeśli istnieje
+    qApp->removeTranslator(&translator);
+
+    // Załaduj nowe tłumaczenie
+    if (translator.load(":/translations/manipulator_" + language))
+    {
+        qApp->installTranslator(&translator);
+    }
+
+    // Aktualizuj interfejs użytkownika
+    ui->retranslateUi(this);
+
+    // Menu i przyciski nawigacyjne
+    ui->modelButton->setText(tr("3D Model"));
+    ui->imuButton->setText(tr("IMU"));
+    ui->anglesButton->setText(tr("Angles"));
+    ui->valuesButton->setText(tr("Values"));
+    ui->compareButton->setText(tr("Compare"));
+
+    // Tytuł strony modelu 3D
+    ui->label->setText(tr("MANIPULATOR 3D MODEL"));
+
+    // Legendy wykresów IMU
+    if (accelSeriesX) {
+        // Oś X
+        accelSeriesX->setName(tr("Accelerometer"));
+        gyroSeriesX->setName(tr("Gyroscope"));
+        magSeriesX->setName(tr("Magnetometer"));
+        fusSeriesX->setName(tr("Fusion"));
+
+        // Oś Y
+        accelSeriesY->setName(tr("Accelerometer"));
+        gyroSeriesY->setName(tr("Gyroscope"));
+        magSeriesY->setName(tr("Magnetometer"));
+        fusSeriesY->setName(tr("Fusion"));
+
+        // Oś Z
+        accelSeriesZ->setName(tr("Accelerometer"));
+        gyroSeriesZ->setName(tr("Gyroscope"));
+        magSeriesZ->setName(tr("Magnetometer"));
+        fusSeriesZ->setName(tr("Fusion"));
+    }
+
+    // Nazwy osi
+    ui->imuChartX->setText(tr("X axis"));
+    ui->imuChartY->setText(tr("Y axis"));
+    ui->imuChartZ->setText(tr("Z axis"));
+
+    // Etykiety kątów w zakładce Values
+    ui->angLabel1->setText(tr("ANG_1"));
+    ui->angLabel2->setText(tr("ANG_2"));
+    ui->angLabel3->setText(tr("ANG_3"));
+    ui->angLabel4->setText(tr("ANG_4"));
+    ui->angLabel5->setText(tr("ANG_5"));
+    ui->angLabel6->setText(tr("ANG_6"));
+
+    // Etykiety IMU w zakładce Values
+    ui->accelLabelX->setText(tr("ACC_X"));
+    ui->accelLabelY->setText(tr("ACC_Y"));
+    ui->accelLabelZ->setText(tr("ACC_Z"));
+
+    ui->gyroLabelX->setText(tr("GYRO_X"));
+    ui->gyroLabelY->setText(tr("GYRO_Y"));
+    ui->gyroLabelZ->setText(tr("GYRO_Z"));
+
+    ui->magLabelX->setText(tr("MAG_X"));
+    ui->magLabelY->setText(tr("MAG_Y"));
+    ui->magLabelZ->setText(tr("MAG_Z"));
+
+    ui->fusLabelX->setText(tr("FUS_X"));
+    ui->fusLabelY->setText(tr("FUS_Y"));
+    ui->fusLabelZ->setText(tr("FUS_Z"));
+
+    // Etykiety w zakładce Compare
+    ui->imuAnglesLabel->setText(tr("IMU ANGLES"));
+    ui->potAnglesLabel->setText(tr("POTENTIOMETER ANGLES"));
+
+    // Etykiety przegubów
+    for (int i = 1; i <= 6; ++i) {
+        // IMU joints
+        QLabel* imuJoint = findChild<QLabel*>(QString("imuJointLabel%1").arg(i));
+        if (imuJoint) {
+            imuJoint->setText(tr("JOINT_%1").arg(i));
+        }
+
+        // Potentiometer joints
+        QLabel* potJoint = findChild<QLabel*>(QString("potJointLabel%1").arg(i));
+        if (potJoint) {
+            potJoint->setText(tr("JOINT_%1").arg(i));
+        }
+
+        // Aktualizacja nazw serii wykresów kątów
+        if (i-1 < angleSeries.size()) {
+            angleSeries[i-1]->setName(tr("Angle %1").arg(i));
+        }
+
+        // Etykiety wykresów kątów
+        QLabel* angChart = findChild<QLabel*>(QString("angChart%1").arg(i));
+        if (angChart) {
+            angChart->setText(tr("ANG_%1").arg(i));
+        }
+    }
+
+    // Odśwież wykresy
+    if (imuChartX) {
+        imuChartX->update();
+        imuChartY->update();
+        imuChartZ->update();
+    }
+
+    for (QChart* chart : angleCharts) {
+        if (chart) {
+            chart->update();
+        }
+    }
+}
+
+void MainWindow::on_plButton_clicked()
+{
+    switchLanguage("pl");
+}
+
+void MainWindow::on_engButton_clicked()
+{
+    switchLanguage("en");
 }
 
 void MainWindow::setupCharts()
@@ -106,7 +244,30 @@ void MainWindow::setupCharts()
 
 void MainWindow::setupIMUCharts()
 {
-    // Tworzenie wykresu dla osi X
+    // Common settings for all IMU charts
+    auto setupChart = [](QChart* chart) {
+        chart->setBackgroundBrush(Qt::white);
+        chart->setMargins(QMargins(0, 0, 0, 0));
+        chart->legend()->setAlignment(Qt::AlignRight);
+        chart->setTheme(QChart::ChartThemeLight);
+    };
+
+    auto setupAxis = [](QValueAxis* axis) {
+        axis->setGridLineVisible(false);
+        axis->setMinorGridLineVisible(false);
+        axis->setLabelsColor(Qt::black);
+    };
+
+    auto setupChartView = [](QChartView* chartView) {
+        chartView->setRenderHint(QPainter::Antialiasing);
+        chartView->setMinimumSize(300, 200);
+        chartView->setBackgroundBrush(QColor("#2F3542"));
+        // Add rounded corners to the chart view
+        chartView->setRenderHint(QPainter::Antialiasing);
+        chartView->setStyleSheet("background-color: #2F3542; border-radius: 10px;");
+    };
+
+    // Setup for X axis chart
     imuChartX = new QChart();
     accelSeriesX = new QLineSeries();
     gyroSeriesX = new QLineSeries();
@@ -123,11 +284,13 @@ void MainWindow::setupIMUCharts()
     imuChartX->addSeries(magSeriesX);
     imuChartX->addSeries(fusSeriesX);
 
-    // Osie dla X
     QValueAxis *axisX_X = new QValueAxis();
     QValueAxis *axisY_X = new QValueAxis();
     axisX_X->setRange(0, MAX_POINTS);
     axisY_X->setRange(-100, 100);
+
+    setupAxis(axisX_X);
+    setupAxis(axisY_X);
 
     imuChartX->addAxis(axisX_X, Qt::AlignBottom);
     imuChartX->addAxis(axisY_X, Qt::AlignLeft);
@@ -141,16 +304,11 @@ void MainWindow::setupIMUCharts()
     fusSeriesX->attachAxis(axisX_X);
     fusSeriesX->attachAxis(axisY_X);
 
-    // Style dla X
-    imuChartX->setTheme(QChart::ChartThemeBlueCerulean);
-    imuChartX->legend()->setAlignment(Qt::AlignRight);
+    setupChart(imuChartX);
 
-    // Utworzenie widoku wykresu X
     QChartView *chartViewX = new QChartView(imuChartX);
-    chartViewX->setRenderHint(QPainter::Antialiasing);
-    chartViewX->setMinimumSize(300, 200);
+    setupChartView(chartViewX);
 
-    // Dodanie do layoutu X
     if (ui->imuChartX->layout()) {
         delete ui->imuChartX->layout();
     }
@@ -158,7 +316,7 @@ void MainWindow::setupIMUCharts()
     layoutX->setContentsMargins(0, 0, 0, 0);
     layoutX->addWidget(chartViewX);
 
-    // Tworzenie wykresu dla osi Y
+    // Setup for Y axis chart
     imuChartY = new QChart();
     accelSeriesY = new QLineSeries();
     gyroSeriesY = new QLineSeries();
@@ -175,11 +333,13 @@ void MainWindow::setupIMUCharts()
     imuChartY->addSeries(magSeriesY);
     imuChartY->addSeries(fusSeriesY);
 
-    // Osie dla Y
     QValueAxis *axisX_Y = new QValueAxis();
     QValueAxis *axisY_Y = new QValueAxis();
     axisX_Y->setRange(0, MAX_POINTS);
     axisY_Y->setRange(-100, 100);
+
+    setupAxis(axisX_Y);
+    setupAxis(axisY_Y);
 
     imuChartY->addAxis(axisX_Y, Qt::AlignBottom);
     imuChartY->addAxis(axisY_Y, Qt::AlignLeft);
@@ -193,16 +353,11 @@ void MainWindow::setupIMUCharts()
     fusSeriesY->attachAxis(axisX_Y);
     fusSeriesY->attachAxis(axisY_Y);
 
-    // Style dla Y
-    imuChartY->setTheme(QChart::ChartThemeBlueCerulean);
-    imuChartY->legend()->setAlignment(Qt::AlignRight);
+    setupChart(imuChartY);
 
-    // Utworzenie widoku wykresu Y
     QChartView *chartViewY = new QChartView(imuChartY);
-    chartViewY->setRenderHint(QPainter::Antialiasing);
-    chartViewY->setMinimumSize(300, 200);
+    setupChartView(chartViewY);
 
-    // Dodanie do layoutu Y
     if (ui->imuChartY->layout()) {
         delete ui->imuChartY->layout();
     }
@@ -210,7 +365,7 @@ void MainWindow::setupIMUCharts()
     layoutY->setContentsMargins(0, 0, 0, 0);
     layoutY->addWidget(chartViewY);
 
-    // Tworzenie wykresu dla osi Z
+    // Setup for Z axis chart
     imuChartZ = new QChart();
     accelSeriesZ = new QLineSeries();
     gyroSeriesZ = new QLineSeries();
@@ -227,11 +382,13 @@ void MainWindow::setupIMUCharts()
     imuChartZ->addSeries(magSeriesZ);
     imuChartZ->addSeries(fusSeriesZ);
 
-    // Osie dla Z
     QValueAxis *axisX_Z = new QValueAxis();
     QValueAxis *axisY_Z = new QValueAxis();
     axisX_Z->setRange(0, MAX_POINTS);
     axisY_Z->setRange(-100, 100);
+
+    setupAxis(axisX_Z);
+    setupAxis(axisY_Z);
 
     imuChartZ->addAxis(axisX_Z, Qt::AlignBottom);
     imuChartZ->addAxis(axisY_Z, Qt::AlignLeft);
@@ -245,16 +402,11 @@ void MainWindow::setupIMUCharts()
     fusSeriesZ->attachAxis(axisX_Z);
     fusSeriesZ->attachAxis(axisY_Z);
 
-    // Style dla Z
-    imuChartZ->setTheme(QChart::ChartThemeBlueCerulean);
-    imuChartZ->legend()->setAlignment(Qt::AlignRight);
+    setupChart(imuChartZ);
 
-    // Utworzenie widoku wykresu Z
     QChartView *chartViewZ = new QChartView(imuChartZ);
-    chartViewZ->setRenderHint(QPainter::Antialiasing);
-    chartViewZ->setMinimumSize(300, 200);
+    setupChartView(chartViewZ);
 
-    // Dodanie do layoutu Z
     if (ui->imuChartZ->layout()) {
         delete ui->imuChartZ->layout();
     }
@@ -265,6 +417,28 @@ void MainWindow::setupIMUCharts()
 
 void MainWindow::setupAnglesCharts()
 {
+    auto setupChart = [](QChart* chart) {
+        chart->setBackgroundBrush(Qt::white);
+        chart->setMargins(QMargins(0, 0, 0, 0));
+        chart->legend()->setVisible(false);
+        chart->setTheme(QChart::ChartThemeLight);
+    };
+
+    auto setupAxis = [](QValueAxis* axis) {
+        axis->setGridLineVisible(false);
+        axis->setMinorGridLineVisible(false);
+        axis->setLabelsColor(Qt::black);
+    };
+
+    auto setupChartView = [](QChartView* chartView) {
+        chartView->setRenderHint(QPainter::Antialiasing);
+        chartView->setMinimumSize(300, 200);
+        chartView->setBackgroundBrush(QColor("#2F3542"));
+        // Add rounded corners to the chart view
+        chartView->setRenderHint(QPainter::Antialiasing);
+        chartView->setStyleSheet("background-color: #2F3542; border-radius: 10px;");
+    };
+
     for (int i = 0; i < 6; ++i) {
         QChart *chart = new QChart();
         QLineSeries *series = new QLineSeries();
@@ -277,23 +451,28 @@ void MainWindow::setupAnglesCharts()
         axisX->setRange(0, MAX_POINTS);
         axisY->setRange(-180, 180);
 
+        setupAxis(axisX);
+        setupAxis(axisY);
+
         chart->addAxis(axisX, Qt::AlignBottom);
         chart->addAxis(axisY, Qt::AlignLeft);
 
         series->attachAxis(axisX);
         series->attachAxis(axisY);
 
-        chart->setTheme(QChart::ChartThemeBlueCerulean);
-        chart->legend()->setVisible(false);
+        setupChart(chart);
 
         QChartView *chartView = new QChartView(chart);
-        chartView->setRenderHint(QPainter::Antialiasing);
+        setupChartView(chartView);
 
-        // Dodanie do odpowiedniego widgetu
         QLabel *chartLabel = findChild<QLabel*>(QString("angChart%1").arg(i+1));
         if (chartLabel) {
-            chartLabel->setLayout(new QVBoxLayout);
-            chartLabel->layout()->addWidget(chartView);
+            if (chartLabel->layout()) {
+                delete chartLabel->layout();
+            }
+            QVBoxLayout *layout = new QVBoxLayout(chartLabel);
+            layout->setContentsMargins(0, 0, 0, 0);
+            layout->addWidget(chartView);
         }
 
         angleCharts.append(chart);
