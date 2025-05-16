@@ -9,19 +9,20 @@ ADS1115_Debug_t ADS1115_Debug = {0};
 
 /**
  * @brief Sprawdza, czy urządzenie ADS1115 jest podłączone do magistrali I2C
+ * @param device_address Adres urządzenia (ADS1115_ADDRESS_GND lub ADS1115_ADDRESS_VDD)
  * @return true jeśli wykryto urządzenie, false w przeciwnym wypadku
  */
-bool ADS1115_IsDeviceConnected(void) {
+bool ADS1115_IsDeviceConnected(uint8_t *device_address) {
     uint8_t reg = ADS1115_REG_CONFIG;
     uint8_t dummy_data;
     HAL_StatusTypeDef status;
     
     // Próba komunikacji z urządzeniem
-    status = HAL_I2C_Master_Transmit(&hi2c1, ADS1115_I2C_ADDR << 1, &reg, 1, 10);
+    status = HAL_I2C_Master_Transmit(&hi2c1, (*device_address) << 1, &reg, 1, 10);
     if (status != HAL_OK) return false;
     
     // Próba odczytu danych
-    status = HAL_I2C_Master_Receive(&hi2c1, ADS1115_I2C_ADDR << 1, &dummy_data, 1, 10);
+    status = HAL_I2C_Master_Receive(&hi2c1, (*device_address) << 1, &dummy_data, 1, 10);
     
     ADS1115_Debug.device_detected = (status == HAL_OK);
     return (status == HAL_OK);
@@ -29,11 +30,12 @@ bool ADS1115_IsDeviceConnected(void) {
 
 /**
  * @brief Inicjalizacja ADS1115
+ * @param device_address Adres urządzenia (ADS1115_ADDRESS_GND lub ADS1115_ADDRESS_VDD)
  * @return Status inicjalizacji
  */
-ADS1115_Status ADS1115_Init(void) {
+ADS1115_Status ADS1115_Init(uint8_t *device_address) {
     // Sprawdź, czy urządzenie jest podłączone
-    if (!ADS1115_IsDeviceConnected()) {
+    if (!ADS1115_IsDeviceConnected(device_address)) {
         ADS1115_Debug.last_error_code = ADS1115_ERROR_INIT;
         return ADS1115_ERROR_INIT;
     }
@@ -43,11 +45,11 @@ ADS1115_Status ADS1115_Init(void) {
                      ADS1115_MUX_SINGLE_0 |  // Kanał A0
                      ADS1115_PGA_2_048V |    // Zakres ±2.048V
                      ADS1115_MODE_SINGLESHOT | // Tryb pojedynczego odczytu
-                     ADS1115_DR_860SPS |     // 128 próbek na sekundę
+                     ADS1115_DR_860SPS |     // 860 próbek na sekundę
                      ADS1115_COMP_QUE_DISABLE; // Wyłączenie komparatora
     
     // Zapisz konfigurację do rejestru CONFIG
-    HAL_StatusTypeDef status = ADS1115_WriteRegister(ADS1115_REG_CONFIG, config);
+    HAL_StatusTypeDef status = ADS1115_WriteRegister(device_address, ADS1115_REG_CONFIG, config);
     
     if (status != HAL_OK) {
         ADS1115_Debug.last_error_code = ADS1115_ERROR_I2C;
@@ -61,17 +63,18 @@ ADS1115_Status ADS1115_Init(void) {
 
 /**
  * @brief Zapis wartości do rejestru ADS1115
+ * @param device_address Adres urządzenia
  * @param reg Adres rejestru
  * @param value Wartość do zapisania
  * @return Status HAL
  */
-HAL_StatusTypeDef ADS1115_WriteRegister(uint8_t reg, uint16_t value) {
+HAL_StatusTypeDef ADS1115_WriteRegister(uint8_t *device_address, uint8_t reg, uint16_t value) {
     uint8_t data[3];
     data[0] = reg;               // Adres rejestru
     data[1] = (value >> 8) & 0xFF; // Starszy bajt
     data[2] = value & 0xFF;        // Młodszy bajt
     
-    HAL_StatusTypeDef status = HAL_I2C_Master_Transmit(&hi2c1, ADS1115_I2C_ADDR << 1, data, 3, 100);
+    HAL_StatusTypeDef status = HAL_I2C_Master_Transmit(&hi2c1, (*device_address) << 1, data, 3, 100);
     
     if (status != HAL_OK) {
         ADS1115_Debug.i2c_errors++;
@@ -82,23 +85,24 @@ HAL_StatusTypeDef ADS1115_WriteRegister(uint8_t reg, uint16_t value) {
 
 /**
  * @brief Odczyt wartości z rejestru ADS1115
+ * @param device_address Adres urządzenia
  * @param reg Adres rejestru
  * @param value Wskaźnik do zmiennej, gdzie zostanie zapisana odczytana wartość
  * @return Status HAL
  */
-HAL_StatusTypeDef ADS1115_ReadRegister(uint8_t reg, uint16_t *value) {
+HAL_StatusTypeDef ADS1115_ReadRegister(uint8_t *device_address, uint8_t reg, uint16_t *value) {
     uint8_t data[2];
     HAL_StatusTypeDef status;
     
     // Wybór rejestru do odczytu
-    status = HAL_I2C_Master_Transmit(&hi2c1, ADS1115_I2C_ADDR << 1, &reg, 1, 100);
+    status = HAL_I2C_Master_Transmit(&hi2c1, (*device_address) << 1, &reg, 1, 100);
     if(status != HAL_OK) {
         ADS1115_Debug.i2c_errors++;
         return status;
     }
     
     // Odczyt wartości
-    status = HAL_I2C_Master_Receive(&hi2c1, ADS1115_I2C_ADDR << 1, data, 2, 100);
+    status = HAL_I2C_Master_Receive(&hi2c1, (*device_address) << 1, data, 2, 100);
     if(status != HAL_OK) {
         ADS1115_Debug.i2c_errors++;
         return status;
@@ -110,13 +114,14 @@ HAL_StatusTypeDef ADS1115_ReadRegister(uint8_t reg, uint16_t *value) {
 
 /**
  * @brief Rozpoczęcie konwersji z określoną konfiguracją
+ * @param device_address Adres urządzenia
  * @param config Wartość rejestru konfiguracyjnego
  * @return Status HAL
  */
-HAL_StatusTypeDef ADS1115_StartConversion(uint16_t config) {
+HAL_StatusTypeDef ADS1115_StartConversion(uint8_t *device_address, uint16_t config) {
     // Ustaw bit OS na 1 aby rozpocząć konwersję
     config |= ADS1115_OS_SINGLE;
-    HAL_StatusTypeDef status = ADS1115_WriteRegister(ADS1115_REG_CONFIG, config);
+    HAL_StatusTypeDef status = ADS1115_WriteRegister(device_address, ADS1115_REG_CONFIG, config);
     
     if (status == HAL_OK) {
         ADS1115_Debug.last_config = config;
@@ -127,12 +132,13 @@ HAL_StatusTypeDef ADS1115_StartConversion(uint16_t config) {
 
 /**
  * @brief Sprawdzenie czy konwersja jest zakończona
+ * @param device_address Adres urządzenia
  * @param ready Wskaźnik do zmiennej, gdzie zostanie zapisany status (1 = gotowe, 0 = w trakcie)
  * @return Status HAL
  */
-HAL_StatusTypeDef ADS1115_IsConversionReady(uint8_t *ready) {
+HAL_StatusTypeDef ADS1115_IsConversionReady(uint8_t *device_address, uint8_t *ready) {
     uint16_t config;
-    HAL_StatusTypeDef status = ADS1115_ReadRegister(ADS1115_REG_CONFIG, &config);
+    HAL_StatusTypeDef status = ADS1115_ReadRegister(device_address, ADS1115_REG_CONFIG, &config);
     if(status != HAL_OK) return status;
     
     // Bit OS: 1 = gotowe, 0 = w trakcie
@@ -142,12 +148,13 @@ HAL_StatusTypeDef ADS1115_IsConversionReady(uint8_t *ready) {
 
 /**
  * @brief Odczyt ostatniego wyniku konwersji
+ * @param device_address Adres urządzenia
  * @param status Wskaźnik na zmienną do zapisania statusu operacji
  * @return Wartość odczytana z rejestru CONVERSION
  */
-int16_t ADS1115_Read(ADS1115_Status* status) {
+int16_t ADS1115_Read(uint8_t *device_address, ADS1115_Status* status) {
     uint16_t value;
-    HAL_StatusTypeDef hal_status = ADS1115_ReadRegister(ADS1115_REG_CONVERSION, &value);
+    HAL_StatusTypeDef hal_status = ADS1115_ReadRegister(device_address, ADS1115_REG_CONVERSION, &value);
     
     if (hal_status != HAL_OK) {
         if (status) *status = ADS1115_ERROR_I2C;
@@ -165,11 +172,12 @@ int16_t ADS1115_Read(ADS1115_Status* status) {
 
 /**
  * @brief Odczyt wartości z wybranego kanału w trybie single-ended
+ * @param device_address Adres urządzenia
  * @param channel Numer kanału (0-3)
  * @param status Wskaźnik na zmienną do zapisania statusu operacji
  * @return Odczytana wartość
  */
-int16_t ADS1115_ReadADC_SingleEnded(uint8_t channel, ADS1115_Status* status) {
+int16_t ADS1115_ReadADC_SingleEnded(uint8_t *device_address, uint8_t channel, ADS1115_Status* status) {
     ADS1115_Debug.total_reads++;
     
     // Sprawdź parametr
@@ -180,7 +188,7 @@ int16_t ADS1115_ReadADC_SingleEnded(uint8_t channel, ADS1115_Status* status) {
     }
     
     // Sprawdź, czy urządzenie jest podłączone
-    if (!ADS1115_Debug.device_detected && !ADS1115_IsDeviceConnected()) {
+    if (!ADS1115_Debug.device_detected && !ADS1115_IsDeviceConnected(device_address)) {
         if (status) *status = ADS1115_ERROR_I2C;
         ADS1115_Debug.last_error_code = ADS1115_ERROR_I2C;
         return 0;
@@ -210,13 +218,13 @@ int16_t ADS1115_ReadADC_SingleEnded(uint8_t channel, ADS1115_Status* status) {
     // Konfiguracja ADC
     uint16_t config = ADS1115_OS_SINGLE |     // Start konwersji
                      mux |                    // Wybrany kanał
-                     ADS1115_PGA_6_144V |     // Zakres ±2.048V
+                     ADS1115_PGA_6_144V |     // Zakres ±6.144V
                      ADS1115_MODE_SINGLESHOT | // Tryb pojedynczego odczytu
                      ADS1115_DR_128SPS |      // 128 próbek na sekundę
                      ADS1115_COMP_QUE_DISABLE; // Wyłączenie komparatora
     
     // Rozpocznij konwersję
-    HAL_StatusTypeDef hal_status = ADS1115_WriteRegister(ADS1115_REG_CONFIG, config);
+    HAL_StatusTypeDef hal_status = ADS1115_WriteRegister(device_address, ADS1115_REG_CONFIG, config);
     
     if (hal_status != HAL_OK) {
         if (status) *status = ADS1115_ERROR_I2C;
@@ -236,7 +244,7 @@ int16_t ADS1115_ReadADC_SingleEnded(uint8_t channel, ADS1115_Status* status) {
         HAL_Delay(1); // Krótkie opóźnienie
         
         // Sprawdź, czy konwersja jest zakończona
-        hal_status = ADS1115_IsConversionReady(&ready);
+        hal_status = ADS1115_IsConversionReady(device_address, &ready);
         if (hal_status != HAL_OK) {
             if (status) *status = ADS1115_ERROR_I2C;
             ADS1115_Debug.i2c_errors++;
@@ -255,42 +263,13 @@ int16_t ADS1115_ReadADC_SingleEnded(uint8_t channel, ADS1115_Status* status) {
     } while(!ready);
     
     // Odczytaj wynik
-    int16_t result = ADS1115_Read(status);
+    int16_t result = ADS1115_Read(device_address, status);
     
     // Oblicz napięcie dla celów debugowania
     ADS1115_Debug.last_voltage = ADS1115_ConvertToVoltage(result, ADS1115_PGA_2_048V);
     
     return result;
 }
-
-/**
- * @brief Odczyt wartości z kanału A0 (wejście analogowe 0)
- * @param status Wskaźnik na zmienną do zapisania statusu operacji
- * @return Odczytana wartość
- */
-int16_t ADS1115_ReadADC_A0(ADS1115_Status* status) {
-    return ADS1115_ReadADC_SingleEnded(0, status);
-}
-
-/**
- * @brief Odczyt wartości z kanału A1 (wejście analogowe 1)
- * @param status Wskaźnik na zmienną do zapisania statusu operacji
- * @return Odczytana wartość
- */
-int16_t ADS1115_ReadADC_A1(ADS1115_Status* status) {
-    return ADS1115_ReadADC_SingleEnded(1, status);
-}
-
-
-/**
- * @brief Odczyt wartości z kanału A2 (wejście analogowe 2)
- * @param status Wskaźnik na zmienną do zapisania statusu operacji
- * @return Odczytana wartość
- */
-int16_t ADS1115_ReadADC_A2(ADS1115_Status* status) {
-    return ADS1115_ReadADC_SingleEnded(2, status);
-}
-
 
 /**
  * @brief Konwersja wartości surowej ADC na napięcie
@@ -328,6 +307,53 @@ float ADS1115_ConvertToVoltage(int16_t raw_adc, uint16_t pga) {
     
     return voltage;
 }
+
+
+void ADS1115_ReadAllValues(ADS1115_Readings *ADCdata) {
+    int16_t adc_value;
+    float voltage;
+    uint8_t address_0_3 = ADS1115_ADDRESS_0_3; // Pierwszy ADS1115 (kanały 0-3)
+    uint8_t address_4_5 = ADS1115_ADDRESS_4_5; // Drugi ADS1115 (kanały 4-5)
+
+    // Pierwszy ADS1115 (kanały 0-3)
+    // kanał A0
+    adc_value = ADS1115_ReadADC_SingleEnded(&address_0_3, 0, NULL);
+    voltage = ADS1115_ConvertToVoltage(adc_value, ADS1115_PGA_4_096V);
+    ADCdata->A0_adc_raw = adc_value;
+    ADCdata->A0_adc = voltage;
+
+    // kanał A1
+    adc_value = ADS1115_ReadADC_SingleEnded(&address_0_3, 1, NULL);
+    voltage = ADS1115_ConvertToVoltage(adc_value, ADS1115_PGA_4_096V);
+    ADCdata->A1_adc_raw = adc_value;
+    ADCdata->A1_adc = voltage;
+
+    // kanał A2
+    adc_value = ADS1115_ReadADC_SingleEnded(&address_0_3, 2, NULL);
+    voltage = ADS1115_ConvertToVoltage(adc_value, ADS1115_PGA_4_096V);
+    ADCdata->A2_adc_raw = adc_value;
+    ADCdata->A2_adc = voltage;
+
+    // kanał A3
+    adc_value = ADS1115_ReadADC_SingleEnded(&address_0_3, 3, NULL);
+    voltage = ADS1115_ConvertToVoltage(adc_value, ADS1115_PGA_4_096V);
+    ADCdata->A3_adc_raw = adc_value;
+    ADCdata->A3_adc = voltage;
+
+    // Drugi ADS1115 (kanały 4-5)
+    // kanał A4 (A0 na drugim ADS1115)
+    adc_value = ADS1115_ReadADC_SingleEnded(&address_4_5, 0, NULL);
+    voltage = ADS1115_ConvertToVoltage(adc_value, ADS1115_PGA_4_096V);
+    ADCdata->A4_adc_raw = adc_value;
+    ADCdata->A4_adc = voltage;
+
+    // kanał A5 (A1 na drugim ADS1115)
+    adc_value = ADS1115_ReadADC_SingleEnded(&address_4_5, 1, NULL);
+    voltage = ADS1115_ConvertToVoltage(adc_value, ADS1115_PGA_4_096V);
+    ADCdata->A5_adc_raw = adc_value;
+    ADCdata->A5_adc = voltage;
+}
+
 
 /**
  * @brief Zwraca opis słowny kodu błędu
@@ -389,30 +415,7 @@ void ADS1115_PrintDebugInfo(void) {
  */
 void ADS1115_Reset_Debug_Counters(void) {
     ADS1115_Debug.total_reads = 0;
-    ADS1115_Debug.successful_reads = 0; 
+    ADS1115_Debug.successful_reads = 0;
     ADS1115_Debug.i2c_errors = 0;
     ADS1115_Debug.timeouts = 0;
-}
-
-void ADS1115_ReadAllValues(ADS1115_Readings *ADCdata) {
-    int16_t adc_value;
-    float voltage;
-
-    // kanał A0
-    adc_value = ADS1115_ReadADC_A0(NULL);
-    voltage = ADS1115_ConvertToVoltage(adc_value, ADS1115_PGA_4_096V);
-    ADCdata->A0_adc_raw = adc_value;
-    ADCdata->A0_adc = voltage;
-
-    // kanał A1
-    adc_value = ADS1115_ReadADC_A1(NULL);
-    voltage = ADS1115_ConvertToVoltage(adc_value, ADS1115_PGA_4_096V);
-    ADCdata->A1_adc_raw = adc_value;
-    ADCdata->A1_adc = voltage;
-
-    // kanał A2
-    adc_value = ADS1115_ReadADC_A2(NULL);
-    voltage = ADS1115_ConvertToVoltage(adc_value, ADS1115_PGA_4_096V);
-    ADCdata->A2_adc_raw = adc_value;
-    ADCdata->A2_adc = voltage;
 }

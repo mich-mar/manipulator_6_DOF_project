@@ -13,6 +13,10 @@
 #define ADS1115_ADDRESS_SDA 0x4A
 #define ADS1115_ADDRESS_SCL 0x4B
 
+// Używane adressy
+static const uint8_t ADS1115_ADDRESS_0_3 = ADS1115_ADDRESS_GND;
+static const uint8_t ADS1115_ADDRESS_4_5 = ADS1115_ADDRESS_VDD;
+
 // Rejestry
 #define ADS1115_REG_CONVERSION 0x00
 #define ADS1115_REG_CONFIG 0x01
@@ -74,9 +78,6 @@
 #define ADS1115_COMP_QUE_AFTER_FOUR 0x0002 // Assert after four conversions
 #define ADS1115_COMP_QUE_DISABLE 0x0003    // Disable comparator and set ALERT/RDY pin to high-impedance
 
-// Domyślny adres I2C
-#define ADS1115_I2C_ADDR ADS1115_ADDRESS_GND
-
 // Timeout dla konwersji [ms]
 #define ADS1115_CONVERSION_TIMEOUT 200
 
@@ -124,23 +125,24 @@ typedef struct
 extern ADS1115_Debug_t ADS1115_Debug;
 
 // Funkcje inicjalizacji i ogólne
-ADS1115_Status ADS1115_Init(void);
-int16_t ADS1115_Read(ADS1115_Status *status);
-bool ADS1115_IsDeviceConnected(void);
+ADS1115_Status ADS1115_Init(uint8_t *device_adress);
+int16_t ADS1115_Read(uint8_t *device_adress, ADS1115_Status *status);
+bool ADS1115_IsDeviceConnected(uint8_t *device_adress);
 
 // Funkcje odczytu z konkretnych kanałów
-int16_t ADS1115_ReadADC_SingleEnded(uint8_t channel, ADS1115_Status *status);
-int16_t ADS1115_ReadADC_A0(ADS1115_Status *status);
-int16_t ADS1115_ReadADC_A1(ADS1115_Status *status);
-int16_t ADS1115_ReadADC_A2(ADS1115_Status *status);
-float ADS1115_ConvertToVoltage(int16_t raw_adc, uint16_t pga);
+int16_t ADS1115_ReadADC_SingleEnded(uint8_t *device_adress, uint8_t channel, ADS1115_Status *status);
+int16_t ADS1115_ReadADC_A0(uint8_t *device_adress, ADS1115_Status *status);
+int16_t ADS1115_ReadADC_A1(uint8_t *device_adress, ADS1115_Status *status);
+int16_t ADS1115_ReadADC_A2(uint8_t *device_adress, ADS1115_Status *status);
 void ADS1115_ReadAllValues(ADS1115_Readings *ADCdata);
+float ADS1115_ConvertToVoltage(int16_t raw_adc, uint16_t pga);
+
 
 // Funkcje konfiguracji
-HAL_StatusTypeDef ADS1115_StartConversion(uint16_t config);
-HAL_StatusTypeDef ADS1115_WriteRegister(uint8_t reg, uint16_t value);
-HAL_StatusTypeDef ADS1115_ReadRegister(uint8_t reg, uint16_t *value);
-HAL_StatusTypeDef ADS1115_IsConversionReady(uint8_t *ready);
+HAL_StatusTypeDef ADS1115_StartConversion(uint8_t *device_adress, uint16_t config_reg);
+HAL_StatusTypeDef ADS1115_WriteRegister(uint8_t *device_adress, uint8_t reg, uint16_t value);
+HAL_StatusTypeDef ADS1115_ReadRegister(uint8_t *device_adress, uint8_t reg, uint16_t *value);
+HAL_StatusTypeDef ADS1115_IsConversionReady(uint8_t *device_adress, uint8_t *ready);
 
 // Funkcje debugowania
 void ADS1115_PrintDebugInfo(void);

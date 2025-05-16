@@ -54,6 +54,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     Core/Src/GY85.c # <== changed
     Core/Src/sendUSB.c # <== changed
     Core/Src/sendData.c # <== changed
+    Core/Src/crc.c
 )
 
 # Add include paths
