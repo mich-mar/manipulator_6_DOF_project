@@ -6,6 +6,7 @@ find_package(Qt6 6.5 REQUIRED COMPONENTS
     Widgets
     Charts
     LinguistTools
+    SerialPort
 )
 
 qt_standard_project_setup()
@@ -20,7 +21,14 @@ qt_add_executable(manipulator_ui_v3
     mainwindow.h
     mainwindow.ui
     ${RESOURCES}  # Dodaj skompilowane zasoby
-    resources.qrc # Dodaj plik zasobów
+    resources.qrc
+    serialReader.hpp
+    serialReader.cpp
+    crc.hpp
+    crc.cpp
+    sensorData.hpp
+    dataQueue.hpp
+    dataQueue.cpp
 )
 
 target_link_libraries(manipulator_ui_v3
@@ -28,6 +36,7 @@ target_link_libraries(manipulator_ui_v3
         Qt::Core
         Qt::Widgets
         Qt::Charts
+        Qt::SerialPort    # Dodana biblioteka SerialPort
 )
 
 # Zdefiniuj pliki tłumaczeń

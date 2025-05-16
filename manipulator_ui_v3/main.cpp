@@ -2,6 +2,17 @@
 
 #include <QApplication>
 
+
+/**
+ * @brief Główna funkcja aplikacji
+ *
+ * Inicjalizuje aplikację Qt, tworzy i wyświetla główne okno aplikacji.
+ * Następnie uruchamia główną pętlę zdarzeń Qt.
+ *
+ * @param argc Liczba argumentów wiersza poleceń
+ * @param argv Tablica wskaźników do argumentów wiersza poleceń
+ * @return int Kod zakończenia aplikacji (0 dla poprawnego zakończenia)
+ */
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

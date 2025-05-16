@@ -513,7 +513,7 @@ QPushButton:pressed {
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="modelPage">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -1958,7 +1958,7 @@ qproperty-alignment: AlignCenter;</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_4">
            <item>
-            <widget class="QDial" name="dial">
+            <widget class="QDial" name="dialAngle1">
              <property name="styleSheet">
               <string notr="true">QPushButton {
     max-width: 50px;          /* zmienione z width na max-width */
@@ -1997,7 +1997,7 @@ QDial::handle {
             </widget>
            </item>
            <item>
-            <widget class="QDial" name="dial_3">
+            <widget class="QDial" name="dialAngle2">
              <property name="styleSheet">
               <string notr="true">QPushButton {
     max-width: 50px;          /* zmienione z width na max-width */
@@ -2036,7 +2036,7 @@ QDial::handle {
             </widget>
            </item>
            <item>
-            <widget class="QDial" name="dial_6">
+            <widget class="QDial" name="dialAngle3">
              <property name="styleSheet">
               <string notr="true">QPushButton {
     max-width: 50px;          /* zmienione z width na max-width */
@@ -2075,7 +2075,7 @@ QDial::handle {
             </widget>
            </item>
            <item>
-            <widget class="QDial" name="dial_5">
+            <widget class="QDial" name="dialAngle4">
              <property name="styleSheet">
               <string notr="true">QPushButton {
     max-width: 50px;          /* zmienione z width na max-width */
@@ -2114,7 +2114,7 @@ QDial::handle {
             </widget>
            </item>
            <item>
-            <widget class="QDial" name="dial_4">
+            <widget class="QDial" name="dialAngle5">
              <property name="styleSheet">
               <string notr="true">QPushButton {
     max-width: 50px;          /* zmienione z width na max-width */
@@ -2153,7 +2153,7 @@ QDial::handle {
             </widget>
            </item>
            <item>
-            <widget class="QDial" name="dial_2">
+            <widget class="QDial" name="dialAngle_6">
              <property name="styleSheet">
               <string notr="true">QPushButton {
     max-width: 50px;          /* zmienione z width na max-width */

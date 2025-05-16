@@ -1,6 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+/**
+ * @brief Konstruktor klasy MainWindow
+ *
+ * Inicjalizuje interfejs użytkownika, konfiguruje wykresy i komunikację szeregową.
+ * Ustawia domyślny język aplikacji na angielski i łączy sygnały z odpowiednimi slotami.
+ *
+ * @param parent Wskaźnik na widget rodzica
+ */
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -33,34 +41,71 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->anglesButton, &QPushButton::clicked, this, &MainWindow::on_anglesButton_clicked);
     connect(ui->valuesButton, &QPushButton::clicked, this, &MainWindow::on_valuesButton_clicked);
     connect(ui->compareButton, &QPushButton::clicked, this, &MainWindow::on_compareButton_clicked);
+
+    // Inicjalizacja SerialReader
+    serialReader = new SerialReader(this);
+    connect(serialReader, &SerialReader::newDataAvailable,
+            this, &MainWindow::onNewSerialData);
+
+    // Próba otwarcia portu
+    if (!serialReader->findAndOpenPort()) {
+        QMessageBox::warning(this, "Błąd", "Nie można znaleźć portu szeregowego!");
+    }
 }
 
-// Implementacja slotów do przełączania stron
+/**
+ * @brief Slot obsługujący przejście do strony modelu 3D
+ */
 void MainWindow::on_modelButton_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->modelPage);
 }
 
+/**
+ * @brief Slot obsługujący przejście do strony IMU
+ */
 void MainWindow::on_imuButton_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->imuPage);
 }
 
+/**
+ * @brief Slot obsługujący przejście do strony kątów
+ */
 void MainWindow::on_anglesButton_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->anglesPage);
 }
 
+/**
+ * @brief Slot obsługujący przejście do strony wartości
+ */
 void MainWindow::on_valuesButton_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->valuesPage);
 }
 
+/**
+ * @brief Slot obsługujący przejście do strony porównującej kąty
+ */
 void MainWindow::on_compareButton_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->comparePage);
 }
 
+/**
+ * @brief Zmienia język interfejsu użytkownika
+ *
+ * Funkcja usuwa poprzednie tłumaczenie, ładuje nowe i aktualizuje
+ * wszystkie elementy interfejsu użytkownika, w tym:
+ * - Przyciski nawigacyjne
+ * - Etykiety wykresów
+ * - Opisy osi
+ * - Etykiety wartości
+ *
+ * @param language Kod języka ("pl" lub "en")
+ */
+// @todo: napraw ta funkcje
 void MainWindow::switchLanguage(const QString& language)
 {
     // Usuń poprzednie tłumaczenie jeśli istnieje
@@ -180,68 +225,44 @@ void MainWindow::switchLanguage(const QString& language)
     }
 }
 
+/**
+ * @brief Slot obsługujący zmianę języka na polski
+ */
 void MainWindow::on_plButton_clicked()
 {
     switchLanguage("pl");
 }
 
+/**
+ * @brief Slot obsługujący zmianę języka na angielski
+ */
 void MainWindow::on_engButton_clicked()
 {
     switchLanguage("en");
 }
 
+/**
+ * @brief Konfiguruje wszystkie wykresy w aplikacji
+ *
+ * Inicjalizuje wykresy IMU i kątów poprzez wywołanie
+ * odpowiednich funkcji konfiguracyjnych.
+ */
 void MainWindow::setupCharts()
 {
     setupIMUCharts();
     setupAnglesCharts();
-
-    // Timer do aktualizacji wykresów
-    updateTimer = new QTimer(this);
-    connect(updateTimer, &QTimer::timeout, this, [this]() {
-        // Dodawanie nowych punktów
-        float time = dataCounter++;
-
-        // Przykładowe dane (zastąp własnymi)
-        float accelX = QRandomGenerator::global()->bounded(100);
-        float gyroX = QRandomGenerator::global()->bounded(100);
-        float magX = QRandomGenerator::global()->bounded(100);
-        float fusX = QRandomGenerator::global()->bounded(100);
-
-        // Dodawanie punktów do serii
-        accelSeriesX->append(time, accelX);
-        gyroSeriesX->append(time, gyroX);
-        magSeriesX->append(time, magX);
-        fusSeriesX->append(time, fusX);
-
-        // Usuwanie starych punktów jeśli przekroczono limit
-        if (accelSeriesX->count() > MAX_POINTS) {
-            accelSeriesX->remove(0);
-            gyroSeriesX->remove(0);
-            magSeriesX->remove(0);
-            fusSeriesX->remove(0);
-        }
-
-        // Aktualizacja zakresu osi X
-        for (QChart* chart : {imuChartX, imuChartY, imuChartZ}) {
-            QValueAxis *axisX = qobject_cast<QValueAxis*>(chart->axes(Qt::Horizontal).first());
-            if (dataCounter > MAX_POINTS) {
-                axisX->setRange(dataCounter - MAX_POINTS, dataCounter);
-            }
-        }
-
-        // Podobnie dla pozostałych osi...
-
-        // Aktualizacja wartości w labelach
-        ui->accValX->setText(QString::number(accelX));
-        ui->gyroValX->setText(QString::number(gyroX));
-        ui->magValX->setText(QString::number(magX));
-        ui->fusValX->setText(QString::number(fusX));
-        // ... podobnie dla pozostałych wartości
-    });
-
-    updateTimer->start(1000); // aktualizacja co sekundę
 }
 
+/**
+ * @brief Konfiguruje wykresy IMU
+ *
+ * Tworzy i konfiguruje wykresy dla wszystkich osi (X, Y, Z) IMU.
+ * Dla każdej osi tworzone są cztery serie danych:
+ * - Akcelerometr
+ * - Żyroskop
+ * - Magnetometr
+ * - Fuzja danych
+ */
 void MainWindow::setupIMUCharts()
 {
     // Common settings for all IMU charts
@@ -415,6 +436,14 @@ void MainWindow::setupIMUCharts()
     layoutZ->addWidget(chartViewZ);
 }
 
+
+/**
+ * @brief Konfiguruje wykresy kątów
+ *
+ * Tworzy i konfiguruje wykresy dla wszystkich sześciu kątów manipulatora.
+ * Każdy wykres zawiera jedną serię danych reprezentującą wartość kąta
+ * w zakresie od -360° do 360°.
+ */
 void MainWindow::setupAnglesCharts()
 {
     auto setupChart = [](QChart* chart) {
@@ -449,7 +478,7 @@ void MainWindow::setupAnglesCharts()
         QValueAxis *axisX = new QValueAxis();
         QValueAxis *axisY = new QValueAxis();
         axisX->setRange(0, MAX_POINTS);
-        axisY->setRange(-180, 180);
+        axisY->setRange(-360, 360);
 
         setupAxis(axisX);
         setupAxis(axisY);
@@ -480,6 +509,170 @@ void MainWindow::setupAnglesCharts()
     }
 }
 
+/**
+ * @brief Slot odbierający nowe dane z portu szeregowego
+ *
+ * @param data Struktura zawierająca odebrane dane z czujników
+ */
+void MainWindow::onNewSerialData(const SensorDataPoint& data)
+{
+    qDebug() << "Otrzymano nowe dane w MainWindow";  // Dodaj to
+    processNewSensorData(data);
+}
+
+/**
+ * @brief Przetwarza nowe dane z czujników
+ *
+ * Funkcja aktualizuje:
+ * - Wykresy IMU (akcelerometr, żyroskop, magnetometr)
+ * - Wykresy kątów
+ * - Etykiety z wartościami
+ * - Wizualizacje potencjometrów
+ *
+ * Dodatkowo zarządza buforowaniem danych i usuwa stare punkty
+ * z wykresów gdy przekroczony zostanie limit.
+ *
+ * @param data Struktura zawierająca dane z czujników do przetworzenia
+ */
+void MainWindow::processNewSensorData(const SensorDataPoint& data)
+{
+    // Dodaj dane do kolejki
+    dataQueue.enqueue(data);
+    float time = dataCounter++;
+
+    // Aktualizuj wykresy IMU
+    // Akcelerometr
+    accelSeriesX->append(time, data.imuData.accel.x);
+    accelSeriesY->append(time, data.imuData.accel.y);
+    accelSeriesZ->append(time, data.imuData.accel.z);
+
+    // Żyroskop
+    gyroSeriesX->append(time, data.imuData.gyro.x);
+    gyroSeriesY->append(time, data.imuData.gyro.y);
+    gyroSeriesZ->append(time, data.imuData.gyro.z);
+
+    // Magnetometr
+    magSeriesX->append(time, data.imuData.mag.x);
+    magSeriesY->append(time, data.imuData.mag.y);
+    magSeriesZ->append(time, data.imuData.mag.z);
+
+    // Aktualizuj wykresy kątów (ADC)
+    for (int i = 0; i < 6; ++i) {
+        if (i < angleSeries.size()) {
+            // Konwersja napięcia na kąt (przykładowe mapowanie, dostosuj według potrzeb)
+            // Załóżmy, że 0V = -180°, 5V = 180°
+            double angle = (data.adcData.adc[i] - 2.5) * 72.0; // (5V zakres) * (360° / 5V)
+            angleSeries[i]->append(time, angle);
+
+            // Usuń stare punkty jeśli przekroczono limit
+            if (angleSeries[i]->count() > MAX_POINTS) {
+                angleSeries[i]->remove(0);
+            }
+        }
+    }
+
+    // Usuń stare punkty jeśli przekroczono limit dla wykresów IMU
+    if (accelSeriesX->count() > MAX_POINTS) {
+        // IMU series X
+        accelSeriesX->remove(0);
+        gyroSeriesX->remove(0);
+        magSeriesX->remove(0);
+
+        // IMU series Y
+        accelSeriesY->remove(0);
+        gyroSeriesY->remove(0);
+        magSeriesY->remove(0);
+
+        // IMU series Z
+        accelSeriesZ->remove(0);
+        gyroSeriesZ->remove(0);
+        magSeriesZ->remove(0);
+    }
+
+    // Aktualizuj zakresy osi X
+    if (dataCounter > MAX_POINTS) {
+        float minX = dataCounter - MAX_POINTS;
+        float maxX = dataCounter;
+
+        // IMU Charts
+        for (QChart* chart : {imuChartX, imuChartY, imuChartZ}) {
+            QValueAxis* axisX = qobject_cast<QValueAxis*>(chart->axes(Qt::Horizontal).first());
+            if (axisX) {
+                axisX->setRange(minX, maxX);
+            }
+        }
+
+        // Angles Charts
+        for (QChart* chart : angleCharts) {
+            QValueAxis* axisX = qobject_cast<QValueAxis*>(chart->axes(Qt::Horizontal).first());
+            if (axisX) {
+                axisX->setRange(minX, maxX);
+            }
+        }
+    }
+
+    // Aktualizuj wartości ADC w labelach
+    for (int i = 0; i < 6; i++) {
+        // ADC value labels
+        QLabel* adcLabel = findChild<QLabel*>(QString("adcVal%1").arg(i));
+        if (adcLabel) {
+            adcLabel->setText(QString::number(data.adcData.adc[i], 'f', 2) + " V");
+        }
+
+        // Angle value labels (converted from ADC)
+        QLabel* angleLabel = findChild<QLabel*>(QString("angVal%1").arg(i + 1));
+        if (angleLabel) {
+            double angle = (data.adcData.adc[i] - 2.5) * 72.0;
+            angleLabel->setText(QString::number(angle, 'f', 2) + "°");
+        }
+    }
+
+    // IMU Values
+    ui->accValX->setText(QString::number(data.imuData.accel.x, 'f', 2) + " m/s²");
+    ui->accValY->setText(QString::number(data.imuData.accel.y, 'f', 2) + " m/s²");
+    ui->accValZ->setText(QString::number(data.imuData.accel.z, 'f', 2) + " m/s²");
+
+    ui->gyroValX->setText(QString::number(data.imuData.gyro.x, 'f', 2) + " rad/s");
+    ui->gyroValY->setText(QString::number(data.imuData.gyro.y, 'f', 2) + " rad/s");
+    ui->gyroValZ->setText(QString::number(data.imuData.gyro.z, 'f', 2) + " rad/s");
+
+    ui->magValX->setText(QString::number(data.imuData.mag.x, 'f', 2) + " gauss");
+    ui->magValY->setText(QString::number(data.imuData.mag.y, 'f', 2) + " gauss");
+    ui->magValZ->setText(QString::number(data.imuData.mag.z, 'f', 2) + " gauss");
+
+    // Odśwież wykresy
+    imuChartX->update();
+    imuChartY->update();
+    imuChartZ->update();
+    for (QChart* chart : angleCharts) {
+        chart->update();
+    }
+
+    // Aktualizacja potencjometrów
+    for (int i = 0; i < 6; i++) {
+        // Znajdź potencjometr przez nazwę
+        QDial* potentiometer = findChild<QDial*>(QString("dialAngle%1").arg(i + 1));
+        if (potentiometer) {
+            // Konwertuj napięcie (0-5V) na kąt (0-360 stopni)
+            // Zakładamy że potencjometr ma zakres 0-360
+            int angle = static_cast<int>((data.adcData.adc[i] / 5.0) * 360.0);
+
+            // Ustaw wartość potencjometru
+            potentiometer->setValue(angle);
+
+            // Opcjonalnie: dodaj tooltip z dokładną wartością
+            potentiometer->setToolTip(QString("Voltage: %1 V\nAngle: %2°")
+                                          .arg(data.adcData.adc[i], 0, 'f', 2)
+                                          .arg(angle));
+        }
+    }
+}
+
+/**
+ * @brief Destruktor klasy MainWindow
+ *
+ * Zwalnia zaalokowane zasoby, w tym interfejs użytkownika.
+ */
 MainWindow::~MainWindow()
 {
     delete ui;
