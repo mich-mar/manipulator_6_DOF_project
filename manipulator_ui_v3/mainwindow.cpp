@@ -461,7 +461,7 @@ void MainWindow::setupAnglesCharts()
 
     auto setupChartView = [](QChartView* chartView) {
         chartView->setRenderHint(QPainter::Antialiasing);
-        chartView->setMinimumSize(300, 200);
+        chartView->setMinimumSize(100, 100);
         chartView->setBackgroundBrush(QColor("#2F3542"));
         // Add rounded corners to the chart view
         chartView->setRenderHint(QPainter::Antialiasing);
@@ -478,7 +478,7 @@ void MainWindow::setupAnglesCharts()
         QValueAxis *axisX = new QValueAxis();
         QValueAxis *axisY = new QValueAxis();
         axisX->setRange(0, MAX_POINTS);
-        axisY->setRange(-180, 180);
+        axisY->setRange(-150, 150);
 
         setupAxis(axisX);
         setupAxis(axisY);

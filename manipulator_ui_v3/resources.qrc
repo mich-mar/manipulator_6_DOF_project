@@ -1,10 +1,16 @@
 <RCC>
     <qresource prefix="/img">
-        <file>img/manipulatopr.png</file>
         <file>img/moon.png</file>
         <file>img/pl.png</file>
         <file>img/sun.png</file>
         <file>img/uk.png</file>
+        <file>img/joint_5.png</file>
+        <file>img/joint_4.png</file>
+        <file>img/joint_3.png</file>
+        <file>img/joint_2.png</file>
+        <file>img/joint_1.png</file>
+        <file>img/joint_0.png</file>
+        <file>img/manipulatopr.png</file>
     </qresource>
     <qresource prefix="/translations">
         <file>translations/manipulator_pl.ts</file>
