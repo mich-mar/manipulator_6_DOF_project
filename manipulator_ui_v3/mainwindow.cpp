@@ -442,7 +442,7 @@ void MainWindow::setupIMUCharts()
  *
  * Tworzy i konfiguruje wykresy dla wszystkich sześciu kątów manipulatora.
  * Każdy wykres zawiera jedną serię danych reprezentującą wartość kąta
- * w zakresie od -360° do 360°.
+ * w zakresie od -180° do 180°.
  */
 void MainWindow::setupAnglesCharts()
 {
@@ -478,7 +478,7 @@ void MainWindow::setupAnglesCharts()
         QValueAxis *axisX = new QValueAxis();
         QValueAxis *axisY = new QValueAxis();
         axisX->setRange(0, MAX_POINTS);
-        axisY->setRange(-360, 360);
+        axisY->setRange(-180, 180);
 
         setupAxis(axisX);
         setupAxis(axisY);
@@ -561,7 +561,7 @@ void MainWindow::processNewSensorData(const SensorDataPoint& data)
         if (i < angleSeries.size()) {
             // Konwersja napięcia na kąt (przykładowe mapowanie, dostosuj według potrzeb)
             // Załóżmy, że 0V = -180°, 5V = 180°
-            double angle = (data.adcData.adc[i] - 2.5) * 72.0; // (5V zakres) * (360° / 5V)
+            double angle = (data.adcData.adc[i]);
             angleSeries[i]->append(time, angle);
 
             // Usuń stare punkty jeśli przekroczono limit
@@ -622,7 +622,7 @@ void MainWindow::processNewSensorData(const SensorDataPoint& data)
         // Angle value labels (converted from ADC)
         QLabel* angleLabel = findChild<QLabel*>(QString("angVal%1").arg(i + 1));
         if (angleLabel) {
-            double angle = (data.adcData.adc[i] - 2.5) * 72.0;
+            double angle = data.adcData.adc[i];
             angleLabel->setText(QString::number(angle, 'f', 2) + "°");
         }
     }
@@ -653,9 +653,7 @@ void MainWindow::processNewSensorData(const SensorDataPoint& data)
         // Znajdź potencjometr przez nazwę
         QDial* potentiometer = findChild<QDial*>(QString("dialAngle%1").arg(i + 1));
         if (potentiometer) {
-            // Konwertuj napięcie (0-5V) na kąt (0-360 stopni)
-            // Zakładamy że potencjometr ma zakres 0-360
-            int angle = static_cast<int>((data.adcData.adc[i] / 5.0) * 360.0);
+            int angle = static_cast<int>(data.adcData.adc[i]);
 
             // Ustaw wartość potencjometru
             potentiometer->setValue(angle);

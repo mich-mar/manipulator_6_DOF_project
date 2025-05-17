@@ -118,11 +118,11 @@ int main(void)
 
   while (1)
   {
-    ReadAllSensors(&hadc, &hgy85, FORMAT_HUMAN_READABLE);
+    // printAllSensors(&hadc, &hgy85, FORMAT_HUMAN_READABLE);
 
-    // ReadAllSensors(&hadc,&hgy85,FORMAT_CSV);
+    printAllSensors(&hadc,&hgy85,FORMAT_CSV);
 
-    HAL_Delay(100);
+    // HAL_Delay(10);
 
     /* USER CODE END WHILE */
 

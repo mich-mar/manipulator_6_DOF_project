@@ -1,6 +1,6 @@
 #include "sendData.h"
 
-void ReadAllSensors(ADS1115_Readings *hadc, GY85_HandleTypeDef *hgy85, OutputFormat format) {
+void printAllSensors(ADS1115_Readings *hadc, GY85_HandleTypeDef *hgy85, OutputFormat format) {
     static char buffer[512]; // Stały bufor
     memset(buffer, 0, sizeof(buffer));
     int length = 0;
@@ -16,23 +16,23 @@ void ReadAllSensors(ADS1115_Readings *hadc, GY85_HandleTypeDef *hgy85, OutputFor
     if (format == FORMAT_HUMAN_READABLE) {
         sprintf(buffer,
             "===============================================\r\n"
-            "ADC_A0: %.2f [V]\n"
-            "ADC_A1: %.2f [V]\r\n"
-            "ADC_A2: %.2f [V]\r\n"
-            "ADC_A3: %.2f [V]\r\n"
-            "ADC_A4: %.2f [V]\r\n"
-            "ADC_A5: %.2f [V]\r\n"
+            "JOINT_0: %.2f [°]\n"
+            "JOINT_1: %.2f [°]\r\n"
+            "JOINT_2: %.2f [°]\r\n"
+            "JOINT_3: %.2f [°]\r\n"
+            "JOINT_4: %.2f [°]\r\n"
+            "JOINT_5: %.2f [°]\r\n"
             "ACC: X=%.2f, Y=%.2f, Z=%.2f [m/s^2]\r\n"
             "GYRO: X=%.2f, Y=%.2f, Z=%.2f [rad/s]\r\n"
             "MAG: X=%.2f, Y=%.2f, Z=%.2f [gauss]\r\n"
             "Temp: %.2f [C]\r\n"
             "===============================================\r\n",
-            hadc->A0_adc,
-            hadc->A1_adc,
-            hadc->A2_adc,
-            hadc->A3_adc,
-            hadc->A4_adc,
-            hadc->A5_adc,
+            hadc->joint_angle_0,
+            hadc->joint_angle_1,
+            hadc->joint_angle_2,
+            hadc->joint_angle_3,
+            hadc->joint_angle_4,
+            hadc->joint_angle_5,
             hgy85->accel.x, hgy85->accel.y, hgy85->accel.z,
             hgy85->gyro.x, hgy85->gyro.y, hgy85->gyro.z,
             hgy85->mag.x, hgy85->mag.y, hgy85->mag.z,
@@ -44,12 +44,12 @@ void ReadAllSensors(ADS1115_Readings *hadc, GY85_HandleTypeDef *hgy85, OutputFor
         // Formatowanie danych CSV
         length = sprintf(buffer,
             "%.2f;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f;%.2f",
-            hadc->A0_adc,
-            hadc->A1_adc,
-            hadc->A2_adc,
-            hadc->A3_adc,
-            hadc->A4_adc,
-            hadc->A5_adc,
+            hadc->joint_angle_0,
+            hadc->joint_angle_1,
+            hadc->joint_angle_2,
+            hadc->joint_angle_3,
+            hadc->joint_angle_4,
+            hadc->joint_angle_5,
             hgy85->accel.x, hgy85->accel.y, hgy85->accel.z,
             hgy85->gyro.x, hgy85->gyro.y, hgy85->gyro.z,
             hgy85->mag.x, hgy85->mag.y, hgy85->mag.z,

@@ -120,7 +120,34 @@ typedef struct
     float A3_adc;
     float A4_adc;
     float A5_adc;
+
+    float joint_angle_0;
+    float joint_angle_1;
+    float joint_angle_2;
+    float joint_angle_3;
+    float joint_angle_4;
+    float joint_angle_5;
 } ADS1115_Readings;
+
+
+// JOINT_0: 13012
+// JOINT_1: 6761
+// JOINT_2: 11914
+// JOINT_3: 13852
+// JOINT_4: 11770
+// JOINT_5: 15511
+typedef enum
+{
+    RAW_MAX_VALUE_5V = 26706,
+    MAX_ANGLE = 270,
+    JOIN_MIDDLE_0 = 13012,
+    JOIN_MIDDLE_1 = 6761,
+    JOIN_MIDDLE_2 = 11914,
+    JOIN_MIDDLE_3 = 13852,
+    JOIN_MIDDLE_4 = 11770,
+    JOIN_MIDDLE_5 = 15511
+} ADS1115_Calibration;
+
 
 extern ADS1115_Debug_t ADS1115_Debug;
 
@@ -136,6 +163,7 @@ int16_t ADS1115_ReadADC_A1(uint8_t *device_adress, ADS1115_Status *status);
 int16_t ADS1115_ReadADC_A2(uint8_t *device_adress, ADS1115_Status *status);
 void ADS1115_ReadAllValues(ADS1115_Readings *ADCdata);
 float ADS1115_ConvertToVoltage(int16_t raw_adc, uint16_t pga);
+float calculateJointAngle(uint16_t raw_value, uint8_t joint_number);
 
 
 // Funkcje konfiguracji

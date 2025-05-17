@@ -17,6 +17,6 @@ typedef enum {
 } OutputFormat;
 
 // Deklaracja funkcji
-void ReadAllSensors(ADS1115_Readings *hadc, GY85_HandleTypeDef *hgy85, OutputFormat format);
+void printAllSensors(ADS1115_Readings *hadc, GY85_HandleTypeDef *hgy85, OutputFormat format);
 
 #endif // SENSOR_READER_H
