@@ -13,7 +13,7 @@
         <file>img/manipulatopr.png</file>
     </qresource>
     <qresource prefix="/translations">
-        <file>translations/manipulator_pl.ts</file>
-        <file>translations/manipulator_en.ts</file>
+        <file>translations/manipulator_en.qm</file>
+        <file>translations/manipulator_pl.qm</file>
     </qresource>
 </RCC>

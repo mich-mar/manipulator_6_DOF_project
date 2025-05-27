@@ -13,6 +13,7 @@
 #include <QTranslator>
 #include <QSettings>
 #include <QMessageBox>
+#include <QLibraryInfo>
 #include "sensorData.hpp"
 #include "dataQueue.hpp"
 #include "serialReader.hpp"

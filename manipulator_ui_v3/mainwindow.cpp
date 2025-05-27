@@ -13,18 +13,16 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    QTranslator* qtTranslator = new QTranslator(this);
+    if (qtTranslator->load("qt_" + QLocale::system().name(),
+                           QLibraryInfo::path(QLibraryInfo::TranslationsPath))) {
+        qApp->installTranslator(qtTranslator);
+    }
+
     ui->setupUi(this);
 
     // Ustaw domyślnie język angielski
     switchLanguage("en");
-
-    // Połącz przyciski zmiany języka
-    connect(ui->plButton, &QPushButton::clicked, this, [this]() {
-        switchLanguage("pl");
-    });
-    connect(ui->engButton, &QPushButton::clicked, this, [this]() {
-        switchLanguage("en");
-    });
 
     // Inicjalizacja licznika punktów
     dataCounter = 0;
@@ -41,6 +39,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->anglesButton, &QPushButton::clicked, this, &MainWindow::on_anglesButton_clicked);
     connect(ui->valuesButton, &QPushButton::clicked, this, &MainWindow::on_valuesButton_clicked);
     connect(ui->compareButton, &QPushButton::clicked, this, &MainWindow::on_compareButton_clicked);
+
+    // Połączenie przycisków ze zmianą języka
+    connect(ui->plButton, &QPushButton::clicked, this, &MainWindow::on_plButton_clicked);
+    connect(ui->engButton, &QPushButton::clicked, this, &MainWindow::on_engButton_clicked);
 
     // Inicjalizacja SerialReader
     serialReader = new SerialReader(this);
@@ -108,19 +110,22 @@ void MainWindow::on_compareButton_clicked()
 // @todo: napraw ta funkcje
 void MainWindow::switchLanguage(const QString& language)
 {
-    // Usuń poprzednie tłumaczenie jeśli istnieje
+    // Usuń poprzednie tłumaczenie
     qApp->removeTranslator(&translator);
 
-    // Załaduj nowe tłumaczenie
-    if (translator.load(":/translations/manipulator_" + language))
-    {
-        qApp->installTranslator(&translator);
+    // Próba załadowania nowego tłumaczenia
+    bool loaded = translator.load(":/translations/translations/manipulator_" + language + ".qm");
+
+    if (loaded) {
+        bool installed = qApp->installTranslator(&translator);
+    } else {
+        return;
     }
 
     // Aktualizuj interfejs użytkownika
     ui->retranslateUi(this);
 
-    // Menu i przyciski nawigacyjne
+    // Przyciski nawigacyjne (używaj dokładnie takich samych tekstów jak w pliku .ts)
     ui->modelButton->setText(tr("3D Model"));
     ui->imuButton->setText(tr("IMU"));
     ui->anglesButton->setText(tr("Angles"));
@@ -130,25 +135,34 @@ void MainWindow::switchLanguage(const QString& language)
     // Tytuł strony modelu 3D
     ui->label->setText(tr("MANIPULATOR 3D MODEL"));
 
+    // Tytuł strony IMU
+    ui->imuPageLabel->setText(tr("IMU VALUES"));
+
     // Legendy wykresów IMU
     if (accelSeriesX) {
+        // Wykresy IMU powinny używać tr()
+        QString accelerometer = tr("Accelerometer");
+        QString gyroscope = tr("Gyroscope");
+        QString magnetometer = tr("Magnetometer");
+        QString fusion = tr("Fusion");
+
         // Oś X
-        accelSeriesX->setName(tr("Accelerometer"));
-        gyroSeriesX->setName(tr("Gyroscope"));
-        magSeriesX->setName(tr("Magnetometer"));
-        fusSeriesX->setName(tr("Fusion"));
+        accelSeriesX->setName(accelerometer);
+        gyroSeriesX->setName(gyroscope);
+        magSeriesX->setName(magnetometer);
+        fusSeriesX->setName(fusion);
 
         // Oś Y
-        accelSeriesY->setName(tr("Accelerometer"));
-        gyroSeriesY->setName(tr("Gyroscope"));
-        magSeriesY->setName(tr("Magnetometer"));
-        fusSeriesY->setName(tr("Fusion"));
+        accelSeriesY->setName(accelerometer);
+        gyroSeriesY->setName(gyroscope);
+        magSeriesY->setName(magnetometer);
+        fusSeriesY->setName(fusion);
 
         // Oś Z
-        accelSeriesZ->setName(tr("Accelerometer"));
-        gyroSeriesZ->setName(tr("Gyroscope"));
-        magSeriesZ->setName(tr("Magnetometer"));
-        fusSeriesZ->setName(tr("Fusion"));
+        accelSeriesZ->setName(accelerometer);
+        gyroSeriesZ->setName(gyroscope);
+        magSeriesZ->setName(magnetometer);
+        fusSeriesZ->setName(fusion);
     }
 
     // Nazwy osi
@@ -156,7 +170,7 @@ void MainWindow::switchLanguage(const QString& language)
     ui->imuChartY->setText(tr("Y axis"));
     ui->imuChartZ->setText(tr("Z axis"));
 
-    // Etykiety kątów w zakładce Values
+    // Etykiety kątów
     ui->angLabel1->setText(tr("ANG_1"));
     ui->angLabel2->setText(tr("ANG_2"));
     ui->angLabel3->setText(tr("ANG_3"));
@@ -164,7 +178,7 @@ void MainWindow::switchLanguage(const QString& language)
     ui->angLabel5->setText(tr("ANG_5"));
     ui->angLabel6->setText(tr("ANG_6"));
 
-    // Etykiety IMU w zakładce Values
+    // Etykiety IMU
     ui->accelLabelX->setText(tr("ACC_X"));
     ui->accelLabelY->setText(tr("ACC_Y"));
     ui->accelLabelZ->setText(tr("ACC_Z"));
@@ -183,31 +197,25 @@ void MainWindow::switchLanguage(const QString& language)
 
     // Etykiety w zakładce Compare
     ui->imuAnglesLabel->setText(tr("IMU ANGLES"));
-    ui->potAnglesLabel->setText(tr("POTENTIOMETER ANGLES"));
+    ui->potAnglesLabel->setText(tr("POTENTIOMETRS ANGLES"));
 
     // Etykiety przegubów
     for (int i = 1; i <= 6; ++i) {
         // IMU joints
         QLabel* imuJoint = findChild<QLabel*>(QString("imuJointLabel%1").arg(i));
         if (imuJoint) {
-            imuJoint->setText(tr("JOINT_%1").arg(i));
+            // Użyj bezpośrednio sformatowanego stringa dla klucza tłumaczenia
+            QString key = QString("JOINT_%1").arg(i);
+            QString translatedText = tr(key.toLatin1().constData());
+            imuJoint->setText(translatedText);
         }
 
         // Potentiometer joints
         QLabel* potJoint = findChild<QLabel*>(QString("potJointLabel%1").arg(i));
         if (potJoint) {
-            potJoint->setText(tr("JOINT_%1").arg(i));
-        }
-
-        // Aktualizacja nazw serii wykresów kątów
-        if (i-1 < angleSeries.size()) {
-            angleSeries[i-1]->setName(tr("Angle %1").arg(i));
-        }
-
-        // Etykiety wykresów kątów
-        QLabel* angChart = findChild<QLabel*>(QString("angChart%1").arg(i));
-        if (angChart) {
-            angChart->setText(tr("ANG_%1").arg(i));
+            QString key = QString("JOINT_%1").arg(i);
+            QString translatedText = tr(key.toLatin1().constData());
+            potJoint->setText(translatedText);
         }
     }
 
@@ -516,7 +524,7 @@ void MainWindow::setupAnglesCharts()
  */
 void MainWindow::onNewSerialData(const SensorDataPoint& data)
 {
-    qDebug() << "Otrzymano nowe dane w MainWindow";  // Dodaj to
+    qDebug() << "Otrzymano nowe dane w MainWindow";
     processNewSensorData(data);
 }
 
@@ -664,6 +672,25 @@ void MainWindow::processNewSensorData(const SensorDataPoint& data)
                                           .arg(angle));
         }
     }
+
+    // Aktualizuj wartości kątów w labelach w porywnaniu z kinematyką
+    for (int i = 0; i < 6; i++) {
+        // Oblicz kąt
+        double angle = data.adcData.adc[i];
+
+        // Dodaj aktualizację dla imuJointValue
+        QLabel* imuJointLabel = findChild<QLabel*>(QString("imuJointValue%1").arg(i + 1));
+        if (imuJointLabel) {
+            imuJointLabel->setText(QString::number(angle, 'f', 2) + "°");
+        }
+
+        // Dodaj aktualizację dla potJointValue
+        QLabel* potJointLabel = findChild<QLabel*>(QString("potJointValue%1").arg(i + 1));
+        if (potJointLabel) {
+            potJointLabel->setText(QString::number(angle, 'f', 2) + "°");
+        }
+    }
+
 }
 
 /**

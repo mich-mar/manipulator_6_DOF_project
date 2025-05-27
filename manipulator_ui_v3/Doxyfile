@@ -1,0 +1,39 @@
+# Główne informacje o projekcie
+PROJECT_NAME           = "Manipulator 6 DOF"
+PROJECT_BRIEF          = "Dokumentacja projektu Qt/C++"
+OUTPUT_DIRECTORY       = docs
+INPUT                  = .
+RECURSIVE              = YES
+
+# Ignoruj katalog build/
+EXCLUDE                = ./build
+
+# Obsługa C++
+OPTIMIZE_OUTPUT_FOR_C  = NO
+OPTIMIZE_OUTPUT_JAVA   = NO
+EXTENSION_MAPPING      = h=Cpp
+
+# Wydaj HTML (i tylko HTML)
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+
+# Styl dokumentacji
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+
+# Użyj komentarzy Qt
+JAVADOC_AUTOBRIEF      = YES
+QT_AUTOBRIEF           = YES
+
+# Wygląd
+HTML_OUTPUT            = html
+QUIET                  = NO
+WARN_IF_UNDOCUMENTED   = YES
+
+# Obsługa grafiki (np. diagramów)
+HAVE_DOT               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+DOT_TRANSPARENT        = YES
+DOT_MULTI_TARGETS      = YES

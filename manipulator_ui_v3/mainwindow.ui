@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>878</width>
-    <height>744</height>
+    <width>1000</width>
+    <height>830</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -34,7 +34,7 @@
      <widget class="QWidget" name="buttonsWidget" native="true">
       <property name="minimumSize">
        <size>
-        <width>120</width>
+        <width>140</width>
         <height>0</height>
        </size>
       </property>
@@ -46,10 +46,10 @@
         <widget class="QPushButton" name="modelButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    min-width: 100px;
-    max-width: 100px;
-    min-height: 100px;
-    max-height: 100px;
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 120px;
+    max-height: 120px;
     background-color: #4169E1;    /* Royal Blue - jaśniejszy odcień */
     border-radius: 20px;
     color: white;
@@ -84,10 +84,10 @@ QPushButton:pressed {
         <widget class="QPushButton" name="imuButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    min-width: 100px;
-    max-width: 100px;
-    min-height: 100px;
-    max-height: 100px;
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 120px;
+    max-height: 120px;
     background-color: #4169E1;    /* Royal Blue - jaśniejszy odcień */
     border-radius: 20px;
     color: white;
@@ -122,10 +122,10 @@ QPushButton:pressed {
         <widget class="QPushButton" name="anglesButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    min-width: 100px;
-    max-width: 100px;
-    min-height: 100px;
-    max-height: 100px;
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 120px;
+    max-height: 120px;
     background-color: #4169E1;    /* Royal Blue - jaśniejszy odcień */
     border-radius: 20px;
     color: white;
@@ -160,10 +160,10 @@ QPushButton:pressed {
         <widget class="QPushButton" name="valuesButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    min-width: 100px;
-    max-width: 100px;
-    min-height: 100px;
-    max-height: 100px;
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 120px;
+    max-height: 120px;
     background-color: #4169E1;    /* Royal Blue - jaśniejszy odcień */
     border-radius: 20px;
     color: white;
@@ -198,10 +198,10 @@ QPushButton:pressed {
         <widget class="QPushButton" name="compareButton">
          <property name="styleSheet">
           <string notr="true">QPushButton {
-    min-width: 100px;
-    max-width: 100px;
-    min-height: 100px;
-    max-height: 100px;
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 120px;
+    max-height: 120px;
     background-color: #4169E1;    /* Royal Blue - jaśniejszy odcień */
     border-radius: 20px;
     color: white;
@@ -513,7 +513,7 @@ QPushButton:pressed {
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="modelPage">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -598,11 +598,23 @@ margin-bottom: 5px;</string>
       <widget class="QWidget" name="imuPage">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QLabel" name="label_2">
+         <widget class="QLabel" name="imuPageLabel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>55</height>
+           </size>
+          </property>
           <property name="maximumSize">
            <size>
             <width>16777215</width>
-            <height>40</height>
+            <height>55</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -1412,15 +1424,288 @@ qproperty-alignment: AlignCenter;</string>
       <widget class="QWidget" name="comparePage">
        <layout class="QHBoxLayout" name="horizontalLayout_7">
         <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QWidget" name="widget_3" native="true">
+          <layout class="QVBoxLayout" name="verticalLayout_18">
+           <item>
+            <widget class="QLabel" name="label_9">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>TextLabel</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_33">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="resources.qrc">:/img/img/joint_0.png</pixmap>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_34">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_8">
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="resources.qrc">:/img/img/joint_1.png</pixmap>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_35">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_7">
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="resources.qrc">:/img/img/joint_2.png</pixmap>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_36">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_6">
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="resources.qrc">:/img/img/joint_3.png</pixmap>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_37">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="resources.qrc">:/img/img/joint_4.png</pixmap>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_38">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_5">
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="pixmap">
+              <pixmap resource="resources.qrc">:/img/img/joint_5.png</pixmap>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_39">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
          <widget class="QWidget" name="widget" native="true">
           <layout class="QVBoxLayout" name="verticalLayout_13">
            <item>
             <widget class="QLabel" name="imuAnglesLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>350</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>320</width>
+               <height>100</height>
+              </size>
+             </property>
              <property name="styleSheet">
               <string notr="true">color: black;
 font-weight: bold;
 font-size: 20pt;
-min-height: 30px;
 margin-bottom: 5px;</string>
              </property>
              <property name="text">
@@ -1432,235 +1717,561 @@ margin-bottom: 5px;</string>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="imuJointLabel1">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::LeftToRight</enum>
+            <spacer name="verticalSpacer_40">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
-             <property name="styleSheet">
-              <string notr="true">color: black;
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget_4" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_19">
+              <item>
+               <widget class="QLabel" name="imuJointLabel1">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LayoutDirection::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: black;
 font-weight: bold;
 font-size: 12pt;
 min-height: 30px;
 margin-bottom: 5px;</string>
-             </property>
-             <property name="text">
-              <string>JOINT_1</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="imuJointValue1">
-             <property name="styleSheet">
-              <string notr="true">background-color: #2F3542;
+                </property>
+                <property name="text">
+                 <string>JOINT_1</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="imuJointValue1">
+                <property name="styleSheet">
+                 <string notr="true">background-color: #2F3542;
 color: white;
 border: none;
 border-radius: 15px;
 padding: 5px;
-min-width: 30px;
+min-width: 250px;
 min-height: 20px;
 max-height: 20px;
 qproperty-alignment: AlignCenter;</string>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
+                </property>
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="imuJointLabel2">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::LeftToRight</enum>
+            <spacer name="verticalSpacer_41">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
-             <property name="styleSheet">
-              <string notr="true">color: black;
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget_5" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_20">
+              <item>
+               <widget class="QLabel" name="imuJointLabel2">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LayoutDirection::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: black;
 font-weight: bold;
 font-size: 12pt;
 min-height: 30px;
 margin-bottom: 5px;</string>
-             </property>
-             <property name="text">
-              <string>JOINT_2</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="imuJointValue2">
-             <property name="styleSheet">
-              <string notr="true">background-color: #2F3542;
+                </property>
+                <property name="text">
+                 <string>JOINT_2</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="imuJointValue2">
+                <property name="styleSheet">
+                 <string notr="true">background-color: #2F3542;
 color: white;
 border: none;
 border-radius: 15px;
 padding: 5px;
-min-width: 30px;
+min-width: 250px;
 min-height: 20px;
 max-height: 20px;
 qproperty-alignment: AlignCenter;</string>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
+                </property>
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="imuJointLabel3">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::LeftToRight</enum>
+            <spacer name="verticalSpacer_42">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
-             <property name="styleSheet">
-              <string notr="true">color: black;
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget_6" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_21">
+              <item>
+               <widget class="QLabel" name="imuJointLabel3">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LayoutDirection::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: black;
 font-weight: bold;
 font-size: 12pt;
 min-height: 30px;
 margin-bottom: 5px;</string>
-             </property>
-             <property name="text">
-              <string>JOINT_3</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="imuJointValue3">
-             <property name="styleSheet">
-              <string notr="true">background-color: #2F3542;
+                </property>
+                <property name="text">
+                 <string>JOINT_3</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="imuJointValue3">
+                <property name="styleSheet">
+                 <string notr="true">background-color: #2F3542;
 color: white;
 border: none;
 border-radius: 15px;
 padding: 5px;
-min-width: 30px;
+min-width: 250px;
 min-height: 20px;
 max-height: 20px;
 qproperty-alignment: AlignCenter;</string>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
+                </property>
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="imuJointLabel4">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::LeftToRight</enum>
+            <spacer name="verticalSpacer_43">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
-             <property name="styleSheet">
-              <string notr="true">color: black;
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget_7" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_22">
+              <item>
+               <widget class="QLabel" name="imuJointLabel4">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LayoutDirection::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: black;
 font-weight: bold;
 font-size: 12pt;
 min-height: 30px;
 margin-bottom: 5px;</string>
-             </property>
-             <property name="text">
-              <string>JOINT_4</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="imuJointValue4">
-             <property name="styleSheet">
-              <string notr="true">background-color: #2F3542;
+                </property>
+                <property name="text">
+                 <string>JOINT_4</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="imuJointValue4">
+                <property name="styleSheet">
+                 <string notr="true">background-color: #2F3542;
 color: white;
 border: none;
 border-radius: 15px;
 padding: 5px;
-min-width: 30px;
+min-width: 250px;
 min-height: 20px;
 max-height: 20px;
 qproperty-alignment: AlignCenter;</string>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
+                </property>
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="imuJointLabel5">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::LeftToRight</enum>
+            <spacer name="verticalSpacer_44">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
-             <property name="styleSheet">
-              <string notr="true">color: black;
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget_8" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_23">
+              <item>
+               <widget class="QLabel" name="imuJointLabel5">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LayoutDirection::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: black;
 font-weight: bold;
 font-size: 12pt;
 min-height: 30px;
 margin-bottom: 5px;</string>
-             </property>
-             <property name="text">
-              <string>JOINT_5</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="imuJointValue5">
-             <property name="styleSheet">
-              <string notr="true">background-color: #2F3542;
+                </property>
+                <property name="text">
+                 <string>JOINT_5</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="imuJointValue5">
+                <property name="styleSheet">
+                 <string notr="true">background-color: #2F3542;
 color: white;
 border: none;
 border-radius: 15px;
 padding: 5px;
-min-width: 30px;
+min-width: 250px;
 min-height: 20px;
 max-height: 20px;
 qproperty-alignment: AlignCenter;</string>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
+                </property>
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="imuJointLabel6">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::LeftToRight</enum>
+            <spacer name="verticalSpacer_45">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
-             <property name="styleSheet">
-              <string notr="true">color: black;
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget_9" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_24">
+              <item>
+               <widget class="QLabel" name="imuJointLabel6">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LayoutDirection::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: black;
 font-weight: bold;
 font-size: 12pt;
 min-height: 30px;
 margin-bottom: 5px;</string>
-             </property>
-             <property name="text">
-              <string>JOINT_6</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="imuJointValue6">
-             <property name="styleSheet">
-              <string notr="true">background-color: #2F3542;
+                </property>
+                <property name="text">
+                 <string>JOINT_6</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="imuJointValue6">
+                <property name="styleSheet">
+                 <string notr="true">background-color: #2F3542;
 color: white;
 border: none;
 border-radius: 15px;
 padding: 5px;
-min-width: 30px;
+min-width: 250px;
 min-height: 20px;
 max-height: 20px;
 qproperty-alignment: AlignCenter;</string>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
+                </property>
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_46">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
         <item>
          <widget class="QWidget" name="widget_2" native="true">
@@ -1668,20 +2279,31 @@ qproperty-alignment: AlignCenter;</string>
            <item>
             <widget class="QLabel" name="potAnglesLabel">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>350</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>320</width>
+               <height>100</height>
+              </size>
              </property>
              <property name="styleSheet">
               <string notr="true">color: black;
 font-weight: bold;
 font-size: 20pt;
-min-height: 30px;
 margin-bottom: 5px;</string>
              </property>
              <property name="text">
-              <string>POTENTIOMETRS ANGLES</string>
+              <string>POT ANGLE</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
@@ -1689,235 +2311,525 @@ margin-bottom: 5px;</string>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="potJointLabel1">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::LeftToRight</enum>
+            <spacer name="verticalSpacer_47">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
-             <property name="styleSheet">
-              <string notr="true">color: black;
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget_10" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_25">
+              <item>
+               <widget class="QLabel" name="potJointLabel1">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LayoutDirection::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: black;
 font-weight: bold;
 font-size: 12pt;
 min-height: 30px;
 margin-bottom: 5px;</string>
-             </property>
-             <property name="text">
-              <string>JOINT_1</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="potJointValue1">
-             <property name="styleSheet">
-              <string notr="true">background-color: #2F3542;
+                </property>
+                <property name="text">
+                 <string>JOINT_1</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="potJointValue1">
+                <property name="styleSheet">
+                 <string notr="true">background-color: #2F3542;
 color: white;
 border: none;
 border-radius: 15px;
 padding: 5px;
-min-width: 30px;
+min-width: 250px;
 min-height: 20px;
 max-height: 20px;
 qproperty-alignment: AlignCenter;</string>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
+                </property>
+                <property name="text">
+                 <string>DUPA</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="potJointLabel2">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::LeftToRight</enum>
+            <spacer name="verticalSpacer_48">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
-             <property name="styleSheet">
-              <string notr="true">color: black;
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget_11" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_26">
+              <item>
+               <widget class="QLabel" name="potJointLabel2">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LayoutDirection::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: black;
 font-weight: bold;
 font-size: 12pt;
 min-height: 30px;
 margin-bottom: 5px;</string>
-             </property>
-             <property name="text">
-              <string>JOINT_2</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="potJointValue2">
-             <property name="styleSheet">
-              <string notr="true">background-color: #2F3542;
+                </property>
+                <property name="text">
+                 <string>JOINT_2</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="potJointValue2">
+                <property name="styleSheet">
+                 <string notr="true">background-color: #2F3542;
 color: white;
 border: none;
 border-radius: 15px;
 padding: 5px;
-min-width: 30px;
+min-width: 250px;
 min-height: 20px;
 max-height: 20px;
 qproperty-alignment: AlignCenter;</string>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
+                </property>
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="potJointLabel3">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::LeftToRight</enum>
+            <spacer name="verticalSpacer_49">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
-             <property name="styleSheet">
-              <string notr="true">color: black;
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget_16" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_31">
+              <item>
+               <widget class="QLabel" name="potJointLabel3">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LayoutDirection::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: black;
 font-weight: bold;
 font-size: 12pt;
 min-height: 30px;
 margin-bottom: 5px;</string>
-             </property>
-             <property name="text">
-              <string>JOINT_3</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="potJointValue3">
-             <property name="styleSheet">
-              <string notr="true">background-color: #2F3542;
+                </property>
+                <property name="text">
+                 <string>JOINT_3</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="potJointValue3">
+                <property name="styleSheet">
+                 <string notr="true">background-color: #2F3542;
 color: white;
 border: none;
 border-radius: 15px;
 padding: 5px;
-min-width: 30px;
+min-width: 250px;
 min-height: 20px;
 max-height: 20px;
 qproperty-alignment: AlignCenter;</string>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
+                </property>
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="potJointLabel4">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::LeftToRight</enum>
+            <spacer name="verticalSpacer_50">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
-             <property name="styleSheet">
-              <string notr="true">color: black;
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget_13" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_28">
+              <item>
+               <widget class="QLabel" name="potJointLabel4">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LayoutDirection::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: black;
 font-weight: bold;
 font-size: 12pt;
 min-height: 30px;
 margin-bottom: 5px;</string>
-             </property>
-             <property name="text">
-              <string>JOINT_4</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="potJointValue4">
-             <property name="styleSheet">
-              <string notr="true">background-color: #2F3542;
+                </property>
+                <property name="text">
+                 <string>JOINT_4</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="potJointValue4">
+                <property name="styleSheet">
+                 <string notr="true">background-color: #2F3542;
 color: white;
 border: none;
 border-radius: 15px;
 padding: 5px;
-min-width: 30px;
+min-width: 250px;
 min-height: 20px;
 max-height: 20px;
 qproperty-alignment: AlignCenter;</string>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
+                </property>
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="potJointLabel5">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::LeftToRight</enum>
+            <spacer name="verticalSpacer_51">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
-             <property name="styleSheet">
-              <string notr="true">color: black;
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget_14" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_29">
+              <item>
+               <widget class="QLabel" name="potJointLabel5">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LayoutDirection::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: black;
 font-weight: bold;
 font-size: 12pt;
 min-height: 30px;
 margin-bottom: 5px;</string>
-             </property>
-             <property name="text">
-              <string>JOINT_5</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="potJointValue5">
-             <property name="styleSheet">
-              <string notr="true">background-color: #2F3542;
+                </property>
+                <property name="text">
+                 <string>JOINT_5</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="potJointValue5">
+                <property name="styleSheet">
+                 <string notr="true">background-color: #2F3542;
 color: white;
 border: none;
 border-radius: 15px;
 padding: 5px;
-min-width: 30px;
+min-width: 250px;
 min-height: 20px;
 max-height: 20px;
 qproperty-alignment: AlignCenter;</string>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
+                </property>
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="potJointLabel6">
-             <property name="layoutDirection">
-              <enum>Qt::LayoutDirection::LeftToRight</enum>
+            <spacer name="verticalSpacer_53">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
-             <property name="styleSheet">
-              <string notr="true">color: black;
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget_15" native="true">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>100</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>100</height>
+              </size>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_30">
+              <item>
+               <widget class="QLabel" name="potJointLabel6">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>35</height>
+                 </size>
+                </property>
+                <property name="layoutDirection">
+                 <enum>Qt::LayoutDirection::LeftToRight</enum>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: black;
 font-weight: bold;
 font-size: 12pt;
 min-height: 30px;
 margin-bottom: 5px;</string>
-             </property>
-             <property name="text">
-              <string>JOINT_6</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="potJointValue6">
-             <property name="styleSheet">
-              <string notr="true">background-color: #2F3542;
+                </property>
+                <property name="text">
+                 <string>JOINT_6</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="potJointValue6">
+                <property name="styleSheet">
+                 <string notr="true">background-color: #2F3542;
 color: white;
 border: none;
 border-radius: 15px;
 padding: 5px;
-min-width: 30px;
+min-width: 250px;
 min-height: 20px;
 max-height: 20px;
 qproperty-alignment: AlignCenter;</string>
-             </property>
-             <property name="text">
-              <string>TextLabel</string>
-             </property>
+                </property>
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_52">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>

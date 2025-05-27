@@ -16,6 +16,10 @@
         <translation>IMU</translation>
     </message>
     <message>
+        <source>IMU VALUES</source>
+        <translation>IMU VALUES</translation>
+    </message>
+    <message>
         <source>Angles</source>
         <translation>Angles</translation>
     </message>
@@ -146,6 +150,22 @@
     <message>
         <source>POTENTIOMETRS ANGLES</source>
         <translation>POTENTIOMETER ANGLES</translation>
+    </message>
+    <message>
+        <source>Accelerometer</source>
+        <translation>Accelerometer</translation>
+    </message>
+    <message>
+        <source>Gyroscope</source>
+        <translation>Gyroscope</translation>
+    </message>
+    <message>
+        <source>Magnetometer</source>
+        <translation>Magnetometer</translation>
+    </message>
+    <message>
+        <source>Fusion</source>
+        <translation>Fusion</translation>
     </message>
 </context>
 </TS>

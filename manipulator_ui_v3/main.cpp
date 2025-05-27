@@ -15,6 +15,9 @@
  */
 int main(int argc, char *argv[])
 {
+    // Włącz wyświetlanie komunikatów debug
+    qSetMessagePattern("%{message}");
+
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
