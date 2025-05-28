@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['buffer_165',['buffer',['../classSerialReader.html#a8c78e0705525ed894a6c7f8ae2bdd9fa',1,'SerialReader']]],
-  ['buffer_5fsize_166',['BUFFER_SIZE',['../classSerialReader.html#a8115ae129ac230fd06f219ef0d097007',1,'SerialReader']]]
+  ['buffer_163',['buffer',['../classSerialReader.html#a8c78e0705525ed894a6c7f8ae2bdd9fa',1,'SerialReader']]],
+  ['buffer_5fsize_164',['BUFFER_SIZE',['../classSerialReader.html#a8115ae129ac230fd06f219ef0d097007',1,'SerialReader']]]
 ];

@@ -23,15 +23,15 @@
  @licend  The above is the entire license notice for the JavaScript code in this file
 */
 var menudata={children:[
-{text:"Main Page",url:"index.html"},
-{text:"Namespaces",url:"namespaces.html",children:[
-{text:"Namespace List",url:"namespaces.html"}]},
-{text:"Classes",url:"annotated.html",children:[
-{text:"Class List",url:"annotated.html"},
-{text:"Class Index",url:"classes.html"},
-{text:"Class Hierarchy",url:"inherits.html"},
-{text:"Class Members",url:"functions.html",children:[
-{text:"All",url:"functions.html",children:[
+{text:"Strona główna",url:"index.html"},
+{text:"Przestrzenie nazw",url:"namespaces.html",children:[
+{text:"Lista przestrzeni nazw",url:"namespaces.html"}]},
+{text:"Klasy",url:"annotated.html",children:[
+{text:"Lista klas",url:"annotated.html"},
+{text:"Indeks klas",url:"classes.html"},
+{text:"Hierarchia klas",url:"inherits.html"},
+{text:"Składowe klas",url:"functions.html",children:[
+{text:"Wszystko",url:"functions.html",children:[
 {text:"a",url:"functions.html#index_a"},
 {text:"b",url:"functions.html#index_b"},
 {text:"c",url:"functions.html#index_c"},
@@ -52,8 +52,8 @@ var menudata={children:[
 {text:"y",url:"functions.html#index_y"},
 {text:"z",url:"functions.html#index_z"},
 {text:"~",url:"functions.html#index__7E"}]},
-{text:"Functions",url:"functions_func.html"},
-{text:"Variables",url:"functions_vars.html",children:[
+{text:"Funkcje",url:"functions_func.html"},
+{text:"Zmienne",url:"functions_vars.html",children:[
 {text:"a",url:"functions_vars.html#index_a"},
 {text:"b",url:"functions_vars.html#index_b"},
 {text:"c",url:"functions_vars.html#index_c"},
@@ -69,9 +69,9 @@ var menudata={children:[
 {text:"x",url:"functions_vars.html#index_x"},
 {text:"y",url:"functions_vars.html#index_y"},
 {text:"z",url:"functions_vars.html#index_z"}]}]}]},
-{text:"Files",url:"files.html",children:[
-{text:"File List",url:"files.html"},
-{text:"File Members",url:"globals.html",children:[
-{text:"All",url:"globals.html"},
-{text:"Functions",url:"globals_func.html"},
-{text:"Macros",url:"globals_defs.html"}]}]}]}
+{text:"Pliki",url:"files.html",children:[
+{text:"Lista plików",url:"files.html"},
+{text:"Składowe plików",url:"globals.html",children:[
+{text:"Wszystko",url:"globals.html"},
+{text:"Funkcje",url:"globals_func.html"},
+{text:"Definicje",url:"globals_defs.html"}]}]}]}
