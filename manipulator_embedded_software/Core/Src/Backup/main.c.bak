@@ -29,6 +29,7 @@
 #include "ftos.h"
 #include "GY85.h"
 #include "sendData.h"
+#include "positionTracker.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -36,10 +37,12 @@
 
 GY85_HandleTypeDef hgy85;
 ADS1115_Readings hadc;
+PositionTracker tracker;
 
 // LED PC13
 // SDA PB7
 // SCL PB6
+// BUTTON PA0
 
 /* USER CODE END PTD */
 
@@ -76,6 +79,7 @@ void SystemClock_Config(void);
  */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -102,16 +106,19 @@ int main(void)
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
-  HAL_Delay(500); // stabilizacja USB
+  HAL_Delay(500);
 
-  ADS1115_Init(); // Bez sprawdzania błędu, zakładamy że się udało
+  ADS1115_Init(&ADS1115_ADDRESS_0_3);
 
-  HAL_StatusTypeDef status = GY85_Begin(&hgy85, &hi2c1);
-  if (status != HAL_OK)
-  {
-    // błąd inicjalizacji
-    Error_Handler();
-  }
+  ADS1115_Init(&ADS1115_ADDRESS_4_5);
+
+  GY85_Begin(&hgy85, &hi2c1);
+
+  // Inicjalizacja trackera pozycji
+  position_tracker_init(&tracker);
+
+  // Ustaw pozycję początkową (opcjonalnie)
+  position_tracker_reset(&tracker, 0.0f, 0.0f, 0.165f);
 
   /* USER CODE END 2 */
 
@@ -120,11 +127,41 @@ int main(void)
 
   while (1)
   {
-    ReadAllSensors(&hadc,&hgy85,FORMAT_HUMAN_READABLE);
-    
-    // ReadAllSensors(&hadc,&hgy85,FORMAT_CSV);
-    
-    HAL_Delay(100);
+    // printAllSensors(&hadc, &hgy85, FORMAT_HUMAN_READABLE);
+
+    // printAllSensors(&hadc,&hgy85,FORMAT_CSV);
+
+    // Sprawdź stan przycisku (przy GPIO_PULLDOWN:
+    // - przycisk NIE wciśnięty = GPIO_PIN_RESET (0)
+    // - przycisk wciśnięty = GPIO_PIN_SET (1))
+    if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_RESET)
+    { // Zmienione na RESET
+      // Przycisk NIE jest wciśnięty
+
+      // Odczyt danych z GY85
+      GY85_ReadAllSensors(&hgy85);
+
+      // Aktualizacja pozycji
+      position_tracker_update(&tracker, &hgy85);
+
+      // Wysłanie danych przez USB
+      position_tracker_send_data(&tracker);
+    }
+    else
+    {
+      // Przycisk jest wciśnięty - resetuj pozycję
+      position_tracker_reset(&tracker, 0.0f, 0.0f, 0.165f);
+
+      // Wyślij informację o resecie
+      char debug[64];
+      snprintf(debug, sizeof(debug), "RESET_POSITION\r\n");
+      sendUSBmsg(debug);
+
+      // Czekaj na zwolnienie przycisku z debouncing
+      HAL_Delay(50);
+    }
+
+    HAL_Delay(10); // 100Hz
 
     /* USER CODE END WHILE */
 

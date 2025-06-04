@@ -55,6 +55,8 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     Core/Src/sendUSB.c # <== changed
     Core/Src/sendData.c # <== changed
     Core/Src/crc.c
+    Core/Src/kalmanFilter.c
+    Core/Src/positionTracker.c
 )
 
 # Add include paths

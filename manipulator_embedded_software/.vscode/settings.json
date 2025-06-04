@@ -5,6 +5,7 @@
         "imu_adresses.h": "c",
         "main.h": "c",
         "usart.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "stdint.h": "c"
     }
 }

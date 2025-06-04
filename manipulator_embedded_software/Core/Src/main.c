@@ -29,6 +29,7 @@
 #include "ftos.h"
 #include "GY85.h"
 #include "sendData.h"
+#include "positionTracker.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -36,10 +37,12 @@
 
 GY85_HandleTypeDef hgy85;
 ADS1115_Readings hadc;
+PositionTracker tracker;
 
 // LED PC13
 // SDA PB7
 // SCL PB6
+// BUTTON PA0
 
 /* USER CODE END PTD */
 
@@ -111,6 +114,13 @@ int main(void)
 
   GY85_Begin(&hgy85, &hi2c1);
 
+  /* Initialize position tracker */
+  position_tracker_init(&tracker);
+
+  /* Send ready message */
+  char ready_msg[] = "System ready. Keep the IMU still for calibration...\r\n";
+  sendUSBmsg(ready_msg);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -122,7 +132,39 @@ int main(void)
 
     // printAllSensors(&hadc,&hgy85,FORMAT_CSV);
 
-    // HAL_Delay(10);
+    // /* Read data from GY85 */
+    // GY85_ReadAllSensors(&hadc);
+
+    // /* Update position tracking */
+    // position_tracker_update(&tracker, &hgy85);
+
+    // /* Send data via USB */
+    // position_tracker_send_data(&tracker);
+
+    // /* Check reset button (PA0) */
+    // if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_RESET)
+    // {
+    //   // Debouncing
+    //   HAL_Delay(50);
+    //   if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_RESET)
+    //   {
+    //     // Reset position tracker
+    //     position_tracker_reset(&tracker);
+
+    //     // Send reset message
+    //     char reset_msg[] = "Position tracker reset!\r\n";
+    //     sendUSBmsg(reset_msg);
+
+    //     // Wait for button release
+    //     while (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_RESET)
+    //     {
+    //       HAL_Delay(10);
+    //     }
+    //   }
+    // }
+
+    /* Delay for ~100Hz update rate */
+    HAL_Delay(10);
 
     /* USER CODE END WHILE */
 
