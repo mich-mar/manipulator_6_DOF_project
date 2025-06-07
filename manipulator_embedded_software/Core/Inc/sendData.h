@@ -3,7 +3,7 @@
 
 #include "main.h" // lub bezpośrednie #include potrzebnych plików np. "i2c.h", "adc.h"
 #include "ads1115.h"  // deklaracje ADS1115_ReadAllValues()
-#include "GY85.h"     // deklaracje GY85_ReadAllSensors()
+#include "gy85.h"     // deklaracje GY85_ReadAllSensors()
 #include "string.h"   // dla memset
 #include "stdio.h"    // dla sprintf
 #include "sendUSB.h"

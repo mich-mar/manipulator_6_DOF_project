@@ -27,9 +27,10 @@
 #include "ads1115.h"
 #include "sendUSB.h"
 #include "ftos.h"
-#include "GY85.h"
+#include "gy85.h"
+#include "gy85_gravity.h"
 #include "sendData.h"
-#include "positionTracker.h"
+#include "gy85_pos.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -37,7 +38,7 @@
 
 GY85_HandleTypeDef hgy85;
 ADS1115_Readings hadc;
-PositionTracker tracker;
+IMU_Position imu_position;
 
 // LED PC13
 // SDA PB7
@@ -114,13 +115,6 @@ int main(void)
 
   GY85_Begin(&hgy85, &hi2c1);
 
-  /* Initialize position tracker */
-  position_tracker_init(&tracker);
-
-  /* Send ready message */
-  char ready_msg[] = "System ready. Keep the IMU still for calibration...\r\n";
-  sendUSBmsg(ready_msg);
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -128,43 +122,49 @@ int main(void)
 
   while (1)
   {
-    printAllSensors(&hadc, &hgy85, FORMAT_HUMAN_READABLE);
+    // printAllSensors(&hadc, &hgy85, FORMAT_HUMAN_READABLE);
 
     // printAllSensors(&hadc,&hgy85,FORMAT_CSV);
 
-    // /* Read data from GY85 */
-    // GY85_ReadAllSensors(&hadc);
+    while (1)
+    {
+      if (GY85_ReadAllSensorsCompensated(&hgy85) == HAL_OK)
+      {
+        if (IMU_UpdatePosition(&hgy85, &imu_position) == HAL_OK)
+        {
+          char buffer[512];
+          int length = 0;
 
-    // /* Update position tracking */
-    // position_tracker_update(&tracker, &hgy85);
+          // Przyspieszenia (po usunięciu grawitacji)
+          length += sprintf(buffer + length, "Accel (m/s^2): X=%.2f Y=%.2f Z=%.2f\r\n",
+                            hgy85.accel.x, hgy85.accel.y, hgy85.accel.z);
 
-    // /* Send data via USB */
-    // position_tracker_send_data(&tracker);
+          // Prędkości
+          length += sprintf(buffer + length, "Velocity (m/s): X=%.2f Y=%.2f Z=%.2f\r\n",
+                            imu_position.velocity.x,
+                            imu_position.velocity.y,
+                            imu_position.velocity.z);
 
-    // /* Check reset button (PA0) */
-    // if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_RESET)
-    // {
-    //   // Debouncing
-    //   HAL_Delay(50);
-    //   if (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_RESET)
-    //   {
-    //     // Reset position tracker
-    //     position_tracker_reset(&tracker);
+          // Pozycja
+          length += sprintf(buffer + length, "Position (m): X=%.2f Y=%.2f Z=%.2f\r\n",
+                            imu_position.position.x,
+                            imu_position.position.y,
+                            imu_position.position.z);
 
-    //     // Send reset message
-    //     char reset_msg[] = "Position tracker reset!\r\n";
-    //     sendUSBmsg(reset_msg);
+          // Orientacja w stopniach
+          length += sprintf(buffer + length, "Orientation (deg): Roll=%.2f Pitch=%.2f Yaw=%.2f\r\n",
+                            imu_position.orientation.roll * 180.0f / M_PI,
+                            imu_position.orientation.pitch * 180.0f / M_PI,
+                            imu_position.orientation.yaw * 180.0f / M_PI);
 
-    //     // Wait for button release
-    //     while (HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_RESET)
-    //     {
-    //       HAL_Delay(10);
-    //     }
-    //   }
-    // }
+          length += sprintf(buffer + length, "\r\n");
 
-    /* Delay for ~100Hz update rate */
-    HAL_Delay(10);
+          sendUSBmsg(buffer);
+        }
+      }
+
+      HAL_Delay(10);
+    }
 
     /* USER CODE END WHILE */
 

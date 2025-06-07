@@ -7,11 +7,11 @@ void printAllSensors(ADS1115_Readings *hadc, GY85_HandleTypeDef *hgy85, OutputFo
     
     // Odczyt ADS1115
     ADS1115_ReadAllValues(hadc);
-    HAL_Delay(100);
+    HAL_Delay(10);
     
     // Odczyt GY85
-    GY85_ReadAllSensors(hgy85);
-    HAL_Delay(100);
+    GY85_ReadAllSensorsCompensated(hgy85);
+    HAL_Delay(10);
     
     if (format == FORMAT_HUMAN_READABLE) {
         sprintf(buffer,

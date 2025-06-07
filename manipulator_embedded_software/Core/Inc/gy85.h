@@ -91,10 +91,4 @@ HAL_StatusTypeDef GY85_SelfTest(GY85_HandleTypeDef *hgy85);
 HAL_StatusTypeDef GY85_SendAllData(GY85_HandleTypeDef *hgy85);
 HAL_StatusTypeDef GY85_Begin(GY85_HandleTypeDef *hgy85, I2C_HandleTypeDef *hi2c);
 
-/* Funkcje do debugowania HMC5883L */
-static void I2C_ScanBus(I2C_HandleTypeDef *hi2c);
-static void I2C_CheckPins(void);
-static void I2C_ScanBus(I2C_HandleTypeDef *hi2c);
-static HAL_StatusTypeDef I2C_ResetBus(GY85_HandleTypeDef *hgy85);
-
 #endif /* GY85_H */

@@ -1,4 +1,4 @@
-#include "GY85.h"
+#include "gy85.h"
 #include <math.h>
 
 /* Funkcje pomocnicze prywatne */
@@ -90,80 +90,38 @@ static HAL_StatusTypeDef ITG3200_Init(GY85_HandleTypeDef *hgy85)
     return HAL_OK;
 }
 
-// static HAL_StatusTypeDef HMC5883L_Init(GY85_HandleTypeDef *hgy85)
-// {
-//     HAL_StatusTypeDef status;
-//     uint8_t device_id[3];
-
-//     // Sprawdzenie ID urządzenia (3 kolejne rejestry ID)
-//     status = I2C_ReadRegister(hgy85->hi2c, HMC5883L_ADDR, HMC5883L_ID_A, device_id, 3);
-//     if (status != HAL_OK || device_id[0] != 'H' || device_id[1] != '4' || device_id[2] != '3')
-//         return HAL_ERROR;
-
-//     // Konfiguracja trybu pracy
-//     // - 8 próbek uśrednianych
-//     // - Częstotliwość próbkowania 15Hz
-//     // - Normalny tryb pomiarowy
-//     status = I2C_WriteRegister(hgy85->hi2c, HMC5883L_ADDR, HMC5883L_CONFIG_A, 0x70);
-//     if (status != HAL_OK)
-//         return status;
-
-//     // Ustawienie zakresu ±1.3Ga
-//     status = I2C_WriteRegister(hgy85->hi2c, HMC5883L_ADDR, HMC5883L_CONFIG_B, 0x20);
-//     if (status != HAL_OK)
-//         return status;
-
-//     // Ustawienie trybu ciągłego pomiaru
-//     status = I2C_WriteRegister(hgy85->hi2c, HMC5883L_ADDR, HMC5883L_MODE, 0x00);
-//     if (status != HAL_OK)
-//         return status;
-
-//     // Współczynnik skalowania dla ±1.3Ga: 1090 LSB/Gauss
-//     hgy85->mag_scale = 1.0 / 1090.0;
-
-//     return HAL_OK;
-// }
-
-
-// implementacja na podstawie gotowego programu z dokumentacji - nie działa
 static HAL_StatusTypeDef HMC5883L_Init(GY85_HandleTypeDef *hgy85)
 {
     HAL_StatusTypeDef status;
-    char debug_buffer[128];
+    uint8_t device_id[3];
 
-    sendUSBmsg("\r\nHMC5883L: Starting initialization...\r\n");
-    
-    // 1. Sprawdź stan linii
-    I2C_CheckPins();
-    
-    // 2. Jeśli linie nie są w stanie wysokim, zresetuj magistralę
-    if(HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6) == GPIO_PIN_RESET ||
-       HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7) == GPIO_PIN_RESET) {
-        sendUSBmsg("I2C lines stuck low, attempting reset...\r\n");
-        I2C_ResetBus(hgy85);
-        I2C_CheckPins();
-    }
-    
-    // 3. Skanuj magistralę
-    I2C_ScanBus(hgy85->hi2c);
-    
-    // 4. Spróbuj różne adresy HMC5883L
-    const uint8_t possible_addresses[] = {0x1E, 0x3C, 0x3D};
-    for(int i = 0; i < sizeof(possible_addresses); i++) {
-        status = HAL_I2C_IsDeviceReady(hgy85->hi2c, possible_addresses[i] << 1, 1, 100);
-        sprintf(debug_buffer, "Testing address 0x%02X: %s\r\n", 
-                possible_addresses[i], 
-                status == HAL_OK ? "FOUND!" : "not found");
-        sendUSBmsg(debug_buffer);
-    }
-    
-    // 5. Stan I2C
-    sprintf(debug_buffer, "I2C State: %lu, Error: %lu\r\n", 
-            HAL_I2C_GetState(hgy85->hi2c), 
-            HAL_I2C_GetError(hgy85->hi2c));
-    sendUSBmsg(debug_buffer);
+    // Sprawdzenie ID urządzenia (3 kolejne rejestry ID)
+    status = I2C_ReadRegister(hgy85->hi2c, HMC5883L_ADDR, HMC5883L_ID_A, device_id, 3);
+    if (status != HAL_OK || device_id[0] != 'H' || device_id[1] != '4' || device_id[2] != '3')
+        return HAL_ERROR;
 
-    return HAL_OK;  // Zwróć OK nawet jeśli nie znaleziono urządzenia
+    // Konfiguracja trybu pracy
+    // - 8 próbek uśrednianych
+    // - Częstotliwość próbkowania 15Hz
+    // - Normalny tryb pomiarowy
+    status = I2C_WriteRegister(hgy85->hi2c, HMC5883L_ADDR, HMC5883L_CONFIG_A, 0x70);
+    if (status != HAL_OK)
+        return status;
+
+    // Ustawienie zakresu ±1.3Ga
+    status = I2C_WriteRegister(hgy85->hi2c, HMC5883L_ADDR, HMC5883L_CONFIG_B, 0x20);
+    if (status != HAL_OK)
+        return status;
+
+    // Ustawienie trybu ciągłego pomiaru
+    status = I2C_WriteRegister(hgy85->hi2c, HMC5883L_ADDR, HMC5883L_MODE, 0x00);
+    if (status != HAL_OK)
+        return status;
+
+    // Współczynnik skalowania dla ±1.3Ga: 1090 LSB/Gauss
+    hgy85->mag_scale = 1.0 / 1090.0;
+
+    return HAL_OK;
 }
 
 /* Implementacja funkcji z pliku nagłówkowego */
@@ -390,100 +348,5 @@ HAL_StatusTypeDef GY85_Begin(GY85_HandleTypeDef *hgy85, I2C_HandleTypeDef *hi2c)
     // if (status != HAL_OK)
     //     return status;
 
-    return HAL_OK;
-}
-
-static void I2C_ScanBus(I2C_HandleTypeDef *hi2c)
-{
-    HAL_StatusTypeDef status;
-    char debug_buffer[128];
-    int devices_found = 0;
-    
-    sendUSBmsg("\r\nScanning I2C bus...\r\n");
-
-    // Skanuj wszystkie możliwe 7-bitowe adresy
-    for(uint8_t addr = 1; addr < 128; addr++) {
-        // Przesuń 7-bitowy adres o 1 w lewo (format 8-bitowy)
-        status = HAL_I2C_IsDeviceReady(hi2c, addr << 1, 1, 10);
-        
-        if(status == HAL_OK) {
-            sprintf(debug_buffer, "Found device at address 0x%02X (7-bit) / 0x%02X (8-bit)\r\n", 
-                    addr, addr << 1);
-            sendUSBmsg(debug_buffer);
-            devices_found++;
-        }
-    }
-    
-    if(devices_found == 0) {
-        sendUSBmsg("No I2C devices found!\r\n");
-    } else {
-        sprintf(debug_buffer, "Found %d device(s)\r\n", devices_found);
-        sendUSBmsg(debug_buffer);
-    }
-}
-
-// I sprawdźmy stan linii I2C
-static void I2C_CheckPins(void)
-{
-    char debug_buffer[128];
-    GPIO_PinState scl = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6);  // SCL
-    GPIO_PinState sda = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7);  // SDA
-    
-    sprintf(debug_buffer, "I2C pins state - SCL: %d, SDA: %d (should both be 1)\r\n", 
-            (int)scl, (int)sda);
-    sendUSBmsg(debug_buffer);
-}
-
-// Dodajmy też reset magistrali I2C
-static HAL_StatusTypeDef I2C_ResetBus(GY85_HandleTypeDef *hgy85)
-{
-    GPIO_InitTypeDef GPIO_InitStruct = {0};
-    char debug_buffer[128];
-    
-    sendUSBmsg("Resetting I2C bus...\r\n");
-    
-    // 1. Wyłącz I2C
-    __HAL_RCC_I2C1_CLK_DISABLE();
-    
-    // 2. Skonfiguruj piny jako wyjścia
-    GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;  // SCL i SDA
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;    // Open-drain
-    GPIO_InitStruct.Pull = GPIO_PULLUP;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-    
-    // 3. Wymuś stan wysoki
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6|GPIO_PIN_7, GPIO_PIN_SET);
-    HAL_Delay(1);
-    
-    // 4. Wygeneruj 9 impulsów na SCL
-    for(int i = 0; i < 9; i++) {
-        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_RESET);
-        HAL_Delay(1);
-        HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6, GPIO_PIN_SET);
-        HAL_Delay(1);
-    }
-    
-    // 5. Generuj STOP (SDA low->high while SCL is high)
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_RESET);
-    HAL_Delay(1);
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_SET);
-    HAL_Delay(1);
-    
-    // 6. Przywróć piny do trybu I2C
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
-    GPIO_InitStruct.Alternate = GPIO_AF4_I2C1;
-    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-    
-    // 7. Włącz z powrotem I2C
-    __HAL_RCC_I2C1_CLK_ENABLE();
-    
-    // 8. Reinicjalizuj I2C
-    if(HAL_I2C_Init(hgy85->hi2c) != HAL_OK) {
-        sendUSBmsg("Failed to reinitialize I2C\r\n");
-        return HAL_ERROR;
-    }
-    
-    sendUSBmsg("I2C bus reset complete\r\n");
     return HAL_OK;
 }

@@ -51,12 +51,12 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
     Core/Src/ads1115.c   # <== changed
-    Core/Src/GY85.c # <== changed
+    Core/Src/gy85.c # <== changed
     Core/Src/sendUSB.c # <== changed
     Core/Src/sendData.c # <== changed
     Core/Src/crc.c
-    Core/Src/kalmanFilter.c
-    Core/Src/positionTracker.c
+    Core/Src/gy85_gravity.c
+    Core/Src/gy85_pos.c
 )
 
 # Add include paths
