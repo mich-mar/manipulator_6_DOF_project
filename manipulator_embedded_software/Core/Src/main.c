@@ -49,7 +49,7 @@ IMU_Position imu_position;
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define ADC_READ_INTERVAL 1000 // Czas między odczytami w ms
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -124,47 +124,44 @@ int main(void)
   {
     // printAllSensors(&hadc, &hgy85, FORMAT_HUMAN_READABLE);
 
-    // printAllSensors(&hadc,&hgy85,FORMAT_CSV);
+    printAllSensors(&hadc,&hgy85,FORMAT_CSV);
 
-    while (1)
-    {
-      if (GY85_ReadAllSensorsCompensated(&hgy85) == HAL_OK)
-      {
-        if (IMU_UpdatePosition(&hgy85, &imu_position) == HAL_OK)
-        {
-          char buffer[512];
-          int length = 0;
+    //   if (GY85_ReadAllSensorsCompensated(&hgy85) == HAL_OK)
+    //   {
+    //     if (IMU_UpdatePosition(&hgy85, &imu_position) == HAL_OK)
+    //     {
+    //       char buffer[512];
+    //       int length = 0;
 
-          // Przyspieszenia (po usunięciu grawitacji)
-          length += sprintf(buffer + length, "Accel (m/s^2): X=%.2f Y=%.2f Z=%.2f\r\n",
-                            hgy85.accel.x, hgy85.accel.y, hgy85.accel.z);
+    //       // Przyspieszenia (po usunięciu grawitacji)
+    //       length += sprintf(buffer + length, "Accel (m/s^2): X=%.2f Y=%.2f Z=%.2f\r\n",
+    //                         hgy85.accel.x, hgy85.accel.y, hgy85.accel.z);
 
-          // Prędkości
-          length += sprintf(buffer + length, "Velocity (m/s): X=%.2f Y=%.2f Z=%.2f\r\n",
-                            imu_position.velocity.x,
-                            imu_position.velocity.y,
-                            imu_position.velocity.z);
+    //       // Prędkości
+    //       length += sprintf(buffer + length, "Velocity (m/s): X=%.2f Y=%.2f Z=%.2f\r\n",
+    //                         imu_position.velocity.x,
+    //                         imu_position.velocity.y,
+    //                         imu_position.velocity.z);
 
-          // Pozycja
-          length += sprintf(buffer + length, "Position (m): X=%.2f Y=%.2f Z=%.2f\r\n",
-                            imu_position.position.x,
-                            imu_position.position.y,
-                            imu_position.position.z);
+    //       // Pozycja
+    //       length += sprintf(buffer + length, "Position (m): X=%.2f Y=%.2f Z=%.2f\r\n",
+    //                         imu_position.position.x,
+    //                         imu_position.position.y,
+    //                         imu_position.position.z);
 
-          // Orientacja w stopniach
-          length += sprintf(buffer + length, "Orientation (deg): Roll=%.2f Pitch=%.2f Yaw=%.2f\r\n",
-                            imu_position.orientation.roll * 180.0f / M_PI,
-                            imu_position.orientation.pitch * 180.0f / M_PI,
-                            imu_position.orientation.yaw * 180.0f / M_PI);
+    //       // Orientacja w stopniach
+    //       length += sprintf(buffer + length, "Orientation (deg): Roll=%.2f Pitch=%.2f Yaw=%.2f\r\n",
+    //                         imu_position.orientation.roll * 180.0f / M_PI,
+    //                         imu_position.orientation.pitch * 180.0f / M_PI,
+    //                         imu_position.orientation.yaw * 180.0f / M_PI);
 
-          length += sprintf(buffer + length, "\r\n");
+    //       length += sprintf(buffer + length, "\r\n");
 
-          sendUSBmsg(buffer);
-        }
-      }
+    //       sendUSBmsg(buffer);
+    //     }
+    //   }
 
-      HAL_Delay(10);
-    }
+    HAL_Delay(10);
 
     /* USER CODE END WHILE */
 

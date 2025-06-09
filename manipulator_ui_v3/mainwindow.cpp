@@ -316,7 +316,7 @@ void MainWindow::setupIMUCharts()
     QValueAxis *axisX_X = new QValueAxis();
     QValueAxis *axisY_X = new QValueAxis();
     axisX_X->setRange(0, MAX_POINTS);
-    axisY_X->setRange(-100, 100);
+    axisY_X->setRange(-50, 50);
 
     setupAxis(axisX_X);
     setupAxis(axisY_X);
@@ -365,7 +365,7 @@ void MainWindow::setupIMUCharts()
     QValueAxis *axisX_Y = new QValueAxis();
     QValueAxis *axisY_Y = new QValueAxis();
     axisX_Y->setRange(0, MAX_POINTS);
-    axisY_Y->setRange(-100, 100);
+    axisY_Y->setRange(-50, 50);
 
     setupAxis(axisX_Y);
     setupAxis(axisY_Y);
@@ -414,7 +414,7 @@ void MainWindow::setupIMUCharts()
     QValueAxis *axisX_Z = new QValueAxis();
     QValueAxis *axisY_Z = new QValueAxis();
     axisX_Z->setRange(0, MAX_POINTS);
-    axisY_Z->setRange(-100, 100);
+    axisY_Z->setRange(-50, 50);
 
     setupAxis(axisX_Z);
     setupAxis(axisY_Z);
